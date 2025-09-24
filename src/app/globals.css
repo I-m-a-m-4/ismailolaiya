@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px) scale(.98); filter: blur(6px);} to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0);} }
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-16px);} to { opacity: 1; transform: translateX(0);} }
+
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+@keyframes pulse-glow { 0%, 100% { border-color: rgba(224, 225, 228, 0.5); } 50% { border-color: rgba(224, 225, 228, 1); } }
+@keyframes subtle-pan-and-breathe {
+    0% { transform: translate(-5%, -5%) scale(1.1); opacity: 0.8; }
+    50% { transform: translate(5%, 5%) scale(1.15); opacity: 1; }
+    100% { transform: translate(-5%, -5%) scale(1.1); opacity: 0.8; }
+}
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.duration-2000 {
+    transition-duration: 2000ms;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 240 6% 10%;
+    --foreground: 240 5% 96%;
+    --card: 240 6% 10%;
+    --card-foreground: 240 5% 96%;
+    --popover: 240 6% 10%;
+    --popover-foreground: 240 5% 96%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 240 5% 96%;
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 240 5% 96%;
+    --muted: 240 5% 25%;
+    --muted-foreground: 240 5% 63%;
+    --accent: 240 5% 34%;
+    --accent-foreground: 240 5% 96%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 240 5% 96%;
+    --border: 240 4% 21%;
+    --input: 240 4% 21%;
+    --ring: 0 100% 50%;
+    --radius: 0.75rem;
+  }
+
+  .light {
+    --background: 0 0% 95%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 0 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+  }
+
+  section {
+    animation: fadeUp .8s cubic-bezier(.16,1,.3,1) both;
+    animation-delay: var(--animation-delay, 0s);
+  }
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10;
+}
+
+.light .glass-card {
+  @apply bg-white/60 backdrop-blur-lg border border-white/20;
+}
+
+
+.anim { animation: fadeUp .8s cubic-bezier(.16,1,.3,1) both; }
+.anim-fade { animation: fade .8s ease-out both; }
+.anim-slide { animation: slideIn .8s cubic-bezier(.16,1,.3,1) both; }
+.d-0 { animation-delay: .05s }
+.d-1 { animation-delay: .15s }
+.d-2 { animation-delay: .25s }
+.d-3 { animation-delay: .35s }
+.d-4 { animation-delay: .45s }
+.d-5 { animation-delay: .55s }
+.d-6 { animation-delay: .65s }
+.d-7 { animation-delay: .75s }

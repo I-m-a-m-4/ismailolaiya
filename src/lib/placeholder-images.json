@@ -1,0 +1,100 @@
+{
+  "placeholderImages": [
+    {
+      "id": "ismail",
+      "description": "A professional headshot of Ismail Adekunle-Olaiya.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg",
+      "imageHint": "professional headshot"
+    },
+    {
+      "id": "ismail-about",
+      "description": "A professional photo of Ismail Adekunle-Olaiya in a discussion.",
+      "imageUrl": "https://images.unsplash.com/photo-1758525589111-eaba67028b36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYW4lMjB0YWxraW5nJTIwYnVzaW5lc3N8ZW58MHx8fHwxNzU4NjIzOTIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man talking business"
+    },
+    {
+      "id": "peritus",
+      "description": "The logo for Peritus Engineering.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/peritus_logo.png",
+      "imageHint": "Peritus Engineering logo"
+    },
+    {
+      "id": "pilgrim",
+      "description": "The logo for Pilgrim Prive.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/pilgrim_logo.png",
+      "imageHint": "Pilgrim Prive logo"
+    },
+    {
+      "id": "easyreside",
+      "description": "The logo for EasyReside LTD.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/easyreside_logo.png",
+      "imageHint": "EasyReside LTD logo"
+    },
+    {
+      "id": "researchgains",
+      "description": "The logo for ResearchGains.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/researchgains_logo.png",
+      "imageHint": "ResearchGains logo"
+    },
+    {
+      "id": "salaam",
+      "description": "The logo for Salaam Muslim Books.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/salaam_logo.png",
+      "imageHint": "Salaam Muslim Books logo"
+    },
+    {
+      "id": "haamz",
+      "description": "The logo for Haamz Variety Store.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/haamz_logo.png",
+      "imageHint": "Haamz Variety Store logo"
+    },
+    {
+      "id": "sccentaura",
+      "description": "The logo for Sccentaura.",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/sccentaura_logo.png",
+      "imageHint": "Sccentaura logo"
+    },
+    {
+      "id": "book",
+      "description": "The book cover for 'How the Best Generation Built Wealth'.",
+      "imageUrl": "https://images.unsplash.com/photo-1641154748135-8032a61a3f80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzU4NTE0Mzg5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "book cover"
+    },
+    {
+      "id": "blog1",
+      "description": "Abstract image representing hadith and business.",
+      "imageUrl": "https://images.unsplash.com/photo-1720701574998-d68020bce2bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxpc2xhbWljJTIwbWFudXNjcmlwdCUyMGJ1c2luZXNzfGVufDB8fHx8MTc1ODYyMzkyMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "islamic manuscript business"
+    },
+    {
+      "id": "blog2",
+      "description": "Image representing meaningful connections.",
+      "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmcmllbmRzJTIwdGFsa2luZ3xlbnwwfHx8fDE3NTg2MjM5MjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "friends talking"
+    },
+    {
+      "id": "blog3",
+      "description": "Image representing a journey from employee to entrepreneur.",
+      "imageUrl": "https://images.unsplash.com/photo-1717960432625-34fd110a8596?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGF0aCUyMGpvdXJuZXl8ZW58MHx8fHwxNzU4NjAxMDcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "path journey"
+    },
+    {
+      "id": "client1",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBhdmF0YXJ8ZW58MHx8fHwxNzU4NTgyNDgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person avatar"
+    },
+    {
+      "id": "client2",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1599566147214-ce487862ea4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBhdmF0YXJ8ZW58MHx8fHwxNzU4NTgyNDgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person avatar"
+    },
+    {
+      "id": "client3",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1750535135704-f9a5dba67e46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBhdmF0YXJ8ZW58MHx8fHwxNzU4NTgyNDgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person avatar"
+    }
+  ]
+}
