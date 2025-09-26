@@ -30,7 +30,7 @@ const AboutPage = () => {
                   <div className="relative">
                     <div className="relative overflow-hidden rounded-2xl h-96 md:h-[500px] ring-1 ring-white/10">
                       {aboutImage && <Image
-                        src={aboutImage.imageUrl}
+                        src="https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg"
                         alt={aboutImage.description}
                         fill
                         className="absolute inset-0 w-full h-full object-cover object-center"
