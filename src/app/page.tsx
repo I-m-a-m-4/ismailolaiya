@@ -15,6 +15,7 @@ import SplashScreen from '@/components/SplashScreen';
 import Vision from '@/components/Vision';
 import MotionWrap from '@/components/MotionWrap';
 import Contact from '@/components/Contact';
+import Process from '@/components/Process';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -51,6 +52,9 @@ export default function Home() {
         </MotionWrap>
         <MotionWrap>
           <About />
+        </MotionWrap>
+        <MotionWrap>
+          <Process />
         </MotionWrap>
         <MotionWrap>
           <Testimonials />

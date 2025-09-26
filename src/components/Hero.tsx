@@ -82,7 +82,7 @@ const Hero = () => {
             <div className="container relative z-20 flex flex-col min-h-screen mr-auto ml-auto pr-6 pl-6" style={{paddingTop:'20vh', paddingBottom:'30vh'}}>
                 <div className="flex flex-col w-full h-full justify-center text-left">
                     <div ref={heroStatusRef} className="opacity-0 transform translate-y-12 translate-x-[-20px] blur-md transition-all duration-1200 ease-out" style={{transitionDelay: '1000ms'}}>
-                        <span className="inline-flex items-center gap-2 px-4 py-1 bg-zinc-800/50 ring-1 ring-inset ring-zinc-600/40 rounded-full text-sm mb-6 backdrop-blur-md font-medium w-fit text-white">
+                        <span className="inline-flex items-center gap-2 px-4 py-1 bg-zinc-800/50 text-white ring-1 ring-inset ring-zinc-600/40 rounded-full text-sm mb-6 backdrop-blur-md font-medium w-fit">
                             <span className="w-2 h-2 bg-zinc-300 rounded-full animate-pulse"></span>
                             Ismail Adekunle-Olaiya (Abu Sufyaan)
                         </span>
@@ -95,7 +95,7 @@ const Hero = () => {
                     </div>
 
                     <div ref={heroSubtitleRef} className="opacity-0 transform translate-y-20 translate-x-[-40px] blur-md transition-all duration-1400 ease-out" style={{transitionDelay: '1400ms'}}>
-                        <p className="max-w-2xl text-base md:text-lg text-zinc-300 mb-8 leading-relaxed">
+                        <p className="max-w-2xl text-base md:text-lg text-zinc-300 light:text-white mb-8 leading-relaxed">
                           I guide Muslims to build thriving businesses without compromising their Deen—through mindset shifts, proven strategies, and long-term growth systems.
                         </p>
                     </div>
@@ -115,7 +115,7 @@ const Hero = () => {
             </div>
 
             <div ref={heroTextRef} className="absolute left-0 right-0 bottom-0 z-10 pointer-events-none select-none overflow-hidden opacity-0 transform translate-y-20 blur-lg transition-all duration-2000 ease-out" style={{transitionDelay: '1800ms'}}>
-                <h2 style={{fontFamily:'"Space Grotesk", sans-serif', fontSize: '24vw', lineHeight: 1, letterSpacing: '-0.045em', color: 'rgba(113,113,122,0.11)', fontWeight: 700, textTransform: 'uppercase', whiteSpace: 'nowrap', width: '100vw'}} className="tracking-tight text-center">
+                <h2 style={{fontFamily:'"Plus Jakarta Sans", sans-serif', fontSize: '24vw', lineHeight: 1, letterSpacing: '-0.045em', color: 'rgba(113,113,122,0.11)', fontWeight: 700, textTransform: 'uppercase', whiteSpace: 'nowrap', width: '100vw'}} className="tracking-tight text-center">
                     OLAIYA
                 </h2>
             </div>

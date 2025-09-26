@@ -9,7 +9,6 @@ const SalafiMan = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-
 const facts = [
     {
         title: "My favorite color is white",
@@ -42,7 +41,6 @@ const facts = [
         icon: BrainCircuit
     }
 ];
-
 
 const FunFacts = () => {
     return (

@@ -18,37 +18,32 @@
     opacity: .5;
   }
 }
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
 
 .duration-2000 {
     transition-duration: 2000ms;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Inter', sans-serif;
-}
-
 @layer base {
   :root {
-    --background: 240 6% 10%;
-    --foreground: 240 5% 96%;
+    --background: 240 6% 10%; /* Dark: Almost Black */
+    --foreground: 240 5% 96%; /* Dark: Almost White */
     --card: 240 6% 10%;
     --card-foreground: 240 5% 96%;
     --popover: 240 6% 10%;
     --popover-foreground: 240 5% 96%;
-    --primary: 0 100% 50%;
+    --primary: 0 100% 50%; /* Red Accent */
     --primary-foreground: 240 5% 96%;
-    --secondary: 240 5% 15%;
+    --secondary: 240 5% 15%; /* Dark: Slightly lighter than background */
     --secondary-foreground: 240 5% 96%;
-    --muted: 240 5% 25%;
+    --muted: 240 5% 25%; /* Dark: Muted gray */
     --muted-foreground: 240 5% 63%;
     --accent: 240 5% 34%;
     --accent-foreground: 240 5% 96%;
@@ -56,20 +51,23 @@ h6 {
     --destructive-foreground: 240 5% 96%;
     --border: 240 4% 21%;
     --input: 240 4% 21%;
-    --ring: 0 100% 50%;
+    --ring: 0 100% 50%; /* Red Accent */
     --radius: 0.75rem;
+
+    --font-sans: 'Montserrat', sans-serif;
+    --font-grotesk: 'Plus Jakarta Sans', sans-serif;
   }
 
   .light {
-    --background: 0 0% 95%;
-    --foreground: 240 10% 3.9%;
+    --background: 0 0% 100%; /* Light: White */
+    --foreground: 240 10% 3.9%; /* Light: Almost Black */
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 0 100% 50%;
+    --primary: 0 84% 44%; /* Red Accent (#E60000) */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%;
+    --secondary: 240 4.8% 95.9%; /* Light: Light Gray */
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
@@ -77,9 +75,9 @@ h6 {
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 5.9% 90%;
+    --border: 240 5.9% 90%; /* Light: Light border */
     --input: 240 5.9% 90%;
-    --ring: 0 100% 50%;
+    --ring: 0 84% 44%; /* Red Accent */
   }
 }
 
@@ -88,7 +86,11 @@ h6 {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-grotesk;
   }
 
   section {
@@ -98,13 +100,14 @@ h6 {
 }
 
 .glass-card {
+  /* Dark mode glass card */
   @apply bg-white/5 backdrop-blur-lg border border-white/10;
 }
 
 .light .glass-card {
-  @apply bg-white/60 backdrop-blur-lg border border-white/20;
+  /* Light mode glass card */
+  @apply bg-white/80 backdrop-blur-xl border border-gray-200/50;
 }
-
 
 .anim { animation: fadeUp .8s cubic-bezier(.16,1,.3,1) both; }
 .anim-fade { animation: fade .8s ease-out both; }

@@ -1,17 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
 import placeholderData from '@/lib/placeholder-images.json';
 import { User } from 'lucide-react';
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
-
 
 const aboutImage = placeholderData.placeholderImages.find(p => p.id === 'ismail-about');
 
@@ -26,10 +17,8 @@ const brandLogos = [
 ];
 
 const About = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   return (
-    <section id="about" ref={sectionRef} className="relative bg-background/50 border-t border-b border-white/10 pt-32 pb-32">
+    <section id="about" className="relative bg-background/50 border-t border-b border-white/10 pt-32 pb-32">
       <div className="container mx-auto px-6">
         <div className="max-w-7xl mx-auto">
           <article className="grid lg:grid-cols-2 gap-16 items-start mb-24">
@@ -66,7 +55,7 @@ const About = () => {
                 About Me
               </span>
               <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8 text-foreground" style={{ letterSpacing: '-0.03em' }}>
-                Strategist, Architect, Advisor
+                Meet Ismail Adekunle-Olaiya
               </h2>
               <div className="space-y-6 text-muted-foreground leading-relaxed mb-10">
                  <p className="text-lg">
@@ -84,26 +73,21 @@ const About = () => {
 
           <div className="mt-16 border-t border-border pt-12">
             <h3 className="text-center text-sm uppercase tracking-[0.2em] text-muted-foreground anim-fade d-0">Brands I’ve Worked With</h3>
-            <Carousel
-              plugins={[Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true })]}
-              opts={{
-                align: "start",
-                loop: true,
+            <div
+              className="relative mt-8 w-full overflow-hidden"
+              style={{
+                maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
               }}
-              className="w-full mt-8 anim-fade d-1"
             >
-              <CarouselContent>
-                {brandLogos.map((brand, index) => (
-                  <CarouselItem key={index} className="basis-1/2 md:basis-1/3 lg:basis-1/5">
-                    <div className="p-1">
-                        <div className="flex aspect-square items-center justify-center p-6">
-                          <span className="text-xl font-medium text-foreground/70">{brand.name}</span>
-                        </div>
+              <div className="flex w-max animate-marquee">
+                {[...brandLogos, ...brandLogos].map((brand, index) => (
+                    <div key={index} className="flex-shrink-0 px-10">
+                        <span className="text-xl font-medium text-foreground/70 light:text-foreground/50">{brand.name}</span>
                     </div>
-                  </CarouselItem>
                 ))}
-              </CarouselContent>
-            </Carousel>
+              </div>
+            </div>
           </div>
         </div>
       </div>

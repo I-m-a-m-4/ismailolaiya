@@ -29,7 +29,7 @@ const Blog = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="mx-auto max-w-3xl text-center">
                     <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">My Blog</h2>
-                    <p className="mt-3 text-muted-foreground">A personal space where I share insights, stories, and ideas.</p>
+                    <p className="mt-3 text-muted-foreground">A personal space where I share insights, stories, and ideas on topics that inspire and inform.</p>
                 </header>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {blogPosts.map((post, index) => {

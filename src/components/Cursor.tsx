@@ -6,23 +6,33 @@ import { cn } from '@/lib/utils';
 
 const Cursor = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const cursorSize = isHovered ? 60 : 20;
+  
+  const outerSize = isHovered ? 60 : 30;
+  const innerSize = isHovered ? 0 : 8;
 
   const mouse = {
     x: useMotionValue(0),
     y: useMotionValue(0),
   };
 
-  const smoothOptions = { damping: 20, stiffness: 300, mass: 0.5 };
+  // Adjusted for a smoother, slower, and bouncier outer circle
+  const smoothOptions = { damping: 20, stiffness: 200, mass: 0.5 };
   const smoothMouse = {
     x: useSpring(mouse.x, smoothOptions),
     y: useSpring(mouse.y, smoothOptions),
   };
+  
+  // Adjusted for a slightly quicker inner ball, creating more separation
+  const innerSmoothOptions = { damping: 25, stiffness: 500, mass: 0.8 };
+  const innerSmoothMouse = {
+    x: useSpring(mouse.x, innerSmoothOptions),
+    y: useSpring(mouse.y, innerSmoothOptions),
+  };
 
   const manageMouseMove = (e: MouseEvent) => {
     const { clientX, clientY } = e;
-    mouse.x.set(clientX - cursorSize / 2);
-    mouse.y.set(clientY - cursorSize / 2);
+    mouse.x.set(clientX);
+    mouse.y.set(clientY);
   };
 
   const manageMouseOver = (e: MouseEvent) => {
@@ -59,29 +69,41 @@ const Cursor = () => {
       document.body.removeEventListener('mouseover', manageMouseOver);
       document.body.removeEventListener('mouseout', manageMouseLeave);
     };
-  }, [cursorSize]);
+  }, []);
 
   return (
     <div className="hidden md:block">
+      {/* Outer circle */}
       <motion.div
         style={{
           left: smoothMouse.x,
           top: smoothMouse.y,
-          width: cursorSize,
-          height: cursorSize,
+          translateX: '-50%',
+          translateY: '-50%',
         }}
         className="fixed z-[9999] pointer-events-none"
       >
         <motion.div
+          animate={{ width: outerSize, height: outerSize }}
           className={cn(
-            "absolute w-full h-full rounded-full border-2 transition-colors",
-            isHovered ? 'border-primary/50' : 'border-primary'
+            "rounded-full border-2 transition-colors",
+            isHovered ? 'border-primary/50 bg-primary/20' : 'border-primary'
           )}
-          animate={{ scale: isHovered ? 1 : 1.2, opacity: isHovered ? 0 : 1 }}
         />
+      </motion.div>
+      {/* Inner ball */}
+      <motion.div
+         style={{
+          left: innerSmoothMouse.x,
+          top: innerSmoothMouse.y,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+        className="fixed z-[9999] pointer-events-none"
+      >
         <motion.div
-          className="absolute w-full h-full rounded-full bg-primary"
-          animate={{ scale: isHovered ? 1.2 : 0, opacity: isHovered ? 0.2 : 0 }}
+           animate={{ width: innerSize, height: innerSize }}
+           className="rounded-full bg-black dark:bg-white"
         />
       </motion.div>
     </div>

@@ -78,6 +78,9 @@ const Header = () => {
       )}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
+             <div className="w-9 h-9 rounded-xl bg-foreground text-background grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200">
+              <span className="text-sm font-bold tracking-tighter">I</span>
+            </div>
             <span className="text-lg font-medium tracking-tight" style={{ letterSpacing: '-0.02em' }}>Ismail A. Olaiya</span>
           </Link>
           <nav className="hidden md:block">

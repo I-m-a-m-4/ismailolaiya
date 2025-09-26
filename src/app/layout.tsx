@@ -24,7 +24,7 @@ export default function RootLayout({
         <link rel="icon" href="https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet" />
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Ismail Adekunle-Olaiya | Pro-Islamic Business & Growth Strategist" />
         <meta property="og:description" content="Ismail A. Olaiya helps Muslim entrepreneurs build thriving businesses without compromising their Deen. Unlock clarity and long-term growth with a proven strategist." />
