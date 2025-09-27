@@ -5,10 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from './ui/dialog';
 import BookingForm from './BookingForm';
-import Loader from './Loader';
 
 const mainNavLinks = [
   { href: '/', label: 'Home' },
@@ -20,9 +19,9 @@ const mainNavLinks = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,45 +32,48 @@ const Header = () => {
   }, []);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    } else if (href.startsWith('/')) {
-      e.preventDefault();
-      setIsLoading(true);
-      setTimeout(() => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+
+    if (href.startsWith('/')) {
+      if(pathname !== href) {
         router.push(href);
-        setIsLoading(false);
-        setIsMenuOpen(false);
-      }, 1500);
+      }
     } else {
-      setIsMenuOpen(false);
+       const targetElement = document.querySelector(href);
+       if (targetElement) {
+         targetElement.scrollIntoView({ behavior: 'smooth' });
+       } else if (pathname !== '/') {
+         router.push('/' + href);
+       }
     }
   };
 
   const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
     <>
-      {mainNavLinks.map((link) => (
-        <li key={link.href}>
-          <Link
-            href={link.href}
-            onClick={(e) => handleLinkClick(e, link.href)}
-            className={cn(
-              "text-sm font-medium text-muted-foreground hover:text-foreground transition",
-              mobile && "py-2 text-base"
-            )}
-          >
-            {link.label}
-          </Link>
-        </li>
-      ))}
+      {mainNavLinks.map((link) => {
+        const isActive = pathname === link.href;
+        return (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
+              className={cn(
+                "text-sm font-medium hover:text-foreground transition",
+                mobile ? "py-2 text-base" : "",
+                isActive ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              {link.label}
+            </Link>
+          </li>
+        );
+      })}
     </>
   );
 
   return (
     <>
-      {isLoading && <Loader />}
       <header id="heroNav" className={cn(
           "fixed top-0 left-0 right-0 z-30 transition-all duration-300",
           isScrolled ? "bg-background/70 backdrop-blur-lg border-b border-border" : "bg-transparent"
@@ -81,7 +83,7 @@ const Header = () => {
              <div className="w-9 h-9 rounded-xl bg-foreground text-background grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200">
               <span className="text-sm font-bold tracking-tighter">I</span>
             </div>
-            <span className="text-lg font-medium tracking-tight" style={{ letterSpacing: '-0.02em' }}>Ismail A. Olaiya</span>
+            <span className="text-lg font-medium tracking-tight">Ismail A. Olaiya</span>
           </Link>
           <nav className="hidden md:block">
             <ul className="flex items-center gap-8">

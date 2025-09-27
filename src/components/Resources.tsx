@@ -17,10 +17,9 @@ const Resources = () => {
                 <Image
                     src={bookImage.imageUrl}
                     alt={bookImage.description}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     data-ai-hint={bookImage.imageHint}
-                    className="rounded-lg"
+                    className="rounded-lg object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>}

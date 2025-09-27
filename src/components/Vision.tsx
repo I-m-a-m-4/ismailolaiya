@@ -60,7 +60,7 @@ const Vision = () => {
     return (
         <section className="relative min-h-[700px] lg:min-h-screen w-full flex items-center justify-center overflow-hidden light:bg-gray-50/50">
             <div ref={heroPanelRef} className="hero-panel w-[95%] max-w-7xl glass-card rounded-2xl p-4 shadow-2xl relative transition-transform duration-1000 ease-out">
-                <div className="hero-panel-inner relative h-[600px] rounded-lg overflow-hidden" style={{ transformStyle: 'preserve-3d', perspective: '2000px' }}>
+                <div className="hero-panel-inner relative h-auto md:h-[600px] rounded-lg overflow-hidden" style={{ transformStyle: 'preserve-3d', perspective: '2000px' }}>
                     <div className="parallax-layer hero-aurora absolute inset-0" data-depth="0.1"></div>
                     
                     <div className="parallax-layer absolute inset-0" data-depth="0.2">
@@ -72,22 +72,29 @@ const Vision = () => {
                         </svg>
                     </div>
 
-                    <div className="parallax-layer absolute inset-0" data-depth="0.6">
+                    <div className="parallax-layer absolute inset-0 z-10 hidden md:block" data-depth="0.6">
                         <div className="data-points-layer w-full h-full relative">
-                            <div className="data-point absolute" style={{top: '25%', left: '20%'}}><span className="label font-semibold light:text-black">Mindset</span></div>
-                            <div className="data-point absolute" style={{top: '25%', right: '20%'}}><span className="label font-semibold light:text-black">Structures</span></div>
-                            <div className="data-point absolute" style={{bottom: '25%', left: '20%'}}><span className="label font-semibold light:text-black">Unity</span></div>
-                            <div className="data-point absolute" style={{bottom: '25%', right: '20%'}}><span className="label font-semibold light:text-black">Strategic</span><br/>Thinking</div>
+                            <div className="data-point absolute" style={{top: '25%', left: '20%'}}><span className="label font-semibold">Mindset</span></div>
+                            <div className="data-point absolute" style={{top: '25%', right: '20%'}}><span className="label font-semibold">Structures</span></div>
+                            <div className="data-point absolute" style={{bottom: '25%', left: '20%'}}><span className="label font-semibold">Unity</span></div>
+                            <div className="data-point absolute" style={{bottom: '25%', right: '20%'}}><span className="label font-semibold">Strategic</span><br/>Thinking</div>
                         </div>
                     </div>
 
-                    <div className="parallax-layer hero-content z-10 flex flex-col items-center justify-center text-center absolute inset-0" data-depth="0.15">
-                        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4 light:text-gray-900 text-white">My Vision for the Muslim Ummah</h2>
-                        <p className="max-w-3xl text-lg light:text-gray-600 text-neutral-300">As a Business & Growth Strategist for Muslims, my vision is to see Muslims reclaim their rightful place as leading entrepreneurs—by driving a fundamental shift in mindset, building meaningful structures, fostering unity, and embracing long-term strategic thinking.</p>
+                    <div className="parallax-layer hero-content z-20 flex flex-col items-center justify-center text-center relative md:absolute inset-0 p-8 md:p-4" data-depth="0.15">
+                        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4 text-foreground light:text-black">My Vision for the Muslim Ummah</h2>
+                        <p className="max-w-3xl text-lg text-muted-foreground light:text-gray-800">As a Business & Growth Strategist for Muslims, my vision is to see Muslims reclaim their rightful place as leading entrepreneurs—by driving a fundamental shift in mindset, building meaningful structures, fostering unity, and embracing long-term strategic thinking.</p>
                         <div className="mt-8">
                             <Button size="lg" asChild>
                                 <Link href="#contact">Work With Me</Link>
                             </Button>
+                        </div>
+                         {/* Mobile-only grid for data points */}
+                        <div className="mt-12 grid grid-cols-2 gap-4 md:hidden w-full max-w-md">
+                            <div className="data-point flex-col items-center justify-center text-center p-4 h-24"><span className="label font-semibold">Mindset</span></div>
+                            <div className="data-point flex-col items-center justify-center text-center p-4 h-24"><span className="label font-semibold">Structures</span></div>
+                            <div className="data-point flex-col items-center justify-center text-center p-4 h-24"><span className="label font-semibold">Unity</span></div>
+                            <div className="data-point flex-col items-center justify-center text-center p-4 h-24"><span className="label font-semibold">Strategic<br/>Thinking</span></div>
                         </div>
                     </div>
 
@@ -130,21 +137,33 @@ const Vision = () => {
                     align-items: center; 
                     gap: 0.75rem; 
                     padding: 0.5rem 0.75rem; 
-                    border-radius: 2rem; 
+                    border-radius: 1rem; 
                     background-color: rgba(20, 21, 23, 0.5); 
                     backdrop-filter: blur(5px); 
                     -webkit-backdrop-filter: blur(5px); 
                     border: 1px solid rgba(255, 255, 255, 0.05); 
                     font-size: 0.8rem; 
-                    color: #8A8B8E;
+                    color: #E2E3E5;
                 }
                 .light .data-point {
-                    background-color: rgba(255,255,255,0.5);
+                    background-color: hsla(0, 0%, 13%, 0.8);
                     border-color: rgba(0,0,0,0.08);
-                    color: #52525b;
+                    color: hsl(0, 0%, 100%);
+                }
+                .data-point .label {
+                    color: #E2E3E5;
+                }
+                .light .data-point .label {
+                    color: hsl(0, 0%, 100%);
                 }
 
+
                 .data-point::before { 
+                    content: ''; 
+                    display: none;
+                }
+                .md\\:data-point::before {
+                    display: block;
                     content: ''; 
                     width: 8px; 
                     height: 8px; 
@@ -153,12 +172,9 @@ const Vision = () => {
                     border-radius: 50%; 
                     animation: pulse-glow 3s infinite ease-in-out; 
                 }
-                .light .data-point::before {
+                .light .md\\:data-point::before {
                     background: #f8fafc;
                     border-color: #ef4444;
-                }
-                .light .hero-content h2, .light .hero-content p {
-                    color: #111827;
                 }
             `}</style>
         </section>

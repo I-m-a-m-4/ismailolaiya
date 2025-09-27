@@ -7,36 +7,42 @@ import { ArrowRight, Star } from "lucide-react";
 import placeholderData from '@/lib/placeholder-images.json';
 
 const testimonials = [
-  {
-    name: "PlushSteadDécor",
-    quote: "Working with Olaiya has been a game-changer for my business and I'm pleased with the progress we've made so far.",
-    image: placeholderData.placeholderImages.find(p => p.id === 'client1'),
-    title: "Home Decor Brand"
-  },
-  {
-    name: "Rahmatullahi Sanusi",
-    quote: "If you're a Muslim Entrepreneur feeling unsure how to make money through social media without compromising your Deen, Olaiya is that missing piece really...",
-    image: placeholderData.placeholderImages.find(p => p.id === 'client2'),
-    title: "Digital Marketer"
-  },
-  {
-    name: "Hamdallah Rabiu",
-    quote: "His strategies for business growth are unique and exceptional. They are practical and easy to follow. Thank you so much for everything so far!",
-    image: placeholderData.placeholderImages.find(p => p.id === 'client3'),
-    title: "Brand Strategist"
-  },
-  {
-    name: "Ajadi Haneefah",
-    quote: "Olaiya's dedication to his clients is impressive, but equally remarkable is his concern for the well-being and success of those around him.",
-    image: placeholderData.placeholderImages.find(p => p.id === 'client1'),
-    title: "Team Member"
-  },
-  {
-    name: "Aishat Elusogbon",
-    quote: "Of all the things I’ve gained from working with Mr. Olaiya over the years, the one that has truly stayed with me is the value of clarity.",
-    image: placeholderData.placeholderImages.find(p => p.id === 'client2'),
-    title: "Client"
-  },
+    {
+        name: "PlushSteadDécor",
+        quote: "I got to know about Olaiya through a friend. It's been close to two months since then and I can say he loves what he does (strategizing) and he really knows his onions. He is also big on client quality work...",
+        image: placeholderData.placeholderImages.find(p => p.id === 'client1'),
+        title: "Home Decor Brand"
+    },
+    {
+        name: "Rahmatullahi Sanusi",
+        quote: "Mr. Olaiya is an eyeopener on marketing, content strategy, business strategy. I joined one of his free masterclasses where I learnt what a Muslim Entrepreneur should look like. I begin to see business, not just where I make money but as an act of ‘ibaadah...",
+        image: placeholderData.placeholderImages.find(p => p.id === 'client2'),
+        title: "Digital Marketer"
+    },
+    {
+        name: "Hamdallah Rabiu",
+        quote: "Working with Mr Olaiya is definitely one of the best gifts I got this year. Before now, I knew little about brand strategy and contents that work. But barely 3 months of working together, a lot of things have changed...",
+        image: placeholderData.placeholderImages.find(p => p.id === 'client3'),
+        title: "Brand Strategist"
+    },
+    {
+        name: "Ajadi Haneefah",
+        quote: "I'm grateful for the opportunity to work under the guidance of Olaiya. His leadership style is truly inspiring, blending professionalism with genuine care for his team. As a team member, I've witnessed firsthand his commitment to nurturing talent and fostering growth...",
+        image: placeholderData.placeholderImages.find(p => p.id === 'client4'),
+        title: "Team Member"
+    },
+    {
+        name: "Aishat Elusogbon",
+        quote: "Of all the things I’ve gained from working with Mr. Olaiya over the years, the one that has truly stayed with me is the value of clarity. He’s helped me see that whether it’s in Islam, business, or personal growth, clarity makes all the difference in moving forward.",
+        image: placeholderData.placeholderImages.find(p => p.id === 'client5'),
+        title: "Client"
+    },
+    {
+        name: "©Nur by Ibtisaam Secret Hub",
+        quote: "Olaiya is someone that I will always be glad to work with, because why not? He has the charisma of helping MUSLIM brands grow beyond imagination, get halal visibility, and at the same time, move closer to their Creator...",
+        image: placeholderData.placeholderImages.find(p => p.id === 'client6'),
+        title: "Client"
+    }
 ];
 
 
@@ -63,7 +69,7 @@ const Testimonials = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {testimonials.slice(0, 3).map((testimonial, index) => (
+                    {testimonials.slice(0, 6).map((testimonial, index) => (
                         <article key={index} className={`anim d-${3 + index} light:bg-white dark:glass-card rounded-3xl p-8 light:shadow-lg light:border light:border-gray-100 light:hover:shadow-xl transition-all duration-500 transform light:hover:-translate-y-1 ${index === 1 ? 'light:bg-gradient-to-br light:from-red-50 light:to-orange-50 dark:glass-card light:border-red-100' : ''}`}>
                             <div className="flex items-center gap-1 mb-6">
                             {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
@@ -72,10 +78,6 @@ const Testimonials = () => {
                             “{testimonial.quote}”
                             </p>
                             <div className="flex items-center gap-4">
-                            {testimonial.image && <Avatar>
-                                    <AvatarImage src={testimonial.image.imageUrl} alt={testimonial.name} />
-                                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                                </Avatar>}
                                 <div>
                                     <div className="font-semibold">{testimonial.name}</div>
                                     <div className="text-muted-foreground text-sm">{testimonial.title}</div>

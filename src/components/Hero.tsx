@@ -65,11 +65,12 @@ const Hero = () => {
 
     return (
         <section className="relative min-h-screen w-full flex items-center justify-center">
+            <h1 className="sr-only">Pro-Islamic Business Strategist, Growth Consultant, and Brand Strategist for Muslims</h1>
             {heroImage && 
               <Image 
                 ref={heroImageRef}
                 src={heroImage.imageUrl} 
-                alt={heroImage.description} 
+                alt="Ismail Adekunle-Olaiya, a professional business strategist for Muslims" 
                 fill
                 className="absolute inset-0 w-full h-full object-cover object-center z-0 opacity-0 scale-125 blur-md transition-all duration-2000 ease-out" 
                 style={{ filter: 'brightness(0.56)' }}
@@ -89,14 +90,14 @@ const Hero = () => {
                     </div>
 
                     <div ref={heroTitleRef} className="opacity-0 transform translate-y-16 translate-x-[-30px] blur-md transition-all duration-1400 ease-out" style={{transitionDelay: '1200ms'}}>
-                        <h1 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight mb-6 text-white" style={{letterSpacing:'-0.035em'}}>
-                            Ismail promotes the thinking of blue-chip companies among Muslim builders and encourages them on how to disrupt themselves to thrive.
-                        </h1>
+                        <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight mb-6 text-white" style={{letterSpacing:'-0.035em'}}>
+                           As a business consultant, Olaiya promotes blue-chip thinking for Muslim builders, encouraging disruptive strategies to thrive.
+                        </h2>
                     </div>
 
                     <div ref={heroSubtitleRef} className="opacity-0 transform translate-y-20 translate-x-[-40px] blur-md transition-all duration-1400 ease-out" style={{transitionDelay: '1400ms'}}>
                         <p className="max-w-2xl text-base md:text-lg text-zinc-300 light:text-white mb-8 leading-relaxed">
-                          I guide Muslims to build thriving businesses without compromising their Deen—through mindset shifts, proven strategies, and long-term growth systems.
+                          I guide Muslims to build thriving businesses without compromising their Deen—through mindset shifts, proven strategies, and long-term growth systems from a professional growth strategist.
                         </p>
                     </div>
 

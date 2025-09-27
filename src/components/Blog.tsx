@@ -38,13 +38,12 @@ const Blog = () => {
                         <article key={post.title} className={`group rounded-xl glass-card p-4 hover:bg-white/10 transition anim d-${index + 2}`}>
                            {postImage && (
                              <div className="aspect-video relative overflow-hidden rounded-lg">
-                                <Image 
-                                  src={postImage.imageUrl} 
-                                  layout="fill" 
-                                  objectFit="cover" 
-                                  alt={post.title} 
-                                  data-ai-hint={postImage.imageHint} 
-                                  className="group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                <Image
+                                  src={postImage.imageUrl}
+                                  fill
+                                  alt={post.title}
+                                  data-ai-hint={postImage.imageHint}
+                                  className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
                                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                   />
                              </div>

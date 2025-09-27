@@ -9,7 +9,7 @@ const Events = () => {
                     In between building businesses, writing books, and navigating Africa’s opportunities, I occasionally host live strategy webinars and conversations for leaders, entrepreneurs, and builders like you. Want in?
                 </p>
                 <div className="mt-8">
-                    <Button size="lg" variant="outline" className="text-white bg-white/10 hover:bg-white/20 border-white/20">
+                    <Button size="lg" variant="outline">
                         Get Notified (Coming Soon)
                     </Button>
                 </div>

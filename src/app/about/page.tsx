@@ -30,8 +30,8 @@ const AboutPage = () => {
                   <div className="relative">
                     <div className="relative overflow-hidden rounded-2xl h-96 md:h-[500px] ring-1 ring-white/10">
                       {aboutImage && <Image
-                        src="https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg"
-                        alt={aboutImage.description}
+                        src={aboutImage.imageUrl}
+                        alt="Ismail Adekunle-Olaiya, a professional business strategist for Muslims"
                         fill
                         className="absolute inset-0 w-full h-full object-cover object-center"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -56,32 +56,35 @@ const AboutPage = () => {
                 <div className="anim d-2 lg:pl-8">
                   <span className="inline-flex items-center gap-2 px-4 py-1 bg-primary/10 ring-1 ring-inset ring-primary/20 rounded-full text-sm mb-6 font-medium text-primary">
                     <User size={16} />
-                    About Me
+                    About Your Growth Strategist
                   </span>
                   <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4 text-foreground" style={{ letterSpacing: '-0.03em' }}>
                     Meet Ismail Adekunle-Olaiya
                   </h1>
                    <h2 className="text-xl md:text-2xl font-medium tracking-tight mb-8 text-muted-foreground">
-                    Business & Growth Strategist for Muslims | Mindset Architect | Pro-Islamic Advisor
+                    A Leading Business Strategist for Muslims, Mindset Architect, & Pro-Islamic Business Consultant
                   </h2>
                   <div className="space-y-6 text-muted-foreground leading-relaxed mb-10">
+                     <h3>A Mission-Driven Business Developer</h3>
                      <p>
-                        Helping Muslim entrepreneurs and organizations unlock clarity, structure, and long-term growth strategies—so they can serve Allah through their wealth and leadership.
+                        As a dedicated business consultant for Muslims, I help entrepreneurs and organizations unlock clarity, structure, and long-term growth strategies—empowering them to serve Allah through their wealth and leadership.
                     </p>
                     <p>
-                      Ismail A. Olaiya (Abu Sufyaan) is a Pro-Islamic business strategist and growth expert dedicated to unlocking the potential of Muslims, organizations, and Islamic nations through clarity, structure, and long-term thinking.
+                      Ismail A. Olaiya (Abu Sufyaan) is a Pro-Islamic business strategist and growth expert dedicated to unlocking the potential of Muslims, organizations, and Islamic nations. His work as a brand strategist is rooted in clarity, structure, and long-term thinking.
+                    </p>
+                    <h3>Your Expert Business Consultant in Nigeria</h3>
+                    <p>
+                      With half a decade of experience across the SME value chain, he currently drives downstream expansion in Nigeria for Muslim business owners. As a hands-on business developer, he leads market entry, high-value deals, and Islamic-centered growth strategies across Lagos, Abuja, Ibadan, and beyond.
                     </p>
                     <p>
-                      With half a decade of experience across the SME value chain, he currently drives downstream expansion in Nigeria for Muslim business owners—leading market entry, high-value deals, and Islamic-centered growth strategies across Lagos, Abuja, Ibadan, and beyond.
+                        Ismail holds a Diploma in Public Administration and a BA in English & Literary Studies from Obafemi Awolowo University. He is also an exceptional trainer in psychological behavioral analysis, skills he leverages as a top-tier business consultant.
+                    </p>
+                    <h3>More Than a Growth Strategist: A Mentor for the Ummah</h3>
+                    <p>
+                        Beyond strategy, he co-founded The Agrivantage Afrika, an initiative reorienting Africans on the power of agriculture in reclaiming economic independence. He also leads an advisory body for Muslim undergraduates, empowering them to monetize their expertise before graduation. This mentorship is a core part of his identity as a business strategist for the next generation.
                     </p>
                     <p>
-                        Ismail holds a Diploma in Public Administration and a BA in English & Literary Studies from Obafemi Awolowo University. He is also an exceptional trainer in psychological behavioral analysis.
-                    </p>
-                    <p>
-                        Beyond strategy, he co-founded The Agrivantage Afrika, an initiative reorienting Africans on the power of agriculture in reclaiming economic independence. He also leads an advisory body for Muslim undergraduates, empowering them to monetize their expertise before graduation by building strong personal brands and digital presence.
-                    </p>
-                    <p>
-                      Grounded in the belief that Muslims were designed to lead—with the right mindset, strategies, and systems modeled from the Prophet ﷺ—Ismail’s vision is clear: to raise Muslims who reshape the world.
+                      Grounded in the belief that Muslims were designed to lead—with the right mindset, strategies, and systems modeled from the Prophet ﷺ—Ismail’s vision is clear: to raise Muslims who reshape the world. Ready to grow? <a href="/#contact" className="text-primary hover:underline">Contact your business strategist today</a>.
                     </p>
                   </div>
                 </div>

@@ -48,10 +48,10 @@
     --accent: 240 5% 34%;
     --accent-foreground: 240 5% 96%;
     --destructive: 0 63% 31%;
-    --destructive-foreground: 240 5% 96%;
-    --border: 240 4% 21%;
-    --input: 240 4% 21%;
-    --ring: 0 100% 50%; /* Red Accent */
+    --destructive-foreground: 0 0% 96%;
+    --border: 357 25% 20%;
+    --input: 357 25% 20%;
+    --ring: 0 100% 60%;
     --radius: 0.75rem;
 
     --font-sans: 'Montserrat', sans-serif;
@@ -59,25 +59,25 @@
   }
 
   .light {
-    --background: 0 0% 100%; /* Light: White */
-    --foreground: 240 10% 3.9%; /* Light: Almost Black */
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 0 84% 44%; /* Red Accent (#E60000) */
+    --background: 0 80% 97%; /* #FDEFEF */
+    --foreground: 0 10% 3.9%;
+    --card: 0 80% 97%;
+    --card-foreground: 0 10% 3.9%;
+    --popover: 0 80% 97%;
+    --popover-foreground: 0 10% 3.9%;
+    --primary: 350 84% 44%; /* #E62E3A */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%; /* Light: Light Gray */
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 0 30% 94%;
+    --secondary-foreground: 0 5.9% 10%;
+    --muted: 0 30% 94%;
+    --muted-foreground: 0 3.8% 46.1%;
+    --accent: 0 30% 94%;
+    --accent-foreground: 0 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 5.9% 90%; /* Light: Light border */
-    --input: 240 5.9% 90%;
-    --ring: 0 84% 44%; /* Red Accent */
+    --border: 0 20% 90%;
+    --input: 0 20% 90%;
+    --ring: 350 84% 44%;
   }
 }
 

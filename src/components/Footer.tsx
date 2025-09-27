@@ -5,8 +5,13 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-secondary/30 border-border border-t pt-16">
-      <div className="container mx-auto px-6">
+    <footer className="relative bg-secondary/30 border-border border-t pt-16 overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 z-0 pointer-events-none select-none">
+            <h2 style={{fontFamily:'"Plus Jakarta Sans", sans-serif', fontSize: '24vw', lineHeight: 1, letterSpacing: '-0.045em', color: 'rgba(113,113,122,0.11)', fontWeight: 700, textTransform: 'uppercase', whiteSpace: 'nowrap', width: '100vw'}} className="tracking-tight text-center opacity-30 dark:opacity-100">
+                OLAIYA
+            </h2>
+        </div>
+      <div className="relative container mx-auto px-6 z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-12 gap-8">
             <div className="md:col-span-5">
@@ -31,20 +36,22 @@ const Footer = () => {
                 </div>
             </div>
             <div className="md:col-span-3">
-                <h4 className="font-semibold text-foreground mb-4">Get In Touch</h4>
-                <div className="flex flex-col gap-3">
-                    <a href="mailto:talktome@ismailolaiya.com" className="text-muted-foreground hover:text-primary transition">talktome@ismailolaiya.com</a>
-                    <a href="tel:+2348100985574" className="text-muted-foreground hover:text-primary transition">+2348100985574</a>
-                </div>
+              <h4 className="font-semibold text-foreground mb-4">Newsletter</h4>
+              <p className="text-muted-foreground mb-4">Get insights on growth, strategy, and more. No spam.</p>
+                <form className="flex gap-2">
+                    <input type="email" placeholder="Your email..." className="w-full rounded-md bg-white/5 border-border text-sm px-3"/>
+                    <Button variant="secondary" size="icon" className="shrink-0">
+                        <Sparkles />
+                    </Button>
+                </form>
             </div>
           </div>
-          
-          <div className="border-t border-border mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between">
-            <p className="text-sm text-muted-foreground text-center sm:text-left">
-              &copy; {new Date().getFullYear()} Ismail Adekunle-Olaiya. All rights reserved.
-            </p>
-            <div className="mt-4 sm:mt-0">
-              <ThemeToggle />
+          <div className="mt-16 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Ismail A. Olaiya. All Rights Reserved.</p>
+            <div className="flex items-center gap-4">
+                <a href="#" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</a>
+                <a href="#" className="text-sm text-muted-foreground hover:text-primary">Terms of Service</a>
+                <ThemeToggle />
             </div>
           </div>
         </div>

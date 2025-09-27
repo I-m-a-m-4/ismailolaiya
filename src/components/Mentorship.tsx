@@ -10,22 +10,22 @@ const Mentorship = () => {
         <section id="mentorship" className="py-20" style={{ '--animation-delay': '0.6s' } as React.CSSProperties}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <header className="text-center mb-12 max-w-3xl mx-auto">
-                    <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">Book a One-on-One</h2>
-                    <p className="mt-2 text-lg text-muted-foreground">Get expert mentorship from a Pro-Islamic Business Strategist.</p>
+                    <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">Book a One-on-One with a Growth Strategist</h2>
+                    <p className="mt-2 text-lg text-muted-foreground">Get expert mentorship from a Pro-Islamic Business Strategist and Consultant.</p>
                 </header>
 
                 <Dialog>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
                         <article className="md:col-span-1 rounded-2xl glass-card p-6 anim d-2">
-                            <h3 className="text-xl font-semibold">Why Work With Me?</h3>
+                            <h3 className="text-xl font-semibold">Why Work With a Business Strategist?</h3>
                             <ul className="mt-4 space-y-4 text-muted-foreground">
                                 <li>
                                     <h4 className="font-semibold text-foreground">World-Class Expertise</h4>
-                                    <p className="text-sm">Learn directly from a strategist with proven success across multiple industries.</p>
+                                    <p className="text-sm">Learn from a business consultant with proven success across multiple industries.</p>
                                 </li>
                                 <li>
                                     <h4 className="font-semibold text-foreground">Tailored for You</h4>
-                                    <p className="text-sm">Every session is customized to your business challenges.</p>
+                                    <p className="text-sm">Every session is customized to your business challenges by an expert brand strategist.</p>
                                 </li>
                                 <li>
                                     <h4 className="font-semibold text-foreground">Action-Oriented</h4>
@@ -37,10 +37,10 @@ const Mentorship = () => {
                         <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <article className="rounded-2xl border-2 border-primary/50 bg-primary/5 glass-card p-6 anim d-3 relative">
                                 <div className="absolute -top-3 right-4 rounded-full bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary ring-1 ring-primary/20">In-Person</div>
-                                <h3 className="text-lg tracking-tight font-medium">One-on-One Mentorship</h3>
+                                <h3 className="text-lg tracking-tight font-medium">One-on-One Business Consultant Session</h3>
                                 <p className="mt-1 text-3xl tracking-tight font-semibold">$449.99</p>
                                 <p className="text-sm text-muted-foreground mt-1">60–90 minutes</p>
-                                <p className="text-sm text-foreground/80 mt-4">This isn’t another casual chat—it’s a focused strategy session designed to cut through confusion and create a clear roadmap.</p>
+                                <p className="text-sm text-foreground/80 mt-4">This isn’t another casual chat—it’s a focused session with a growth strategist designed to create a clear roadmap.</p>
                                 <ul className="mt-4 space-y-2 text-sm">
                                     <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Identify blind spots</li>
                                     <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Expose hidden opportunities</li>
@@ -53,11 +53,11 @@ const Mentorship = () => {
                             </article>
                             <article className="rounded-2xl glass-card p-6 anim d-4 relative">
                                 <div className="absolute -top-3 right-4 rounded-full bg-sky-400/10 px-2 py-1 text-[10px] font-medium text-sky-300 ring-1 ring-sky-400/20">Virtual</div>
-                                <h3 className="text-lg tracking-tight font-medium">One-on-One Mentorship</h3>
+                                <h3 className="text-lg tracking-tight font-medium">Virtual Business Consultant Session</h3>
                                 <p className="mt-1 text-3xl tracking-tight font-semibold">$139.99</p>
                                 <p className="text-sm text-muted-foreground mt-1">60 minutes (Google Meet)</p>
-                                <p className="text-sm text-foreground/80 mt-4">All the same benefits of in-person mentorship—delivered conveniently online, wherever you are.</p>
-                                <p className="text-sm font-semibold mt-4">Perfect for: Global Muslim entrepreneurs, busy professionals, or those seeking flexible mentorship.</p>
+                                <p className="text-sm text-foreground/80 mt-4">All the same benefits of in-person mentorship—delivered conveniently online by your business strategist.</p>
+                                <p className="text-sm font-semibold mt-4">Perfect for: Global Muslim entrepreneurs and busy professionals.</p>
                                 <DialogTrigger asChild>
                                     <Button variant="secondary" className="mt-5 w-full">Book Session</Button>
                                 </DialogTrigger>
@@ -91,7 +91,7 @@ const Mentorship = () => {
                         </div>
                         <div className="mt-8">
                             <DialogTrigger asChild>
-                                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Book Your Session Now</Button>
+                                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Book Your Business Strategy Session Now</Button>
                             </DialogTrigger>
                         </div>
                     </article>

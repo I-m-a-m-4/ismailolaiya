@@ -39,7 +39,7 @@ export default function Contact() {
     console.log(values);
     toast({
       title: "Message Sent!",
-      description: "Thank you for reaching out. I will get back to you shortly.",
+      description: "Thank you for reaching out. Your business developer will get back to you shortly.",
     });
     form.reset();
   }
@@ -60,14 +60,14 @@ export default function Contact() {
               <span>Get in Touch</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-light tracking-tighter mb-6">
-              Ready to Scale Your Business the <span className="font-semibold text-primary">Halal Way?</span>
+              Ready to Scale? Contact a Leading <span className="font-semibold text-primary">Business Developer</span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-              Let’s simplify your strategy, remove confusion, and position your brand for sustainable growth—in line with your Deen.
+              Let’s simplify your strategy, remove confusion, and position your brand for sustainable growth—all in line with your Deen. Reach out to a premier business consultant for Muslims.
             </p>
             
             <div className="space-y-6 mb-8">
-                <div className="flex items-center gap-4 p-4 rounded-2xl light:bg-white light:shadow-sm light:hover:shadow-md transition-all">
+                <div className="flex items-center gap-4 p-4 rounded-2xl light:bg-white light:shadow-sm light:hover:shadow-md transition-all dark:glass-card">
                   <div className="w-14 h-14 rounded-xl light:bg-blue-100 light:text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 grid place-items-center flex-shrink-0">
                     <Phone className="w-7 h-7" />
                   </div>
@@ -78,7 +78,7 @@ export default function Contact() {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4 p-4 rounded-2xl light:bg-white light:shadow-sm light:hover:shadow-md transition-all">
+                <div className="flex items-center gap-4 p-4 rounded-2xl light:bg-white light:shadow-sm light:hover:shadow-md transition-all dark:glass-card">
                   <div className="w-14 h-14 rounded-xl light:bg-purple-100 light:text-purple-600 dark:bg-purple-500/10 dark:text-purple-400 grid place-items-center flex-shrink-0">
                     <Mail className="w-7 h-7" />
                   </div>
@@ -94,8 +94,8 @@ export default function Contact() {
           {/* Right Form */}
           <div className="anim d-3 light:bg-white dark:glass-card rounded-3xl p-8 light:shadow-xl light:border light:border-gray-100">
             <div className="mb-8">
-              <h3 className="text-2xl font-semibold mb-2">Start Your Project</h3>
-              <p className="text-muted-foreground">Tell me about your vision and I'll bring it to life.</p>
+              <h3 className="text-2xl font-semibold mb-2">Start Your Project with a Brand Strategist</h3>
+              <p className="text-muted-foreground">Tell me about your vision, and this business strategist will help bring it to life.</p>
             </div>
              <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -145,7 +145,7 @@ export default function Contact() {
                   name="projectType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Service Interested In *</FormLabel>
+                      <FormLabel>Service from a Business Consultant *</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="light:bg-white light:border-gray-200 dark:bg-white/5 dark:border-border focus:border-primary focus:ring-4 focus:ring-primary/20">
