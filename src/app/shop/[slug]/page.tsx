@@ -45,12 +45,17 @@ const ProductPage = async ({ params }: Props) => {
   if (!product) {
     notFound();
   }
+  
+  const allProducts = await getAllProducts();
+  const relatedProducts = allProducts
+    .filter(p => p.slug !== product.slug) // Exclude the current product
+    .slice(0, 3); // Get the first 3
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow pt-24">
-        <ProductDetailsClient product={product} />
+        <ProductDetailsClient product={product} relatedProducts={relatedProducts} />
       </main>
       <Footer />
     </div>

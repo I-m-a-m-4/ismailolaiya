@@ -128,7 +128,28 @@ const ProductEditor = ({ product, onSave }: ProductEditorProps) => {
         <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormLabel>Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
         <FormField control={form.control} name="slug" render={({ field }) => (<FormItem><FormLabel>Slug (optional)</FormLabel><FormControl><Input {...field} placeholder="auto-generated-from-name" /></FormControl><FormMessage /></FormItem>)} />
         <FormField control={form.control} name="description" render={({ field }) => (<FormItem><FormLabel>Description</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>)} />
-        <FormField control={form.control} name="price" render={({ field }) => (<FormItem><FormLabel>Price (in dollars)</FormLabel><FormControl><Input type="number" step="0.01" {...field} onChange={e => field.onChange(parseFloat(e.target.value))} /></FormControl><FormMessage /></FormItem>)} />
+        <FormField 
+          control={form.control} 
+          name="price" 
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Price (in dollars)</FormLabel>
+              <FormControl>
+                <Input 
+                  type="number" 
+                  step="0.01" 
+                  {...field} 
+                  value={field.value || ''}
+                  onChange={e => {
+                    const value = parseFloat(e.target.value);
+                    field.onChange(isNaN(value) ? 0 : value);
+                  }} 
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )} 
+        />
         
         <div className="space-y-2">
             <FormLabel>Product Image</FormLabel>

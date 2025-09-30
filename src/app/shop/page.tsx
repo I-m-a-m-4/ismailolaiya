@@ -1,10 +1,13 @@
 
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getAllProducts } from '@/lib/products';
 import ShopPageClient from './ShopPageClient';
 import { Metadata } from 'next';
+import Image from 'next/image';
+import placeholderData from '@/lib/placeholder-images.json';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Shop | Scale with Olaiya',
@@ -18,21 +21,50 @@ export const metadata: Metadata = {
     },
 };
 
-
 const ShopPage = async () => {
     const products = await getAllProducts();
+    const heroImage = placeholderData.placeholderImages.find(p => p.id === 'shop-banner');
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-24">
-        <section id="shop" className="py-20">
+      <main className="flex-grow">
+       <section className="relative h-[80vh] overflow-hidden bg-neutral-900">
+          {heroImage && 
+            <div className="absolute inset-0">
+                <Image src={heroImage.imageUrl} alt={heroImage.description} className="h-full w-full object-cover object-center" fill priority/>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+            </div>
+          }
+          <div className="relative z-10 flex h-full max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center">
+            <div className="max-w-xl text-white">
+              <p className="text-sm/6 uppercase tracking-widest opacity-80">Knowledge · Strategy · Growth</p>
+              <h1 className="mt-3 text-5xl md:text-6xl tracking-tight font-semibold">Essential Resources</h1>
+              <p className="text-base/7 md:text-lg/8 opacity-90 mt-4">
+                Your hub for essential resources designed to help you build and scale a thriving, Deen-aligned business. Authored by a practicing Pro-Islamic business strategist.
+              </p>
+              <div className="mt-8 flex items-center gap-3">
+                <Button size="lg" asChild>
+                    <Link href="#products">Explore Now</Link>
+                </Button>
+                <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-black">
+                    New Releases
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="products" className="py-20 bg-secondary/20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <header className="mx-auto max-w-3xl text-center">
-                  <h1 className="text-4xl md:text-5xl font-semibold tracking-tight anim d-0">My Shop</h1>
-                  <p className="mt-3 text-xl text-muted-foreground anim d-1">Essential resources designed to help you build a thriving, Deen-aligned business.</p>
-                </header>
-                <ShopPageClient products={products} />
+                 {products.length > 0 ? (
+                    <ShopPageClient products={products} />
+                ) : (
+                    <div className="text-center py-20">
+                        <h2 className="text-2xl font-semibold">Coming Soon</h2>
+                        <p className="mt-2 text-muted-foreground">New products will be added shortly. Join the waitlist to be notified!</p>
+                    </div>
+                )}
             </div>
         </section>
       </main>

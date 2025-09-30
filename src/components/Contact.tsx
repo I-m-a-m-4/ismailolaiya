@@ -62,7 +62,7 @@ export default function Contact() {
                 <span>Get in Touch</span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-light tracking-tighter mb-6">
-                Ready to Scale? Contact a Leading <span className="font-semibold text-primary">Business Developer</span>
+                Ready to Scale? Contact a Leading <span className="font-semibold text-primary">Business Consultant</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
                 Let’s simplify your strategy, remove confusion, and position your brand for sustainable growth—all in line with your Deen. Reach out to a premier business consultant for Muslims.

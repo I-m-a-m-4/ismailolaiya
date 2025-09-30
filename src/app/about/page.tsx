@@ -131,7 +131,7 @@ const AboutPage = () => {
                   <div className="flex w-max animate-marquee">
                     {[...brandLogos, ...brandLogos].map((brand, index) => (
                         <div key={index} className="flex-shrink-0 px-12 h-16 flex items-center">
-                            <Image src={brand.logo} alt={brand.name} width={140} height={50} className="object-contain max-h-full grayscale opacity-80" />
+                            <Image src={brand.logo} alt={brand.name} width={140} height={50} className="object-contain max-h-full" />
                         </div>
                     ))}
                   </div>

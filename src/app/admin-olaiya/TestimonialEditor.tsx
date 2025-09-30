@@ -116,7 +116,15 @@ const TestimonialEditor = ({ testimonial, onSave }: TestimonialEditorProps) => {
             <FormItem>
               <FormLabel>Display Order</FormLabel>
               <FormControl>
-                <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10))} />
+                <Input
+                  type="number"
+                  {...field}
+                  value={field.value || ''}
+                  onChange={e => {
+                    const value = parseInt(e.target.value, 10);
+                    field.onChange(isNaN(value) ? 0 : value);
+                  }}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
