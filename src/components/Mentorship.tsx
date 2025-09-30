@@ -131,7 +131,7 @@ const Mentorship = () => {
                                 <div className="hidden md:block">
                                     <div className="text-center bg-background/30 p-8 rounded-xl">
                                         <p className="text-lg text-muted-foreground">Starting from</p>
-                                        <p className="text-5xl font-bold tracking-tighter text-foreground my-2">$1,200</p>
+                                        <p className="text-5xl font-bold tracking-tighter text-foreground my-2">$600</p>
                                         <p className="text-muted-foreground">for a half-day session</p>
                                     </div>
                                 </div>

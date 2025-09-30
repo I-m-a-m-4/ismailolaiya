@@ -1,29 +1,34 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import ProductEditor from '../ProductEditor';
 import { type Product } from '@/lib/products';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, ShoppingBag, Loader2 } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
-import placeholderData from '@/lib/placeholder-images.json';
 
 const AdminProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const { toast } = useToast();
 
   const fetchProducts = async () => {
-    const querySnapshot = await getDocs(collection(db, 'products'));
+    setLoading(true);
+    const productsRef = collection(db, 'products');
+    const q = query(productsRef, orderBy('createdAt', 'desc'));
+    const querySnapshot = await getDocs(q);
     const productsData = querySnapshot.docs.map(doc => ({ ...doc.data(), slug: doc.id } as Product));
     setProducts(productsData);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -57,12 +62,26 @@ const AdminProductsPage = () => {
         <Button onClick={handleAddNew}><Plus className="mr-2 h-4 w-4" /> Add New Product</Button>
       </div>
 
+       {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      ) : products.length === 0 ? (
+        <div className="text-center py-20 bg-muted/50 rounded-lg border-2 border-dashed">
+            <ShoppingBag className="mx-auto h-16 w-16 text-muted-foreground" />
+            <h2 className="mt-6 text-xl font-semibold">No Products Found</h2>
+            <p className="mt-2 text-muted-foreground">Get started by adding your first product.</p>
+            <Button onClick={handleAddNew} className="mt-6">
+                <Plus className="mr-2 h-4 w-4" /> Add Product
+            </Button>
+        </div>
+      ) : (
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {products.map(product => {
-          const productImage = placeholderData.placeholderImages.find(p => p.id === product.imageId);
-          return (
+        {products.map(product => (
             <Card key={product.slug}>
-              {productImage && <Image src={productImage.imageUrl} alt={product.name} width={400} height={533} className="object-cover aspect-[3/4]" />}
+              <div className="relative aspect-[3/4]">
+                <Image src={product.imageUrl} alt={product.name} fill className="object-cover" />
+              </div>
               <CardHeader>
                 <CardTitle className="truncate">{product.name}</CardTitle>
               </CardHeader>
@@ -86,9 +105,9 @@ const AdminProductsPage = () => {
                 </AlertDialog>
               </CardFooter>
             </Card>
-          )
-        })}
+        ))}
       </div>
+      )}
       
       <Dialog open={isEditorOpen} onOpenChange={setIsEditorOpen}>
         <DialogContent className="sm:max-w-2xl">

@@ -1,30 +1,34 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import PostEditor from '../PostEditor';
 import { type BlogPost } from '@/lib/blog-posts';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, FileText, Loader2 } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
-import placeholderData from '@/lib/placeholder-images.json';
 
 const AdminPostsPage = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const { toast } = useToast();
 
   const fetchPosts = async () => {
-    const querySnapshot = await getDocs(collection(db, 'blogPosts'));
+    setLoading(true);
+    const postsRef = collection(db, 'blogPosts');
+    const q = query(postsRef, orderBy('date', 'desc'));
+    const querySnapshot = await getDocs(q);
     const postsData = querySnapshot.docs.map(doc => ({ ...doc.data(), slug: doc.id } as BlogPost));
-    postsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     setPosts(postsData);
+    setLoading(false);
   };
   
   useEffect(() => {
@@ -57,17 +61,31 @@ const AdminPostsPage = () => {
         <h1 className="text-3xl font-bold">Manage Blog Posts</h1>
         <Button onClick={handleAddNew}><Plus className="mr-2 h-4 w-4" /> Add New Post</Button>
       </div>
-
+      
+      {loading ? (
+         <div className="flex justify-center items-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      ) : posts.length === 0 ? (
+        <div className="text-center py-20 bg-muted/50 rounded-lg border-2 border-dashed">
+            <FileText className="mx-auto h-16 w-16 text-muted-foreground" />
+            <h2 className="mt-6 text-xl font-semibold">No Blog Posts Found</h2>
+            <p className="mt-2 text-muted-foreground">Get started by creating your first blog post.</p>
+            <Button onClick={handleAddNew} className="mt-6">
+                <Plus className="mr-2 h-4 w-4" /> Create Post
+            </Button>
+        </div>
+      ) : (
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {posts.map(post => {
-          const postImage = placeholderData.placeholderImages.find(p => p.id === post.imageId);
-          return (
-            <Card key={post.slug}>
-              {postImage && <Image src={postImage.imageUrl} alt={post.title} width={400} height={225} className="object-cover aspect-video" />}
+        {posts.map(post => (
+            <Card key={post.slug} className="flex flex-col">
+              <div className="relative aspect-video">
+                <Image src={post.imageUrl} alt={post.title} fill className="object-cover" />
+              </div>
               <CardHeader>
                 <CardTitle className="truncate">{post.title}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="text-sm text-muted-foreground">{post.author}</p>
                 <p className="text-sm text-muted-foreground">{post.date}</p>
               </CardContent>
@@ -88,9 +106,9 @@ const AdminPostsPage = () => {
                 </AlertDialog>
               </CardFooter>
             </Card>
-          )
-        })}
+        ))}
       </div>
+      )}
       
       <Dialog open={isEditorOpen} onOpenChange={setIsEditorOpen}>
         <DialogContent className="sm:max-w-4xl">

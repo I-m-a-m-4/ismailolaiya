@@ -17,12 +17,16 @@ const aboutImage = placeholderData.placeholderImages.find(p => p.id === 'ismail-
 const bannerImage = placeholderData.placeholderImages.find(p => p.id === 'about-banner');
 
 const brandLogos = [
-  { name: 'Peritus Engineering' },
-  { name: 'Pilgrim Prive' },
-  { name: 'EasyReside LTD' },
-  { name: 'ResearchGains' },
-  { name: 'Haamz Variety Store' },
-  { name: 'Sccentaura' }
+  { name: 'Peritus Engineering', logo: '/images/Peritus-Engineering-logo.png' },
+  { name: 'Pilgrim Prive', logo: '/images/pilgrimprive.svg' },
+  { name: 'EasyReside LTD', logo: '/images/EasyReside-Logo.png' },
+  { name: 'ResearchGains', logo: '/images/researchgains.jpg' },
+  { name: 'Haamz Variety Store', logo: '/images/Haamzvarietystore.png' },
+  { name: 'Sccentaura', logo: '/images/sccentaura.png' },
+  { name: 'Brime Drinks', logo: '/images/brimedrinks.png' },
+  { name: 'The Muslim Linguist', logo: '/images/themuslimlinguist.png' },
+  { name: 'Therehla', logo: '/images/therehla.jpg' },
+  { name: 'Tides & Design', logo: '/images/tides&design.jpg' },
 ];
 
 const AboutPage = () => {
@@ -126,8 +130,8 @@ const AboutPage = () => {
                 >
                   <div className="flex w-max animate-marquee">
                     {[...brandLogos, ...brandLogos].map((brand, index) => (
-                        <div key={index} className="flex-shrink-0 px-10">
-                            <span className="text-xl font-medium text-foreground/70 light:text-foreground/50">{brand.name}</span>
+                        <div key={index} className="flex-shrink-0 px-12 h-16 flex items-center">
+                            <Image src={brand.logo} alt={brand.name} width={140} height={50} className="object-contain max-h-full grayscale opacity-80" />
                         </div>
                     ))}
                   </div>

@@ -1,3 +1,4 @@
+
 'use client';
 import { Button } from "@/components/ui/button";
 import { type Product } from "@/lib/products";
@@ -6,6 +7,7 @@ import { ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import { useToast } from "@/hooks/use-toast";
+import { trackClick } from "@/lib/analytics";
 
 export default function ProductDetailsClient({ product }: { product: Product }) {
     const productImage = placeholderData.placeholderImages.find(p => p.id === product.imageId);
@@ -25,6 +27,7 @@ export default function ProductDetailsClient({ product }: { product: Product }) 
         toast({
             title: `${product.name} added to cart!`,
         });
+        trackClick('add_to_cart');
     };
 
     return (

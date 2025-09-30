@@ -12,7 +12,8 @@ export type Podcast = {
     duration: string;
     plays: string;
     rating: string;
-    imageId: string;
+    imageId: string; // This is now unused.
+    imageUrl: string;
     audioSrc: string;
     artistAvatar: string;
     tags: { name: string; color: string }[];

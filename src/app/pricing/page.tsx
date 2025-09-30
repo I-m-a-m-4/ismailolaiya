@@ -52,7 +52,7 @@ const PricingPage = () => {
                                     </th>
                                     <th className="text-center p-4 font-semibold w-1/4 border-l border-border">
                                         <p className="text-lg">Team & Corporate</p>
-                                        <p className="text-2xl font-bold tracking-tight">$1,200+</p>
+                                        <p className="text-2xl font-bold tracking-tight">$600+</p>
                                     </th>
                                 </tr>
                             </thead>

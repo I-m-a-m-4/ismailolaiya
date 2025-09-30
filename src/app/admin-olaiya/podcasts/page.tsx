@@ -1,30 +1,34 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import PodcastEditor from '../PodcastEditor';
-import { type Podcast, getAllPodcasts } from '@/lib/podcasts';
+import { type Podcast } from '@/lib/podcasts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Mic, Loader2 } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
-import placeholderData from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 const AdminPodcastsPage = () => {
   const [podcasts, setPodcasts] = useState<Podcast[]>([]);
+  const [loading, setLoading] = useState(true);
   const [editingPodcast, setEditingPodcast] = useState<Podcast | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const { toast } = useToast();
 
   const fetchPodcasts = async () => {
-    const querySnapshot = await getDocs(collection(db, 'podcasts'));
+    setLoading(true);
+    const podcastsRef = collection(db, 'podcasts');
+    const q = query(podcastsRef, orderBy('releaseDate', 'desc'));
+    const querySnapshot = await getDocs(q);
     const podcastsData = querySnapshot.docs.map(doc => ({ ...doc.data(), slug: doc.id } as Podcast));
-    podcastsData.sort((a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime());
     setPodcasts(podcastsData);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -58,12 +62,26 @@ const AdminPodcastsPage = () => {
         <Button onClick={handleAddNew}><Plus className="mr-2 h-4 w-4" /> Add New Podcast</Button>
       </div>
 
+       {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      ) : podcasts.length === 0 ? (
+        <div className="text-center py-20 bg-muted/50 rounded-lg border-2 border-dashed">
+            <Mic className="mx-auto h-16 w-16 text-muted-foreground" />
+            <h2 className="mt-6 text-xl font-semibold">No Podcasts Found</h2>
+            <p className="mt-2 text-muted-foreground">Get started by adding your first podcast episode.</p>
+            <Button onClick={handleAddNew} className="mt-6">
+                <Plus className="mr-2 h-4 w-4" /> Add Podcast
+            </Button>
+        </div>
+      ) : (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {podcasts.map(podcast => {
-          const podcastImage = placeholderData.placeholderImages.find(p => p.id === podcast.imageId);
-          return (
+        {podcasts.map(podcast => (
             <Card key={podcast.slug}>
-              {podcastImage && <Image src={podcastImage.imageUrl} alt={podcast.title} width={400} height={400} className="object-cover aspect-square" />}
+              <div className="relative aspect-square">
+                 <Image src={podcast.imageUrl} alt={podcast.title} fill className="object-cover" />
+              </div>
               <CardHeader>
                 <CardTitle className="truncate">{podcast.title}</CardTitle>
               </CardHeader>
@@ -89,8 +107,9 @@ const AdminPodcastsPage = () => {
               </CardFooter>
             </Card>
           )
-        })}
+        )}
       </div>
+      )}
       
       <Dialog open={isEditorOpen} onOpenChange={setIsEditorOpen}>
         <DialogContent className="sm:max-w-2xl">

@@ -1,3 +1,4 @@
+
 'use client'
 
 import React from 'react';
@@ -16,6 +17,7 @@ import placeholderData from '@/lib/placeholder-images.json';
 import { type BlogPost } from '@/lib/blog-posts';
 import { Dialog, DialogTrigger } from './ui/dialog';
 import BookingForm from './BookingForm';
+import { trackClick } from '@/lib/analytics';
 
 
 const commentSchema = z.object({
@@ -85,7 +87,7 @@ const BlogPage = ({ post }: { post: BlogPost }) => {
                 </p>
                 <Dialog>
                     <DialogTrigger asChild>
-                        <Button size="lg">
+                        <Button size="lg" onClick={() => trackClick('blog_cta_book_session')}>
                             <Sparkles className="w-5 h-5 mr-2"/>
                             Book a Strategy Session
                         </Button>

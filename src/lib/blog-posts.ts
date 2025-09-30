@@ -5,7 +5,8 @@ export type BlogPost = {
     slug: string;
     title: string;
     description: string;
-    imageId: string;
+    imageId: string; // This is now unused, but kept for schema compatibility if needed.
+    imageUrl: string;
     author: string;
     date: string;
     content: string;

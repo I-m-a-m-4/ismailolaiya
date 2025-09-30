@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star } from 'lucide-react';
+import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks } from 'lucide-react';
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarInset } from '@/components/ui/sidebar';
 import Link from 'next/link';
 
@@ -65,7 +65,7 @@ export default function AdminLayout({
                          <span className="font-semibold text-lg">Admin</span>
                     </div>
                 </SidebarHeader>
-                <SidebarContent>
+                <SidebarContent className="p-4 mt-4">
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild isActive={pathname === '/admin-olaiya'}>
@@ -90,6 +90,11 @@ export default function AdminLayout({
                         <SidebarMenuItem>
                             <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/testimonials')}>
                                 <Link href="/admin-olaiya/testimonials"><Star />Testimonials</Link>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                         <SidebarMenuItem>
+                            <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/waitlist')}>
+                                <Link href="/admin-olaiya/waitlist"><ListChecks />Waitlist</Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
                     </SidebarMenu>

@@ -27,11 +27,6 @@ const reviews = [
         title: "Entrepreneur"
     },
     {
-        name: "Hamdallah Rabiu",
-        quote: "His strategies for business growth are unique and exceptional. They are practical and easy to follow. Thank you so much for everything so far! I would definitely recommend him to anyone looking for a brand strategist for business growth.",
-        title: "Business Owner"
-    },
-    {
         name: "Ajadi Haneefah",
         title: "Team Member",
         quote: "I'm grateful for the opportunity to work under the guidance of Olaiya. His leadership style is truly inspiring, blending professionalism with genuine care for his team... He's a leader who leads by example, and I'm honored to be part of his team."
@@ -45,6 +40,16 @@ const reviews = [
         name: "©Nur by Ibtisaam Secret Hub",
         quote: "Sincerely, he will be the first person I have worked with on scaling my brand, and by Allah, using the required steps and following the resources he gave made it easy. If you have been doubting and you are that Muslim brand that wants to gain more halal visibility, this is your go to.",
         title: "Founder"
+    },
+    {
+        name: "Peritus Engineering",
+        quote: "I have been really impressed by the works of Olaiya. He stands out.",
+        title: "Client"
+    },
+    {
+        name: "Aminah Agbaje KoiKi",
+        title: "Founder, SCCENTAURA",
+        quote: "Learning from him has been nothing short of amazing... I'm getting to now have more clarity about my business and my eyes are now opened to better ways my business can scale in the halal way without compromising my deen. Thank you for being a person full of values Jazakumullah khayran sir🎉🎉🎉"
     }
 ];
 

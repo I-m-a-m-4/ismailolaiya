@@ -8,7 +8,8 @@ export type Product = {
     name: string;
     description: string;
     price: number; // in cents
-    imageId: string;
+    imageId: string; // This is now unused.
+    imageUrl: string;
 };
 
 export async function getAllProducts(): Promise<Product[]> {

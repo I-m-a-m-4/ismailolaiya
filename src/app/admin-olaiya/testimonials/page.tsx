@@ -7,22 +7,25 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import TestimonialEditor, { type Testimonial } from '../TestimonialEditor';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Plus, Edit, Trash2 } from 'lucide-react';
+import { Plus, Edit, Trash2, Star, Loader2 } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 const AdminTestimonialsPage = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
   const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null);
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const { toast } = useToast();
 
   const fetchTestimonials = async () => {
+    setLoading(true);
     const testimonialsRef = collection(db, 'testimonials');
     const q = query(testimonialsRef, orderBy('order', 'asc'));
     const querySnapshot = await getDocs(q);
     const testimonialsData = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Testimonial));
     setTestimonials(testimonialsData);
+    setLoading(false);
   };
   
   useEffect(() => {
@@ -56,6 +59,20 @@ const AdminTestimonialsPage = () => {
         <Button onClick={handleAddNew}><Plus className="mr-2 h-4 w-4" /> Add New Testimonial</Button>
       </div>
 
+       {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      ) : testimonials.length === 0 ? (
+        <div className="text-center py-20 bg-muted/50 rounded-lg border-2 border-dashed">
+            <Star className="mx-auto h-16 w-16 text-muted-foreground" />
+            <h2 className="mt-6 text-xl font-semibold">No Testimonials Found</h2>
+            <p className="mt-2 text-muted-foreground">Get started by adding your first client testimonial.</p>
+            <Button onClick={handleAddNew} className="mt-6">
+                <Plus className="mr-2 h-4 w-4" /> Add Testimonial
+            </Button>
+        </div>
+      ) : (
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonials.map(testimonial => (
             <Card key={testimonial.id}>
@@ -86,6 +103,7 @@ const AdminTestimonialsPage = () => {
             </Card>
         ))}
       </div>
+      )}
       
       <Dialog open={isEditorOpen} onOpenChange={setIsEditorOpen}>
         <DialogContent className="sm:max-w-2xl">

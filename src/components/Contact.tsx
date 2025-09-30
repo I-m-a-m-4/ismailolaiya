@@ -108,12 +108,12 @@ export default function Contact() {
                     <p className="text-sm text-muted-foreground">Response</p>
                   </div>
                   <div className="text-center px-2">
-                     <h5 className="text-2xl font-bold text-primary">Free</h5>
-                    <p className="text-sm text-muted-foreground">Consultation</p>
+                     <h5 className="text-2xl font-bold text-primary">Discovery</h5>
+                    <p className="text-sm text-muted-foreground">Call</p>
                   </div>
                   <div className="text-center px-2">
                      <h5 className="text-2xl font-bold text-primary">5+</h5>
-                    <p className="text-sm text-muted-foreground">Years Experience</p>
+                    <p className="text-sm text-muted-foreground">Years Exp.</p>
                   </div>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function Contact() {
                     )}
                   />
                   <Button type="submit" className="w-full bg-gradient-to-r from-primary to-red-700 dark:to-red-700 light:to-primary/90 text-white py-4 font-semibold text-lg hover:from-primary/90 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                      Schedule Free Consultation
+                      Schedule Discovery Call
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
                     By submitting this form, you agree to our privacy policy. We'll never share your information.

@@ -79,7 +79,7 @@ const Vision = () => {
                                 <div className="data-point absolute" style={{top: '25%', left: '20%'}}><span className="label font-semibold">Mindset</span></div>
                                 <div className="data-point absolute" style={{top: '25%', right: '20%'}}><span className="label font-semibold">Structures</span></div>
                                 <div className="data-point absolute" style={{bottom: '25%', left: '20%'}}><span className="label font-semibold">Unity</span></div>
-                                <div className="data-point absolute" style={{bottom: '25%', right: '20%'}}><span className="label font-semibold">Strategic</span><br/>Thinking</div>
+                                <div className="data-point absolute" style={{bottom: '25%', right: '20%'}}><span className="label font-semibold">Strategic Thinking</span></div>
                             </div>
                         </div>
 

@@ -1,54 +1,111 @@
 
 'use client';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Mic, ShoppingBag, Star } from "lucide-react";
-import Link from "next/link";
+
+import { useState, useEffect } from 'react';
+import { db } from '@/lib/firebase';
+import { collection, getCountFromServer, doc, getDoc } from 'firebase/firestore';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BookOpen, Mic, ShoppingBag, Star, Loader2, ListChecks, MousePointerClick } from 'lucide-react';
+
+type AnalyticsData = {
+    [key: string]: number;
+};
 
 const AdminDashboard = () => {
+  const [stats, setStats] = useState({
+    posts: 0,
+    products: 0,
+    podcasts: 0,
+    testimonials: 0,
+    waitlist: 0,
+  });
+  const [analytics, setAnalytics] = useState<AnalyticsData>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const postCount = (await getCountFromServer(collection(db, 'blogPosts'))).data().count;
+        const productCount = (await getCountFromServer(collection(db, 'products'))).data().count;
+        const podcastCount = (await getCountFromServer(collection(db, 'podcasts'))).data().count;
+        const testimonialCount = (await getCountFromServer(collection(db, 'testimonials'))).data().count;
+        const waitlistCount = (await getCountFromServer(collection(db, 'waitlist'))).data().count;
+        
+        setStats({
+          posts: postCount,
+          products: productCount,
+          podcasts: podcastCount,
+          testimonials: testimonialCount,
+          waitlist: waitlistCount,
+        });
+
+        // Fetch analytics data
+        const analyticsSnap = await getDoc(doc(db, 'analytics', 'button_clicks'));
+        if (analyticsSnap.exists()) {
+            setAnalytics(analyticsSnap.data());
+        }
+
+      } catch (error) {
+        console.error("Error fetching stats: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const statCards = [
+    { title: 'Blog Posts', icon: BookOpen, count: stats.posts, color: 'text-sky-500' },
+    { title: 'Products', icon: ShoppingBag, count: stats.products, color: 'text-orange-500' },
+    { title: 'Podcasts', icon: Mic, count: stats.podcasts, color: 'text-purple-500' },
+    { title: 'Testimonials', icon: Star, count: stats.testimonials, color: 'text-yellow-500' },
+    { title: 'Waitlist', icon: ListChecks, count: stats.waitlist, color: 'text-green-500' },
+  ];
+  
+  const analyticsCards = [
+    { title: 'Book Session Clicks', icon: MousePointerClick, count: analytics.hero_book_session || 0, color: 'text-pink-500' },
+    { title: 'Add to Cart Clicks', icon: MousePointerClick, count: analytics.add_to_cart || 0, color: 'text-blue-500' },
+    { title: 'Blog CTA Clicks', icon: MousePointerClick, count: analytics.blog_cta_book_session || 0, color: 'text-indigo-500' },
+  ];
+
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Welcome, Admin!</h1>
-      <p className="text-muted-foreground mb-8">
-        This is your central command center. From here, you can manage all the content on your website. Use the sidebar navigation to jump between sections.
-      </p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><BookOpen /> Blog Posts</CardTitle>
-                <CardDescription>Create, edit, and delete articles for your blog.</CardDescription>
+      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        {statCards.map((card) => (
+          <Card key={card.title}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+              <card.icon className={`h-4 w-4 text-muted-foreground ${card.color}`} />
             </CardHeader>
             <CardContent>
-                <Button asChild><Link href="/admin-olaiya/posts">Manage Posts</Link></Button>
+              {loading ? (
+                <Loader2 className="h-6 w-6 animate-spin" />
+              ) : (
+                <div className="text-2xl font-bold">{card.count}</div>
+              )}
             </CardContent>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><ShoppingBag /> Products</CardTitle>
-                <CardDescription>Add new books and resources to your online shop.</CardDescription>
+          </Card>
+        ))}
+      </div>
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {analyticsCards.map((card) => (
+          <Card key={card.title}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+              <card.icon className={`h-4 w-4 text-muted-foreground ${card.color}`} />
             </CardHeader>
             <CardContent>
-                <Button asChild><Link href="/admin-olaiya/products">Manage Products</Link></Button>
+              {loading ? (
+                <Loader2 className="h-6 w-6 animate-spin" />
+              ) : (
+                <div className="text-2xl font-bold">{card.count}</div>
+              )}
             </CardContent>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Mic /> Podcasts</CardTitle>
-                <CardDescription>Update your podcast episodes and details.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Button asChild><Link href="/admin-olaiya/podcasts">Manage Podcasts</Link></Button>
-            </CardContent>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><Star /> Testimonials</CardTitle>
-                <CardDescription>Manage client reviews and success stories.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Button asChild><Link href="/admin-olaiya/testimonials">Manage Testimonials</Link></Button>
-            </CardContent>
-        </Card>
+          </Card>
+        ))}
       </div>
     </div>
   );

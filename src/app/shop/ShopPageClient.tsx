@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -8,6 +9,7 @@ import { type Product } from '@/lib/products';
 import Link from 'next/link';
 import { useShoppingCart } from 'use-shopping-cart';
 import { useToast } from '@/hooks/use-toast';
+import { trackClick } from '@/lib/analytics';
 
 export default function ShopPageClient({ products }: { products: Product[] }) {
     const { addItem } = useShoppingCart();
@@ -26,6 +28,7 @@ export default function ShopPageClient({ products }: { products: Product[] }) {
         toast({
             title: `${product.name} added to cart!`,
         });
+        trackClick('add_to_cart');
     };
 
     return (
