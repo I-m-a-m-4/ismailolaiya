@@ -2,25 +2,48 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, BookOpen, Newspaper, Award, Mic, Library, MessageSquare, Image as ImageIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
-import { Dialog, DialogTrigger } from './ui/dialog';
-import BookingForm from './BookingForm';
+import { usePathname } from 'next/navigation';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { ThemeToggle } from './ThemeToggle';
+import CartButton from './CartButton';
+import Image from 'next/image';
+import placeholderData from '@/lib/placeholder-images.json';
 
 const mainNavLinks = [
-  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/testimonials', label: 'Testimonials' },
-  { href: '#mentorship', label: 'Mentorship' },
-  { href: '#contact', label: 'Contact' },
 ];
+
+const diaryLinks = [
+  { href: '/diary/reviews', label: 'Reviews', description: 'Real stories and results from clients.', imageId: 'diary-reviews', icon: Award },
+  { href: '/diary/news', label: 'News', description: 'Latest updates and announcements.', imageId: 'diary-news', icon: Newspaper },
+  { href: '/diary/underdogs', label: 'Underdogs', description: 'Stories of resilience and success.', imageId: 'diary-underdogs', icon: Award },
+  { href: '/diary/podcast', label: 'Podcast', description: 'Conversations on business and faith.', imageId: 'diary-podcast', icon: Mic },
+  { href: '/diary/resource-library', label: 'Resource Library', description: 'A collection of tools and guides.', imageId: 'diary-resource-library', icon: Library },
+  { href: '/diary/interviews', label: 'Interviews', description: 'In-depth conversations.', imageId: 'diary-interviews', icon: MessageSquare },
+  { href: '/diary/gallery', label: 'Gallery', description: 'A visual journey of our work.', imageId: 'diary-gallery', icon: ImageIcon },
+];
+
+const otherLinks = [
+    { href: '/pricing', label: 'Pricing' },
+    { href: '/events', label: 'Events' },
+    { href: '/press-room', label: 'Press Room' },
+    { href: '/shop', label: 'Shop' },
+]
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -30,47 +53,50 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
-    e.preventDefault();
+  
+  const handleLinkClick = (href: string) => {
     setIsMenuOpen(false);
-
-    if (href.startsWith('/')) {
-      if(pathname !== href) {
-        router.push(href);
-      }
-    } else {
-       const targetElement = document.querySelector(href);
-       if (targetElement) {
-         targetElement.scrollIntoView({ behavior: 'smooth' });
-       } else if (pathname !== '/') {
-         router.push('/' + href);
-       }
-    }
   };
 
-  const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
-    <>
-      {mainNavLinks.map((link) => {
-        const isActive = pathname === link.href;
-        return (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className={cn(
-                "text-sm font-medium hover:text-foreground transition",
-                mobile ? "py-2 text-base" : "",
-                isActive ? "text-primary" : "text-muted-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
+  const MobileNav = () => (
+    <div className="md:hidden bg-background/95 backdrop-blur-lg">
+      <nav>
+        <ul className="flex flex-col items-start gap-2 px-6 py-4 border-y border-border">
+          {mainNavLinks.map((link) => (
+            <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
+              <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li className="w-full text-left border-b border-dashed border-border/70 py-2">
+             <Link href="/diary" onClick={() => handleLinkClick("/diary")} className={cn("text-base font-medium transition", pathname === "/diary" ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                Diary
+              </Link>
           </li>
-        );
-      })}
-    </>
-  );
+          {diaryLinks.map((link) => (
+             <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
+              <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition pl-4", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          {otherLinks.map((link) => (
+            <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
+              <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+           <li className="w-full pt-4">
+                <Button asChild className="w-full">
+                    <Link href="/#contact" onClick={() => handleLinkClick('/#contact')}>BOOK OLAIYA</Link>
+                </Button>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  )
 
   return (
     <>
@@ -80,31 +106,87 @@ const Header = () => {
       )}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-             <div className="w-9 h-9 rounded-xl bg-foreground text-background grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200">
-              <span className="text-sm font-bold tracking-tighter">I</span>
+             <div className="w-9 h-9 bg-foreground text-background grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200 rounded-lg">
+              <span className="text-sm font-bold tracking-tighter">S</span>
             </div>
-            <span className="text-lg font-medium tracking-tight">Ismail A. Olaiya</span>
+            <span className="text-lg font-medium tracking-tight">Scale with Olaiya</span>
           </Link>
-          <nav className="hidden md:block">
-            <ul className="flex items-center gap-8">
-              <NavLinks />
-            </ul>
-          </nav>
+          
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList>
+              {mainNavLinks.map((link) => (
+                <NavigationMenuItem key={link.href}>
+                   <NavigationMenuLink asChild active={pathname === link.href} className={navigationMenuTriggerStyle()}>
+                     <Link href={link.href}>
+                       {link.label}
+                     </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>
+                    <Link href="/diary" className={cn(pathname === '/diary' ? "text-primary" : "")}>Diary</Link>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[600px] gap-4 p-4 md:w-[680px] md:grid-cols-3 lg:w-[760px]">
+                    {diaryLinks.map((component) => {
+                       const image = placeholderData.placeholderImages.find(p => p.id === component.imageId);
+                       return (
+                         <Link
+                          key={component.label}
+                          href={component.href}
+                          className="group relative flex flex-col justify-end overflow-hidden bg-background h-48 p-4 text-white no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-2xl"
+                        >
+                          {image && (
+                            <Image
+                              src={image.imageUrl}
+                              alt={component.label}
+                              fill
+                              className="absolute inset-0 object-cover w-full h-full brightness-50 group-hover:brightness-75 transition-all duration-500"
+                              data-ai-hint={image.imageHint}
+                            />
+                          )}
+                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+                          <div className="relative z-10">
+                             <component.icon className="h-6 w-6 mb-2 text-white/80"/>
+                            <div className="text-base font-semibold leading-none">{component.label}</div>
+                            <p className="mt-1 line-clamp-2 text-sm leading-snug text-white/80">
+                              {component.description}
+                            </p>
+                          </div>
+                        </Link>
+                       )
+                    })}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              
+               {otherLinks.map((link) => (
+                <NavigationMenuItem key={link.href}>
+                   <NavigationMenuLink asChild active={pathname === link.href} className={navigationMenuTriggerStyle()}>
+                     <Link href={link.href}>
+                       {link.label}
+                     </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+
           <div className="flex items-center gap-2">
+            <CartButton />
+            <Button asChild className="hidden md:inline-flex">
+                <Link href="/#contact">BOOK OLAIYA</Link>
+            </Button>
+            <ThemeToggle />
              <button id="menuBtn" className="p-2 rounded-md hover:bg-muted md:hidden transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
-        {isMenuOpen && (
-          <div className="md:hidden bg-background/90 backdrop-blur-lg">
-            <nav>
-              <ul className="flex flex-col items-center gap-8 px-6 py-4 border-y border-border">
-                <NavLinks mobile={true} />
-              </ul>
-            </nav>
-          </div>
-        )}
+        {isMenuOpen && <MobileNav />}
       </header>
     </>
   );

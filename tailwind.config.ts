@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -17,8 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
-        grotesk: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['var(--font-montserrat)'],
+        grotesk: ['var(--font-plus-jakarta-sans)'],
       },
       colors: {
         border: "hsl(var(--border))",

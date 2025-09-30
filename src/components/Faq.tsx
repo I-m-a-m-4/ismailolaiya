@@ -1,4 +1,11 @@
-import { ChevronDown } from "lucide-react";
+'use client';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import MotionWrap from "./MotionWrap";
 
 const faqs = [
     {
@@ -38,29 +45,34 @@ const Faq = () => {
     };
 
     return (
-        <section id="faq" className="py-20" style={{'--animation-delay': '0.5s'} as React.CSSProperties}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-            />
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <header className="mx-auto max-w-3xl text-center">
-                    <h2 className="text-3xl tracking-tight font-semibold">Questions for Your Business Consultant</h2>
-                    <p className="mt-3 text-muted-foreground">Find answers below. If you can’t find what you’re looking for, we’re a message away.</p>
-                </header>
-                <div className="mt-10 grid gap-4 md:grid-cols-2 max-w-4xl mx-auto">
-                   {faqs.map((faq, index) => (
-                     <details key={index} className={`rounded-lg glass-card p-5 anim d-${index + 2}`}>
-                        <summary className="cursor-pointer list-none text-sm font-medium hover:text-foreground text-foreground/80 flex items-center justify-between">
-                            {faq.question}
-                            <ChevronDown className="size-4 transition-transform duration-300 open:rotate-180" />
-                        </summary>
-                        <p className="mt-3 text-sm text-muted-foreground">{faq.answer}</p>
-                     </details>
-                   ))}
+        <MotionWrap>
+            <section id="faq" className="py-20" style={{'--animation-delay': '0.5s'} as React.CSSProperties}>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <header className="mx-auto max-w-3xl text-center">
+                        <h2 className="text-3xl tracking-tight font-semibold">Questions for Your Business Consultant</h2>
+                        <p className="mt-3 text-muted-foreground">Find answers below. If you can’t find what you’re looking for, we’re a message away.</p>
+                    </header>
+                    <div className="mt-10 max-w-4xl mx-auto">
+                        <Accordion type="single" collapsible className="w-full space-y-4">
+                            {faqs.map((faq, index) => (
+                                <AccordionItem key={index} value={`item-${index}`} className={`rounded-lg glass-card p-1 anim d-${index + 2}`}>
+                                    <AccordionTrigger className="text-left font-medium hover:no-underline p-4">
+                                        {faq.question}
+                                    </AccordionTrigger>
+                                    <AccordionContent className="p-4 pt-0">
+                                        <p className="text-muted-foreground">{faq.answer}</p>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </MotionWrap>
     );
 };
 

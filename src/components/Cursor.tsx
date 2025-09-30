@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -7,7 +8,7 @@ import { cn } from '@/lib/utils';
 const Cursor = () => {
   const [isHovered, setIsHovered] = useState(false);
   
-  const outerSize = isHovered ? 60 : 30;
+  const outerSize = 30; // Keep size consistent
   const innerSize = isHovered ? 0 : 8;
 
   const mouse = {
@@ -87,7 +88,7 @@ const Cursor = () => {
           animate={{ width: outerSize, height: outerSize }}
           className={cn(
             "rounded-full border-2 transition-colors",
-            isHovered ? 'border-primary/50 bg-primary/20' : 'border-primary'
+            isHovered ? 'border-primary' : 'border-primary' // Keep border color consistent
           )}
         />
       </motion.div>
