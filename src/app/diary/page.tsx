@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Award, BookOpen, Check, Cpu, ImageIcon, Library, MessageSquare, Mic, Newspaper, Play, Rocket, Star, Users } from 'lucide-react';
+import { Award, BookOpen, Check, Cpu, ImageIcon, Library, MessageSquare, Mic, Newspaper, Play, Rocket, Star, Users, Briefcase } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import placeholderData from '@/lib/placeholder-images.json';
@@ -15,42 +15,41 @@ import { ArrowRight } from 'lucide-react';
 
 
 const featureSlides = [
-  {
-    key: 'reviews',
-    bullet: 'Client Reviews',
-    accent: 'emerald',
-    icon: Award,
-    pillText: 'Read',
-    tailText: 'success stories',
-    body: 'Discover real-world results and feedback from Muslim entrepreneurs and businesses who have transformed their growth with our strategic guidance.',
-  },
-  {
-    key: 'podcast',
-    bullet: 'Podcast Episodes',
-    accent: 'blue',
-    icon: Mic,
-    pillText: 'Listen to',
-    tailText: 'expert insights',
-    body: 'Tune into conversations on business, faith, and leadership. Each episode is packed with actionable advice for the Deen-conscious entrepreneur.',
-  },
-  {
-    key: 'articles',
-    bullet: 'In-Depth Articles',
-    accent: 'violet',
-    icon: Newspaper,
-    pillText: 'Explore',
-    tailText: 'strategic thoughts',
-    body: 'Dive deep into articles on brand strategy, market entry, and building a business that aligns with Islamic principles for lasting success.',
-  },
+    {
+        key: 'strategies',
+        bullet: 'Strategies from the Heart of the Companions',
+        accent: 'emerald',
+        icon: BookOpen,
+        pillText: 'Learn from',
+        tailText: 'the best generation',
+        body: 'A deep dive into the strategic brilliance of the Sahabah. We extract timeless principles from their practices for you to apply today.',
+    },
+    {
+        key: 'becoming',
+        bullet: 'Becoming with Olaiya',
+        accent: 'blue',
+        icon: Users,
+        pillText: 'Uncover',
+        tailText: 'the real stories',
+        body: 'Raw, unfiltered conversations with leading Muslim entrepreneurs, founders, and CEOs about their struggles, sacrifices, and wins.',
+    },
+    {
+        key: 'ama',
+        bullet: 'AMA Sessions with Olaiya',
+        accent: 'violet',
+        icon: MessageSquare,
+        pillText: 'Get',
+        tailText: 'your questions answered',
+        body: 'Live Q&A sessions where I answer your burning questions on business strategy, scaling, mindset, and navigating the market as a Muslim.',
+    },
 ];
 
 const diarySections = [
+  { href: '/diary/strategies-from-the-companions', label: 'Strategies from the Companions', description: 'Timeless principles from the Sahabah.', imageId: 'diary-podcast', icon: BookOpen },
+  { href: '/diary/becoming-with-olaiya', label: 'Becoming with Olaiya', description: 'In-depth conversations with leaders.', imageId: 'diary-interviews', icon: Users },
+  { href: '/diary/ama-sessions', label: 'AMA Sessions', description: 'Live Q&A with Olaiya.', imageId: 'diary-news', icon: MessageSquare },
   { href: '/diary/reviews', label: 'Reviews', description: 'Real stories and results from clients.', imageId: 'diary-reviews', icon: Award },
-  { href: '/diary/news', label: 'News', description: 'Latest updates and announcements.', imageId: 'diary-news', icon: Newspaper },
-  { href: '/diary/underdogs', label: 'Underdogs', description: 'Stories of resilience and success.', imageId: 'diary-underdogs', icon: Award },
-  { href: '/diary/podcast', label: 'Podcast', description: 'Conversations on business and faith.', imageId: 'diary-podcast', icon: Mic },
   { href: '/diary/resource-library', label: 'Resource Library', description: 'A collection of tools and guides.', imageId: 'diary-resource-library', icon: Library },
-  { href: '/diary/interviews', label: 'Interviews', description: 'In-depth conversations.', imageId: 'diary-interviews', icon: MessageSquare },
   { href: '/diary/gallery', label: 'Gallery', description: 'A visual journey of our work.', imageId: 'diary-gallery', icon: ImageIcon },
 ];
 
@@ -233,7 +232,7 @@ const DiaryPage = () => {
                   {diarySections.map((section, index) => {
                     const sectionImage = placeholderData.placeholderImages.find(p => p.id === section.imageId);
                     return (
-                       <Link href={section.href} key={index} className={`group relative aspect-square block overflow-hidden rounded-2xl anim d-${index+2}`}>
+                       <Link href={section.href} key={index} className={`group relative aspect-square block overflow-hidden rounded-2xl anim d-${index + 2}`}>
                            {sectionImage && (
                                 <Image
                                     src={sectionImage.imageUrl}

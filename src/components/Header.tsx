@@ -1,8 +1,9 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, BookOpen, Newspaper, Award, Mic, Library, MessageSquare, Image as ImageIcon } from 'lucide-react';
+import { Menu, X, BookOpen, Newspaper, Award, Mic, Library, MessageSquare, Image as ImageIcon, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -25,12 +26,11 @@ const mainNavLinks = [
 ];
 
 const diaryLinks = [
+  { href: '/diary/strategies-from-the-companions', label: 'Strategies from the Companions', description: 'Timeless principles from the Sahabah.', imageId: 'diary-podcast', icon: BookOpen },
+  { href: '/diary/becoming-with-olaiya', label: 'Becoming with Olaiya', description: 'In-depth conversations with leaders.', imageId: 'diary-interviews', icon: Users },
+  { href: '/diary/ama-sessions', label: 'AMA Sessions', description: 'Live Q&A with Olaiya.', imageId: 'diary-news', icon: MessageSquare },
   { href: '/diary/reviews', label: 'Reviews', description: 'Real stories and results from clients.', imageId: 'diary-reviews', icon: Award },
-  { href: '/diary/news', label: 'News', description: 'Latest updates and announcements.', imageId: 'diary-news', icon: Newspaper },
-  { href: '/diary/underdogs', label: 'Underdogs', description: 'Stories of resilience and success.', imageId: 'diary-underdogs', icon: Award },
-  { href: '/diary/podcast', label: 'Podcast', description: 'Conversations on business and faith.', imageId: 'diary-podcast', icon: Mic },
   { href: '/diary/resource-library', label: 'Resource Library', description: 'A collection of tools and guides.', imageId: 'diary-resource-library', icon: Library },
-  { href: '/diary/interviews', label: 'Interviews', description: 'In-depth conversations.', imageId: 'diary-interviews', icon: MessageSquare },
   { href: '/diary/gallery', label: 'Gallery', description: 'A visual journey of our work.', imageId: 'diary-gallery', icon: ImageIcon },
 ];
 
@@ -126,7 +126,7 @@ const Header = () => {
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger>
-                    <Link href="/diary" className={cn(pathname === '/diary' ? "text-primary" : "")}>Diary</Link>
+                    <Link href="/diary" className={cn(pathname.startsWith('/diary') ? "text-primary" : "")}>Diary</Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[600px] gap-4 p-4 md:w-[680px] md:grid-cols-3 lg:w-[760px]">
@@ -136,7 +136,7 @@ const Header = () => {
                          <Link
                           key={component.label}
                           href={component.href}
-                          className="group relative flex flex-col justify-end overflow-hidden bg-background h-48 p-4 text-white no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-2xl"
+                          className="group relative flex flex-col justify-end overflow-hidden rounded-lg bg-background h-48 p-4 text-white no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-2xl"
                         >
                           {image && (
                             <Image

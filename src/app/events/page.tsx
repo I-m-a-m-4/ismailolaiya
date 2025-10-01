@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -116,16 +117,16 @@ const EventsPage = async () => {
         <Header />
 
         <main className="relative z-10">
-            <div className="max-w-7xl md:px-8 md:pt-12 md:pb-40 mt-[50px] mr-auto mb-20 ml-auto pt-6 pr-6 pb-28 pl-6">
-                <div className="relative grid place-items-center">
-                    <h1 className="md:mt-10 text-[14vw] leading-none md:text-[8rem] select-none font-semibold text-foreground/95 tracking-tight mt-8">
+            <div className="max-w-7xl px-4 md:px-8 pt-24 md:pt-32 pb-20 md:pb-40 mx-auto">
+                <div className="relative grid place-items-center text-center">
+                    <h1 className="text-[20vw] leading-none md:text-[8rem] select-none font-semibold text-foreground/95 tracking-tight">
                     EVENTS
                     </h1>
                     <p className="mt-4 max-w-xl text-center text-base md:text-lg text-muted-foreground">
                     A next-gen event hall where deep strategy meets faith. Explore, learn, and experience growth in immersive ways.
                     </p>
 
-                    <div className="mt-6 flex items-center gap-3">
+                    <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
                         <Button asChild size="lg">
                             <a href="#upcoming-events">
                             <Ticket className="w-5 h-5" />
