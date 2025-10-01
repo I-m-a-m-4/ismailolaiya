@@ -40,7 +40,7 @@ const PostEditor = ({ post, onSave }: PostEditorProps) => {
   
   const form = useForm<PostFormValues>({
     resolver: zodResolver(postSchema),
-    defaultValues: post ? { ...post, imageId: '' } : { // clear imageId, use imageUrl
+    defaultValues: post ? { ...post } : {
       title: '',
       description: '',
       imageUrl: '',
@@ -52,7 +52,7 @@ const PostEditor = ({ post, onSave }: PostEditorProps) => {
 
   useEffect(() => {
     if (post) {
-      form.reset({ ...post, imageId: '' });
+      form.reset({ ...post });
       setImagePreview(post.imageUrl);
     } else {
       form.reset({
@@ -119,7 +119,6 @@ const PostEditor = ({ post, onSave }: PostEditorProps) => {
       const postData = {
           ...data,
           slug,
-          imageId: '', // Keep imageId field for schema consistency if needed, but it's unused
           createdAt: serverTimestamp()
       }
 
@@ -212,7 +211,7 @@ const PostEditor = ({ post, onSave }: PostEditorProps) => {
               <FormLabel>Content</FormLabel>
               <FormControl>
                  <Editor
-                    apiKey="YOUR_TINYMCE_API_KEY" // Replace with your actual TinyMCE API key
+                    apiKey="uvdydl9v5mml0nblkv571vo8cjxdxmmcgvcj06bdt3jwwpn5"
                     value={field.value}
                     onEditorChange={(content) => field.onChange(content)}
                     init={{
