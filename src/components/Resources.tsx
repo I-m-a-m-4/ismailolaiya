@@ -11,14 +11,14 @@ const Resources = () => {
   return (
     <MotionWrap>
       <section id="resources" className="relative py-20 md:py-32 bg-[#111113] text-white overflow-hidden" style={{'--animation-delay': '0.8s'} as React.CSSProperties}>
-        <div className="absolute inset-0 bg-[url(/images/grain.png)] opacity-10 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[url(/images/grain.jpg)] opacity-10 pointer-events-none"></div>
         <div className="absolute -left-1/4 -bottom-1/4 w-3/4 h-3/4 bg-red-500/30 rounded-full blur-3xl opacity-60 animate-pulse-slow"></div>
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <article className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <div className="flex justify-center anim d-2 perspective-container">
               <div className="relative w-96 h-[32rem] book-transform">
                   <Image
-                      src="/images/Book_Cover_Mockup-removebg-preview.png"
+                      src="/images/upright.png"
                       alt="How the Best Generation Built Wealth Book Cover"
                       fill
                       data-ai-hint="book cover"

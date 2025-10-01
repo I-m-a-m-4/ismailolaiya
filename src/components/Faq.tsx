@@ -53,7 +53,7 @@ const Faq = () => {
                 />
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <header className="mx-auto max-w-3xl text-center">
-                        <h2 className="text-3xl tracking-tight font-semibold">Questions for Your Business Consultant</h2>
+                        <h2 className="text-3xl tracking-tight font-semibold">Frequently Asked Questions</h2>
                         <p className="mt-3 text-muted-foreground">Find answers below. If you can’t find what you’re looking for, we’re a message away.</p>
                     </header>
                     <div className="mt-10 max-w-4xl mx-auto">
