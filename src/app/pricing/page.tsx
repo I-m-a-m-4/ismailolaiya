@@ -1,25 +1,26 @@
 
-
 'use client';
 
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Check, Users, Video, User, Briefcase, Star, Minus, StarIcon, Quote, Verified, Award, Sparkles } from 'lucide-react';
+import { Check, Users, Video, User, Briefcase, Star, Minus, StarIcon, Award, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { GoogleIcon } from '@/components/ui/icons';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-
 
 const packages = [
     {
         title: "One-on-One (Virtual)",
-        price: { monthly: 39.99, yearly: 99.99 },
+        price: 99.99,
+        retainerPrice: 39.99,
+        specialRetainerPrice: 19.99,
         duration: "60–75 minutes",
         delivery: "Zoom/Google Meet",
         features: [
@@ -33,8 +34,10 @@ const packages = [
     },
     {
         title: "One-on-One (In-Person)",
-        price: { monthly: 39.99, yearly: 349.99 },
-        duration: "90-120 minutes",
+        price: 349.99,
+        retainerPrice: 39.99,
+        specialRetainerPrice: 19.99,
+        duration: "90 minutes",
         delivery: "Face-to-face session",
         features: [
             "2-week hands-on follow-up",
@@ -47,7 +50,9 @@ const packages = [
     },
     {
         title: "Team & Corporate (Virtual)",
-        price: { monthly: 99.99, yearly: 1299.99 },
+        price: 1299.99,
+        retainerPrice: 99.99,
+        specialRetainerPrice: 49.99,
         duration: "2–3 hours",
         delivery: "2–10 participants",
         features: [
@@ -61,7 +66,9 @@ const packages = [
     },
     {
         title: "Team & Corporate (In-Person)",
-        price: { monthly: 99.99, yearly: 1799.99 },
+        price: 1799.99,
+        retainerPrice: 99.99,
+        specialRetainerPrice: 49.99,
         duration: "Half-day session",
         delivery: "2–10 participants",
         features: [
@@ -79,8 +86,8 @@ const comparisonFeatures = [
     {
         category: 'Core Session',
         features: [
-            { name: 'Session Duration', virtual: '60-75 min', inPerson: '90-120 min', teamVirtual: '2-3 hours', teamInPerson: 'Half-day' },
-            { name: 'Delivery Method', virtual: 'Zoom/Meet', inPerson: 'Face-to-Face', teamVirtual: 'Zoom/Meet', teamInPerson: 'Face-to-Face' },
+            { name: 'Session Duration', virtual: '60-75 min', inPerson: '90 min', teamVirtual: '2-3 hours', teamInPerson: 'Half-day' },
+            { name: 'Delivery Method', virtual: 'Zoom/Meet', inPerson: 'Face-to-Face', teamVirtual: 'Zoom/Meet', teamInPerson: 'On-site' },
             { name: 'Participants', virtual: '1', inPerson: '1', teamVirtual: '2-10', teamInPerson: '2-10' },
         ]
     },
@@ -92,10 +99,10 @@ const comparisonFeatures = [
         ]
     },
     {
-        category: 'Add-on Retainer',
+        category: 'Optional Add-on Retainer',
         features: [
             { name: 'Monthly Price', virtual: '$39.99', inPerson: '$39.99', teamVirtual: '$99.99', teamInPerson: '$99.99' },
-            { name: 'Monthly Check-in Calls', virtual: '1 x 30 min', inPerson: '1 x 30 min', teamVirtual: '1 x 60 min', teamInPerson: '1 x 60 min' },
+            { name: 'Special First Month', virtual: '$19.99', inPerson: '$19.99', teamVirtual: '$49.99', teamInPerson: '$49.99' },
             { name: 'Continuous Accountability', virtual: true, inPerson: true, teamVirtual: true, teamInPerson: true },
         ]
     }
@@ -119,8 +126,8 @@ const faqs = [
         answer: "Yes, the retainer package is a monthly subscription that is billed automatically to ensure uninterrupted support. You can cancel your retainer at any time before the next billing cycle."
     },
     {
-        question: "Do you offer discounts if I pay for a full session upfront?",
-        answer: "Our pricing is structured to provide the best value, with one-time sessions offering a comprehensive deep-dive. The monthly retainer is an affordable way to get continuous support. We occasionally offer promotional packages, so be sure to subscribe to our newsletter!"
+        question: "How do I get the special first-month retainer price?",
+        answer: "The special introductory price for the retainer is available when you decide to upgrade immediately after your initial one-time session. It's a way to thank you for your commitment to long-term growth."
     },
 ];
 
@@ -137,19 +144,8 @@ const brandLogos = [
   { name: 'Tides & Design', logo: '/images/tides&design.jpg' },
 ];
 
-const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
-        <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-        <path fill="#FF3D00" d="M6.306,14.691l6.06,4.71c1.27-3.003,4.061-5.073,7.634-5.073c1.737,0,3.342,0.49,4.781,1.341l5.657-5.657C30.601,6.586,27.423,5,24,5C17.34,5,11.625,8.537,8.077,13.61L6.306,14.691z"/>
-        <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-        <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571l6.19,5.238C39.986,36.438,44,30.601,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-    </svg>
-);
-
-
 const PricingPage = () => {
-    const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
-
+    const [isMonthly, setIsMonthly] = useState(false);
 
     const faqSchema = {
         "@context": "https://schema.org",
@@ -187,24 +183,15 @@ const PricingPage = () => {
         {/* Core Packages Section */}
         <section id="pricing" className="py-20 bg-secondary/30">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-center space-x-4 mb-12 anim d-1">
-                    <Label htmlFor="billing-switch" className={cn("font-medium", billingCycle === 'monthly' ? 'text-primary' : 'text-muted-foreground')}>
-                        Monthly Retainer
-                    </Label>
-                    <Switch
-                        id="billing-switch"
-                        checked={billingCycle === 'yearly'}
-                        onCheckedChange={(checked) => setBillingCycle(checked ? 'yearly' : 'monthly')}
-                        aria-label="Toggle billing cycle"
-                    />
-                    <Label htmlFor="billing-switch" className={cn("font-medium", billingCycle === 'yearly' ? 'text-primary' : 'text-muted-foreground')}>
-                        One-Time Session
-                    </Label>
+                 <div className="flex justify-center items-center gap-4 mb-12">
+                    <Label htmlFor="pricing-toggle" className={cn("font-medium", !isMonthly ? "text-primary" : "text-muted-foreground")}>One-Time Session</Label>
+                    <Switch id="pricing-toggle" checked={isMonthly} onCheckedChange={setIsMonthly} />
+                    <Label htmlFor="pricing-toggle" className={cn("font-medium", isMonthly ? "text-primary" : "text-muted-foreground")}>Monthly Retainer</Label>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-start">
                     {packages.map((pkg, index) => (
                         <div key={index} className={cn(
-                            "rounded-2xl p-6 flex flex-col transition-all duration-300 glass-card relative",
+                            "rounded-2xl p-6 flex flex-col transition-all duration-300 glass-card relative h-full",
                             pkg.featured ? "border-2 border-primary bg-primary/5" : "border border-border"
                         )}>
                              {pkg.featured && (
@@ -214,20 +201,26 @@ const PricingPage = () => {
                                     </div>
                                 </div>
                             )}
-                            <div className="flex-grow">
+                            <div className="flex-grow flex flex-col">
                                 <h3 className="text-xl font-semibold tracking-tight">{pkg.title}</h3>
-                                <p className="text-sm text-muted-foreground mt-2 min-h-[60px]">{pkg.bestFor}</p>
+                                <p className="text-sm text-muted-foreground mt-2 min-h-[60px] flex-grow">{pkg.bestFor}</p>
                                 <div className="my-6">
-                                    <span className="text-4xl font-bold tracking-tight">${pkg.price[billingCycle]}</span>
-                                    <span className="text-muted-foreground">/{billingCycle === 'monthly' ? 'mo' : 'session'}</span>
-                                    <p className="text-xs text-green-500 mt-1 h-4">
-                                        {billingCycle === 'yearly' ? `Save vs monthly retainer` : 'Continuous support'}
-                                    </p>
+                                    {isMonthly ? (
+                                        <>
+                                            <span className="text-4xl font-bold tracking-tight">${pkg.retainerPrice}</span>
+                                            <span className="text-muted-foreground">/mo</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span className="text-4xl font-bold tracking-tight">${pkg.price}</span>
+                                            <span className="text-muted-foreground">/one-time</span>
+                                        </>
+                                    )}
                                 </div>
                                 <Button asChild className="w-full" variant={pkg.featured ? 'default' : 'secondary'}>
-                                    <Link href="/#contact">Get Started</Link>
+                                    <Link href="/#contact">Book Session</Link>
                                 </Button>
-                                <ul className="mt-6 space-y-3 text-sm">
+                                <ul className="mt-6 space-y-3 text-sm flex-grow">
                                     {pkg.features.map((feature, fIndex) => (
                                         <li key={fIndex} className="flex items-start gap-3">
                                             <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
@@ -235,6 +228,30 @@ const PricingPage = () => {
                                         </li>
                                     ))}
                                 </ul>
+                            </div>
+                             <div className="mt-6 pt-6 border-t border-dashed border-border">
+                                {isMonthly ? (
+                                    <>
+                                        <h4 className="font-semibold text-sm">Special Offer!</h4>
+                                        <div className="mt-2">
+                                            <span className="text-2xl font-bold tracking-tight text-primary">${pkg.specialRetainerPrice}</span>
+                                            <p className="text-xs text-muted-foreground">for your first month after a one-time session.</p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h4 className="font-semibold text-sm">Optional Retainer</h4>
+                                        <p className="text-xs text-muted-foreground">For ongoing support:</p>
+                                        <div className="mt-2">
+                                            <span className="text-2xl font-bold tracking-tight">${pkg.retainerPrice}<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
+                                        </div>
+                                        <div className="mt-1 h-8">
+                                            <p className="text-xs text-primary font-semibold p-1 bg-primary/10 rounded-md">
+                                                First month only ${pkg.specialRetainerPrice}!
+                                            </p>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </div>
                     ))}
@@ -292,10 +309,10 @@ const PricingPage = () => {
                         <tfoot>
                             <tr className="border-t-2">
                                 <td className="p-4 sticky left-0 bg-background/90 z-10"></td>
-                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Get Started</Link></Button></td>
-                                <td className="p-6 text-center bg-primary/5"><Button asChild className="w-full"><Link href="/#contact">Get Started</Link></Button></td>
-                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Get Started</Link></Button></td>
-                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Get Started</Link></Button></td>
+                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
+                                <td className="p-6 text-center bg-primary/5"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
+                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
+                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -348,10 +365,6 @@ const PricingPage = () => {
                         <blockquote className="mt-4 text-left text-muted-foreground">
                             “I have been really impressed by the works of Olaiya. He stands out.”
                         </blockquote>
-                        <div className="flex items-center gap-2 text-xs text-blue-500 mt-4">
-                           <Verified className="w-4 h-4" />
-                           <span>Verified Client</span>
-                        </div>
                     </div>
                 </a>
             </div>
@@ -391,6 +404,3 @@ const PricingPage = () => {
 };
 
 export default PricingPage;
-
-    
-
