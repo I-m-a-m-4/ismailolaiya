@@ -1,7 +1,9 @@
+
 import type { Metadata } from 'next';
 import { Inter, Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/Providers';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -119,6 +121,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable} ${plusJakartaSans.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z96H3F68GP"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z96H3F68GP');
+          `}
+        </Script>
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
