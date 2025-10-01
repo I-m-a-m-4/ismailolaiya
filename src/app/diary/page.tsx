@@ -102,17 +102,17 @@ const DiaryPage = () => {
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
                 <div className="order-2 lg:order-1">
-                  <div className="p-8 lg:p-10 shadow-xl border rounded-3xl backdrop-blur-sm border-indigo-500/20 bg-gradient-to-br from-blue-500/10 to-purple-600/10 hover:border-indigo-400/40 transition-all duration-300">
+                  <div className="p-8 lg:p-10 shadow-xl border rounded-3xl backdrop-blur-sm border-indigo-500/20 bg-gradient-to-br from-blue-500/10 to-purple-600/10 hover:border-indigo-400/40 transition-all duration-300 light:bg-white/80">
                     <div className="flex items-center gap-3 mb-8">
                        <div className="flex items-center gap-0.5">
                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 stroke-[1.5] text-amber-500 fill-amber-500" />)}
                        </div>
-                       <span className="text-xs font-medium text-slate-400">Trusted by Muslim Entrepreneurs</span>
+                       <span className="text-xs font-medium text-slate-400 light:text-slate-500">Trusted by Muslim Entrepreneurs</span>
                     </div>
-                     <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-8 text-slate-100 font-light tracking-tighter">
-                        Diary of a Deen-Conscious Strategist
+                     <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-8 text-slate-100 light:text-slate-900 font-light tracking-tighter">
+                        Diary of the Muslim Strategist
                      </h1>
-                    <p className="text-lg leading-relaxed mb-12 text-zinc-400">
+                    <p className="text-lg leading-relaxed mb-12 text-zinc-400 light:text-zinc-700">
                         A curated collection of insights, stories, and resources from my journey as a Pro-Islamic business consultant.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 mb-16">
@@ -131,29 +131,29 @@ const DiaryPage = () => {
                     </div>
                      <div className="grid grid-cols-3 gap-8">
                         <div className="text-center">
-                            <div className="w-12 h-12 flex border rounded-2xl mr-auto mb-3 ml-auto items-center justify-center border-white/20 bg-white/10 backdrop-blur-xl shadow-lg">
-                                <Newspaper className="w-5 h-5 text-white" />
+                            <div className="w-12 h-12 flex border rounded-2xl mr-auto mb-3 ml-auto items-center justify-center border-white/20 bg-white/10 backdrop-blur-xl shadow-lg light:bg-slate-100 light:border-slate-200">
+                                <Newspaper className="w-5 h-5 text-white light:text-slate-600" />
                             </div>
-                            <div className="text-xs font-medium text-blue-300">Articles</div>
+                            <div className="text-xs font-medium text-blue-300 light:text-blue-600">Articles</div>
                         </div>
                         <div className="text-center">
-                            <div className="w-12 h-12 flex border rounded-2xl mr-auto mb-3 ml-auto items-center justify-center border-white/20 bg-white/10 backdrop-blur-xl shadow-lg">
-                               <Mic className="w-5 h-5 text-white" />
+                            <div className="w-12 h-12 flex border rounded-2xl mr-auto mb-3 ml-auto items-center justify-center border-white/20 bg-white/10 backdrop-blur-xl shadow-lg light:bg-slate-100 light:border-slate-200">
+                               <Mic className="w-5 h-5 text-white light:text-slate-600" />
                             </div>
-                            <div className="text-xs font-medium text-blue-300">Podcasts</div>
+                            <div className="text-xs font-medium text-blue-300 light:text-blue-600">Podcasts</div>
                         </div>
                         <div className="text-center">
-                           <div className="w-12 h-12 flex border rounded-2xl mr-auto mb-3 ml-auto items-center justify-center border-white/20 bg-white/10 backdrop-blur-xl shadow-lg">
-                               <Award className="w-5 h-5 text-white" />
+                           <div className="w-12 h-12 flex border rounded-2xl mr-auto mb-3 ml-auto items-center justify-center border-white/20 bg-white/10 backdrop-blur-xl shadow-lg light:bg-slate-100 light:border-slate-200">
+                               <Award className="w-5 h-5 text-white light:text-slate-600" />
                            </div>
-                           <div className="text-xs font-medium text-blue-300">Case Studies</div>
+                           <div className="text-xs font-medium text-blue-300 light:text-blue-600">Case Studies</div>
                         </div>
                     </div>
                   </div>
                 </div>
                  <div className="relative order-1 lg:order-2 group">
-                    <div className="overflow-hidden border rounded-3xl shadow-2xl backdrop-blur-sm border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-purple-600/10 hover:border-blue-400/40 transition-all duration-300">
-                        <div className="absolute top-8 left-8 flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium border z-10 backdrop-blur-sm border-emerald-500/20 bg-white/10 text-emerald-300">
+                    <div className="overflow-hidden border rounded-3xl shadow-2xl backdrop-blur-sm border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-purple-600/10 hover:border-blue-400/40 transition-all duration-300 light:bg-white/80">
+                        <div className="absolute top-8 left-8 flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium border z-10 backdrop-blur-sm border-emerald-500/20 bg-white/10 text-emerald-300 light:bg-slate-100 light:border-slate-200 light:text-emerald-700">
                             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                             <span>Latest Insights</span>
                         </div>
@@ -161,13 +161,13 @@ const DiaryPage = () => {
                             {heroImage && <Image src={heroImage.imageUrl} alt={heroImage.description} fill className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-30" />}
                         </div>
                         <div className="absolute bottom-8 left-8 right-8 grid grid-cols-2 gap-6">
-                            <div className="border rounded-2xl pt-6 pr-6 pb-6 pl-6 backdrop-blur-xl border-white/20 bg-white/10 shadow-lg">
-                                <div className="text-2xl text-slate-100 font-light tracking-tighter">50+</div>
-                                <div className="text-sm mt-1 text-blue-300">Articles & Guides</div>
+                            <div className="border rounded-2xl pt-6 pr-6 pb-6 pl-6 backdrop-blur-xl border-white/20 bg-white/10 shadow-lg light:bg-slate-100/80 light:border-slate-200">
+                                <div className="text-2xl text-slate-100 font-light tracking-tighter light:text-slate-900">50+</div>
+                                <div className="text-sm mt-1 text-blue-300 light:text-blue-600">Articles & Guides</div>
                             </div>
-                            <div className="rounded-2xl p-6 border backdrop-blur-xl border-white/20 bg-white/10 shadow-lg">
-                                <div className="text-2xl text-slate-100 font-light tracking-tighter">20+</div>
-                                <div className="text-sm mt-1 text-blue-300">Podcast Episodes</div>
+                            <div className="rounded-2xl p-6 border backdrop-blur-xl border-white/20 bg-white/10 shadow-lg light:bg-slate-100/80 light:border-slate-200">
+                                <div className="text-2xl text-slate-100 font-light tracking-tighter light:text-slate-900">20+</div>
+                                <div className="text-sm mt-1 text-blue-300 light:text-blue-600">Podcast Episodes</div>
                             </div>
                         </div>
                     </div>
@@ -180,40 +180,40 @@ const DiaryPage = () => {
         <section id="explore" className="max-w-7xl md:px-8 md:py-24 mr-auto ml-auto pt-16 pr-6 pb-16 pl-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white font-light tracking-tighter">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white font-light tracking-tighter light:text-slate-900">
                        A Strategist's Playbook for the Ummah
                     </h2>
                      <div id="bulletList" className="mt-10 space-y-5">
                        {featureSlides.map((slide, index) => (
                          <button key={slide.key} type="button" data-index={index} onClick={() => handleBulletClick(index)} className="group w-full flex items-center gap-3 sm:gap-4">
-                           <span className={cn("h-6 w-1 rounded-full transition-colors", activeSlide === index ? currentAccent.bar : 'bg-neutral-700')}></span>
-                           <span className={cn("text-sm sm:text-base font-medium", activeSlide === index ? 'text-white' : 'text-neutral-500 group-hover:text-neutral-300')}>{slide.bullet}</span>
+                           <span className={cn("h-6 w-1 rounded-full transition-colors", activeSlide === index ? currentAccent.bar : 'bg-neutral-700 light:bg-neutral-300')}></span>
+                           <span className={cn("text-sm sm:text-base font-medium", activeSlide === index ? 'text-white light:text-slate-900' : 'text-neutral-500 group-hover:text-neutral-300 light:text-neutral-500 light:group-hover:text-neutral-800')}>{slide.bullet}</span>
                          </button>
                        ))}
                      </div>
                 </div>
                 <div className="relative">
-                    <div className="relative rounded-2xl border border-neutral-800/80 bg-neutral-900/50 shadow-[0_10px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-white/5 backdrop-blur-md overflow-hidden">
-                        <div className="h-12 flex items-center gap-2 px-4 border-b border-neutral-800/70 text-neutral-400 text-sm">
+                    <div className="relative rounded-2xl border border-neutral-800/80 bg-neutral-900/50 shadow-[0_10px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-white/5 backdrop-blur-md overflow-hidden light:bg-white light:border-neutral-200 light:shadow-2xl">
+                        <div className="h-12 flex items-center gap-2 px-4 border-b border-neutral-800/70 text-neutral-400 text-sm light:border-neutral-200 light:text-neutral-500">
                            <BookOpen className="w-4 h-4" />
                            <span className="truncate">Scale with Olaiya</span>
                            <span className="opacity-50">›</span>
-                           <span className="truncate text-neutral-300">Diary</span>
+                           <span className="truncate text-neutral-300 light:text-neutral-900">Diary</span>
                         </div>
                          <div className="relative px-6 md:px-8 py-8 md:py-10">
                             <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-5", currentAccent.iconBox)}>
                                 <currentSlide.icon className="w-6 h-6" />
                             </div>
                             <div className="relative">
-                                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-100 flex flex-wrap items-center gap-3">
+                                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-100 flex flex-wrap items-center gap-3 light:text-neutral-900">
                                     <span className={cn("inline-flex items-center rounded-md px-2.5 py-1.5 ring-1 text-base sm:text-lg", currentAccent.pill)}>{currentSlide.pillText}</span>
                                     <span className="font-light tracking-tighter">{currentSlide.tailText}</span>
                                 </h3>
                             </div>
-                            <p className="mt-5 text-neutral-400 leading-relaxed max-w-prose text-[17px] sm:text-lg">{currentSlide.body}</p>
+                            <p className="mt-5 text-neutral-400 leading-relaxed max-w-prose text-[17px] sm:text-lg light:text-neutral-600">{currentSlide.body}</p>
                              <div className="mt-8 space-y-2">
-                               <div className="h-3 rounded bg-neutral-800/70 w-2/3"></div>
-                               <div className="h-3 rounded bg-neutral-800/70 w-5/6"></div>
+                               <div className="h-3 rounded bg-neutral-800/70 w-2/3 light:bg-neutral-200"></div>
+                               <div className="h-3 rounded bg-neutral-800/70 w-5/6 light:bg-neutral-200"></div>
                             </div>
                          </div>
                     </div>

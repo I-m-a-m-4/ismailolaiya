@@ -2,7 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
-import { Calendar, Ticket, Sparkles, Cpu, Telescope, ChevronRight, Mail, CalendarDays, MapPin, ScanEye, Play } from 'lucide-react';
+import { Calendar, Ticket, Sparkles, Cpu, Telescope, ChevronRight, Mail, CalendarDays, MapPin, ScanEye, Play, History } from 'lucide-react';
 import Image from 'next/image';
 import { getAllEvents } from '@/lib/events';
 import { cn } from '@/lib/utils';
@@ -36,7 +36,13 @@ const featureCards = [
 ];
 
 const EventsPage = async () => {
-  const upcomingEvents = await getAllEvents();
+  const allEvents = await getAllEvents();
+  
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const upcomingEvents = allEvents.filter(event => new Date(event.date) >= today);
+  const pastEvents = allEvents.filter(event => new Date(event.date) < today);
 
   const getIcon = (category?: string) => {
     switch(category?.toLowerCase()) {
@@ -45,6 +51,49 @@ const EventsPage = async () => {
         default: return MapPin;
     }
   }
+
+  const EventCard = ({ event }: { event: any }) => {
+    const EventIcon = getIcon(event.category);
+    return (
+        <article className={cn("group relative overflow-hidden rounded-2xl border backdrop-blur", event.featured ? 'border-primary/30 bg-primary/5 shadow-lg shadow-primary/20' : 'border-border bg-background/20')}>
+            {event.featured && event.imageUrl && (
+                <Image src={event.imageUrl} alt={event.title} className="absolute inset-0 h-full w-full object-cover opacity-20 group-hover:opacity-30 transition-opacity" fill />
+            )}
+            {event.featured && (
+                <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-background/20"></div>
+            )}
+            <div className="relative px-5 py-4">
+                <div className="grid grid-cols-1 md:grid-cols-[180px_1fr_auto] items-center gap-4">
+                    <div className="flex items-center md:block justify-between">
+                        <div className={cn("flex gap-2 text-[11px] uppercase tracking-wide items-center", event.featured ? 'text-primary' : 'text-muted-foreground')}>
+                            <CalendarDays className="h-3.5 w-3.5"/>
+                            <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                        </div>
+                        <p className="md:mt-2 text-2xl md:text-3xl font-semibold tracking-tight">{event.day}</p>
+                    </div>
+                    <div>
+                        {(event.category || event.location) && (
+                            <div className={cn("flex gap-2 text-[11px] uppercase tracking-wide items-center", event.featured ? "text-primary" : "text-muted-foreground")}>
+                                <EventIcon className="h-3.5 w-3.5"/>
+                                <span>{event.category || event.location}</span>
+                            </div>
+                        )}
+                        <h3 className="mt-1 text-base md:text-lg font-semibold tracking-tight">{event.title}</h3>
+                        <p className="mt-1 text-sm text-muted-foreground">{event.description}</p>
+                    </div>
+                    <div className="justify-self-end">
+                        <Button variant="ghost" className="h-10 w-10 grid place-items-center rounded-xl border border-border bg-background/30 text-foreground/80 hover:bg-muted transition">
+                            {event.featured ? <Play className="h-4 w-4"/> : <ChevronRight className="h-4 w-4"/>}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+            {event.featured && (
+                <span className="pointer-events-none absolute -inset-px rounded-2xl ring-1 ring-primary/30"></span>
+            )}
+        </article>
+    );
+  };
 
   return (
     <div className="bg-background text-foreground antialiased font-sans">
@@ -115,70 +164,41 @@ const EventsPage = async () => {
             <section id="upcoming-events" className="relative z-10 max-w-7xl md:px-8 mt-24 md:mt-32 mr-auto ml-auto pr-6 pl-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                     <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground/95 uppercase">Upcoming Events</h2>
-                    <div className="flex items-center gap-3">
-                        <Button variant="outline" asChild>
-                            <a href="#">
-                                <Calendar className="h-4 w-4" />
-                                <span>Explore Calendar</span>
-                            </a>
-                        </Button>
-                        <Button variant="outline" asChild>
-                            <a href="#contact">
-                                <Mail className="h-4 w-4" />
-                                <span>Get Notified</span>
-                            </a>
-                        </Button>
-                    </div>
+                     <Button variant="outline" asChild>
+                        <a href="#contact">
+                            <Mail className="h-4 w-4" />
+                            <span>Get Notified</span>
+                        </a>
+                    </Button>
                 </div>
                 
                 <div className="mt-8 space-y-4">
-                {upcomingEvents.length > 0 ? upcomingEvents.map((event) => {
-                    const EventIcon = getIcon(event.category);
-                    return (
-                        <article key={event.id} className={cn("group relative overflow-hidden rounded-2xl border backdrop-blur", event.featured ? 'border-primary/30 bg-primary/5 shadow-lg shadow-primary/20' : 'border-border bg-background/20')}>
-                            {event.featured && event.imageUrl && (
-                                <Image src={event.imageUrl} alt={event.title} className="absolute inset-0 h-full w-full object-cover opacity-20 group-hover:opacity-30 transition-opacity" fill />
-                            )}
-                             {event.featured && (
-                                 <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-background/20"></div>
-                             )}
-
-                            <div className="relative px-5 py-4">
-                                <div className="grid grid-cols-1 md:grid-cols-[180px_1fr_auto] items-center gap-4">
-                                    <div className="flex items-center md:block justify-between">
-                                        <div className={cn("flex gap-2 text-[11px] uppercase tracking-wide items-center", event.featured ? 'text-primary' : 'text-muted-foreground')}>
-                                            <CalendarDays className="h-3.5 w-3.5"/>
-                                            <span>{new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
-                                        </div>
-                                        <p className="md:mt-2 text-2xl md:text-3xl font-semibold tracking-tight">{event.day}</p>
-                                    </div>
-                                    <div>
-                                        {(event.category || event.location) && (
-                                            <div className={cn("flex gap-2 text-[11px] uppercase tracking-wide items-center", event.featured ? "text-primary" : "text-muted-foreground")}>
-                                                <EventIcon className="h-3.5 w-3.5"/>
-                                                <span>{event.category || event.location}</span>
-                                            </div>
-                                        )}
-                                        <h3 className="mt-1 text-base md:text-lg font-semibold tracking-tight">{event.title}</h3>
-                                        <p className="mt-1 text-sm text-muted-foreground">{event.description}</p>
-                                    </div>
-                                    <div className="justify-self-end">
-                                      <Button variant="ghost" className="h-10 w-10 grid place-items-center rounded-xl border border-border bg-background/30 text-foreground/80 hover:bg-muted transition">
-                                          {event.featured ? <Play className="h-4 w-4"/> : <ChevronRight className="h-4 w-4"/>}
-                                      </Button>
-                                    </div>
-                                </div>
-                            </div>
-                             {event.featured && (
-                                <span className="pointer-events-none absolute -inset-px rounded-2xl ring-1 ring-primary/30"></span>
-                             )}
-                        </article>
-                    )
-                }) : (
+                {upcomingEvents.length > 0 ? upcomingEvents.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                )) : (
                   <div className="text-center py-20 bg-muted/20 rounded-2xl border border-dashed">
                       <Calendar className="mx-auto h-12 w-12 text-muted-foreground" />
                       <h3 className="mt-4 text-xl font-semibold">No Upcoming Events</h3>
                       <p className="mt-2 text-muted-foreground">Check back soon for new announcements.</p>
+                  </div>
+                )}
+                </div>
+            </section>
+
+             <section id="past-events" className="relative z-10 max-w-7xl md:px-8 mt-24 md:mt-32 mr-auto ml-auto pr-6 pl-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground/95 uppercase">Past Events</h2>
+                    <p className="text-muted-foreground">A look back at our previous sessions.</p>
+                </div>
+                
+                <div className="mt-8 space-y-4">
+                {pastEvents.length > 0 ? pastEvents.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                )) : (
+                  <div className="text-center py-20 bg-muted/20 rounded-2xl border border-dashed">
+                      <History className="mx-auto h-12 w-12 text-muted-foreground" />
+                      <h3 className="mt-4 text-xl font-semibold">No Past Events</h3>
+                      <p className="mt-2 text-muted-foreground">Our event history will appear here.</p>
                   </div>
                 )}
                 </div>
