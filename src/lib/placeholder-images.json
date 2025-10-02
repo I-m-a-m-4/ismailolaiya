@@ -141,19 +141,19 @@
     {
       "id": "diary-reviews",
       "description": "A close-up of a person writing a positive review on a laptop.",
-      "imageUrl": "https://images.unsplash.com/photo-1505682499293-233fb141754c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3cml0aW5nJTIwcmV2aWV3fGVufDB8fHx8MTc1OTEzNzE3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-banner-representing-customer-reviews.jpg",
       "imageHint": "writing review"
     },
     {
       "id": "diary-news",
       "description": "A stack of newspapers with a modern, clean aesthetic.",
-      "imageUrl": "https://images.unsplash.com/photo-1733058852167-c0db97d1fa96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxuZXdzcGFwZXJzJTIwc3RhY2tlZHxlbnwwfHx8fDE3NTkxMzcxNzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-stack-of-newspapers-with-a-modern.jpg",
       "imageHint": "newspapers stacked"
     },
     {
       "id": "diary-underdogs",
       "description": "A single small plant growing through a crack in dry earth, symbolizing resilience.",
-      "imageUrl": "https://images.unsplash.com/photo-1523810192022-5a0fb9aa7ff8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwbGFudCUyMGdyb3dpbmd8ZW58MHx8fHwxNzU5MTM3MTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-single-small-plant-growing-through.jpg",
       "imageHint": "plant growing"
     },
     {
@@ -171,13 +171,13 @@
     {
       "id": "diary-interviews",
       "description": "Two people engaged in a thoughtful conversation in a cafe.",
-      "imageUrl": "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZW9wbGUlMjB0YWxraW5nfGVufDB8fHx8MTc1OTA1NzAxMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/becoming-something-big-muslim-arab.jpg",
       "imageHint": "people talking"
     },
     {
       "id": "diary-gallery",
       "description": "A wall in an art gallery with several framed pictures.",
-      "imageUrl": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhcnQlMjBnYWxsZXJ5fGVufDB8fHx8MTc1OTEwNDE0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-wall-in-an-art-gallery.jpg",
       "imageHint": "art gallery"
     },
     {
@@ -243,43 +243,43 @@
     {
       "id": "fact-hadith",
       "description": "An old Islamic manuscript.",
-      "imageUrl": "An-old-Islamic-manuscript.jpg",
+      "imageUrl": "/An-old-Islamic-manuscript.jpg",
       "imageHint": "islamic manuscript"
     },
     {
       "id": "fact-friends",
       "description": "A close group of friends talking.",
-      "imageUrl": "A-close-group-of-friends-talking.jpg",
+      "imageUrl": "/A-close-group-of-friends-talking.jpg",
       "imageHint": "close friends"
     },
     {
       "id": "fact-brain",
       "description": "An abstract representation of a brain's neural network.",
-      "imageUrl": "https://images.unsplash.com/photo-1545987796-200677ee1011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxuZXVyYWwlMjBuZXR3b3JrfGVufDB8fHx8MTc1OTA4Mzg4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/An-abstract-representation-of-a-brain-neural-network.jpg",
       "imageHint": "neural network"
     },
     {
       "id": "fact-salafiy",
       "description": "A person walking on a clear path.",
-      "imageUrl": "https://images.unsplash.com/photo-1605145583191-24d17a7a2555?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjbGVhciUyMHBhdGh8ZW58MHx8fHwxNzU5MDQ2NzUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-person-walking-on-a-clear-path.jpg",
       "imageHint": "clear path"
     },
     {
       "id": "fact-boss",
       "description": "A person at a desk looking at a complex problem.",
-      "imageUrl": "https://images.unsplash.com/photo-1758685734686-e69f130c1aab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wbGV4JTIwcHJvYmxlbXxlbnwwfHx8fDE3NTkxNTUxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-person-at-a-desk-looking-at-a-complex-problem.jpg",
       "imageHint": "complex problem"
     },
     {
       "id": "gallery-banner",
       "description": "An abstract artistic banner for the gallery page.",
-      "imageUrl": "https://images.unsplash.com/photo-1541512416146-3cf58d6b27cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YWJzdHJhY3QlMjBhcnR8ZW58MHx8fHwxNzU5MDcyODM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/An-abstract-artistic-banner-for-the-gallery-page.jpg",
       "imageHint": "abstract art"
     },
     {
       "id": "interviews-banner",
       "description": "A banner image showing a professional interview setup.",
-      "imageUrl": "https://images.unsplash.com/photo-1708440631955-3c81755eae15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aW50ZXJ2aWV3JTIwc2V0dXB8ZW58MHx8fHwxNzU5MTU1Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/interview-setup-arab-muslim.jpg",
       "imageHint": "interview setup"
     },
     {
@@ -294,18 +294,7 @@
       "imageUrl": "https://images.unsplash.com/photo-1537202108838-e7072bad1927?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbGlicmFyeXxlbnwwfHx8fDE3NTkxMjA2MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "digital library"
     },
-    {
-      "id": "underdogs-banner",
-      "description": "A banner representing struggle and success, an underdog story.",
-      "imageUrl": "https://images.unsplash.com/photo-1694499377697-f21e1da42b8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdWNjZXNzJTIwc3Rvcnl8ZW58MHx8fHwxNzU5MTU1Nzg1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "success story"
-    },
-    {
-      "id": "press-room-banner",
-      "description": "A banner for a press room, with microphones and cameras.",
-      "imageUrl": "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwcmVzcyUyMGNvbmZlcmVuY2V8ZW58MHx8fHwxNzU5MDcyOTY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "press conference"
-    },
+
     {
       "id": "diary-banner",
       "description": "A professional photo of Ismail Adekunle-Olaiya for the diary banner.",
@@ -315,7 +304,7 @@
     {
       "id": "reviews-banner",
       "description": "A banner representing customer reviews, perhaps with star ratings or quote icons.",
-      "imageUrl": "https://images.unsplash.com/photo-1599420186946-7b6fb4e297f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZXZpZXdzfGVufDB8fHx8MTc1OTIzNjU0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-banner-representing-customer-reviews.jpg",
       "imageHint": "customer reviews"
     }
   ]
