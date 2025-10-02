@@ -30,24 +30,28 @@ const ShopPage = async () => {
       <Header />
       <main className="flex-grow">
        <section className="relative h-[80vh] overflow-hidden bg-neutral-900">
-          {heroImage && 
-            <div className="absolute inset-0">
-                <Image src={heroImage.imageUrl} alt={heroImage.description} className="h-full w-full object-cover object-center" fill priority/>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-            </div>
-          }
+          <div id="heroBackground" className="absolute inset-0 hero-parallax-bg animate-on-scroll image-reveal stagger-1">
+            <Image 
+                src="/An-old-Islamic-manuscript.jpg" 
+                alt="An old Islamic manuscript representing timeless knowledge" 
+                className="h-full w-full object-cover object-center" 
+                fill 
+                priority
+            />
+            <div id="heroGradient" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          </div>
           <div className="relative z-10 flex h-full max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center">
-            <div className="max-w-xl text-white">
-              <p className="text-sm/6 uppercase tracking-widest opacity-80">Knowledge · Strategy · Growth</p>
-              <h1 className="mt-3 text-5xl md:text-6xl tracking-tight font-semibold">Essential Resources</h1>
-              <p className="text-base/7 md:text-lg/8 opacity-90 mt-4">
+            <div className="max-w-xl text-white hero-content">
+              <p className="text-sm/6 uppercase tracking-widest opacity-80 animate-on-scroll text-reveal stagger-1">Knowledge · Strategy · Growth</p>
+              <h1 className="mt-3 text-5xl md:text-6xl tracking-tight font-semibold animate-on-scroll text-reveal stagger-2">Essential Resources</h1>
+              <p className="text-base/7 md:text-lg/8 opacity-90 mt-4 animate-on-scroll text-reveal stagger-3">
                 Your hub for essential resources designed to help you build and scale a thriving, Deen-aligned business. Authored by a practicing Pro-Islamic business strategist.
               </p>
               <div className="mt-8 flex items-center gap-3">
-                <Button size="lg" asChild>
+                <Button size="lg" asChild className="animate-on-scroll scale-in stagger-4">
                     <Link href="#products">Explore Now</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-black">
+                <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-black animate-on-scroll slide-left stagger-5">
                     New Releases
                 </Button>
               </div>

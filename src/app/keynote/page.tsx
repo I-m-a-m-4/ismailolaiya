@@ -1,4 +1,5 @@
 
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
@@ -35,39 +36,55 @@ const KeynotePage = async () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-16">
-        <section className="relative h-80 md:h-96 w-full flex items-center justify-center text-center text-white overflow-hidden">
-            {bannerImage && (
+      <main className="flex-grow">
+        <section id="hero" className="relative sm:py-32 pt-20 pb-20">
+             {bannerImage && (
                 <Image
                     src={bannerImage.imageUrl}
                     alt="Keynote Sessions Banner"
                     fill
-                    className="object-cover scale-110 blur-sm"
+                    className="absolute inset-0 object-cover w-full h-full -z-10"
                     data-ai-hint={bannerImage.imageHint}
                 />
             )}
-            <div className="absolute inset-0 bg-black/70 bg-gradient-to-t from-black/80 to-transparent" />
-            <div className="relative z-10 p-4 anim d-1 max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-2 text-sm font-medium mb-6">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Live Q&A</span>
+            <div className="absolute inset-0 bg-black/70 -z-10"></div>
+            <div className="mx-auto max-w-6xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 items-center">
+                <div className="space-y-8 text-center">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm text-gray-300 animate-fade-in-up">
+                        <Sparkles className="h-4 w-4 text-primary" />
+                        Live & Interactive Sessions
+                    </div>
+                    
+                    <div className="space-y-6">
+                        <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white leading-none animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+                            {content.title}
+                        </h1>
+                        
+                        <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+                            {content.subtitle}
+                        </p>
+                    </div>
+
+                    <div className="animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+                        <Button asChild size="lg">
+                            <a href="#keynote-content">Learn More</a>
+                        </Button>
+                    </div>
                 </div>
-                <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">{content.title}</h1>
-                <p className="mt-4 text-lg md:text-xl text-white/90">
-                   {content.subtitle}
-                </p>
+                </div>
             </div>
         </section>
 
-        <section id="keynote-content" className="py-20">
+        <section id="keynote-content" className="py-20 bg-background/95">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-12">
                     <div className="md:col-span-2">
-                        <h2 className="text-2xl font-semibold mb-4">About The Session</h2>
-                        <div className="prose prose-lg dark:prose-invert" dangerouslySetInnerHTML={{ __html: content.description.replace(/\n/g, '<br />') }}>
+                        <h2 className="text-2xl font-semibold mb-4 animate-fade-in-up" style={{animationDelay: '0.8s'}}>About The Session</h2>
+                        <div className="prose prose-lg dark:prose-invert animate-fade-in-up" style={{animationDelay: '1s'}} dangerouslySetInnerHTML={{ __html: content.description.replace(/\n/g, '<br />') }}>
                         </div>
                     </div>
-                    <aside className="md:col-span-1">
+                    <aside className="md:col-span-1 animate-fade-in-up" style={{animationDelay: '1.2s'}}>
                         <div className="sticky top-24 glass-card p-6">
                             <h3 className="text-xl font-semibold mb-4">Session Details</h3>
                             <ul className="space-y-4 text-muted-foreground">
@@ -104,3 +121,4 @@ const KeynotePage = async () => {
 };
 
 export default KeynotePage;
+
