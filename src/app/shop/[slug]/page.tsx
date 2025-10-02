@@ -27,6 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: product.name,
         description: product.description,
         type: 'website',
+        images: [
+            {
+                url: product.imageUrl,
+            }
+        ]
     }
   }
 }

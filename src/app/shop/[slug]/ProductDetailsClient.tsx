@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import ShareButton from "@/components/ShareButton";
 
 const commentSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -97,6 +98,7 @@ export default function ProductDetailsClient({ product, relatedProducts }: { pro
                                     </a>
                                 </Button>
                             ) : null}
+                            <ShareButton title={product.name} />
                         </div>
 
                          <div className="mt-12 p-6 rounded-2xl glass-card bg-secondary/30">
@@ -216,5 +218,3 @@ export default function ProductDetailsClient({ product, relatedProducts }: { pro
       </>
     );
 }
-
-    

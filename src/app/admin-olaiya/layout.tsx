@@ -2,14 +2,15 @@
 'use client';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { useRouter, usePathname } from 'next/navigation';
-import { useEffect } from 'react';
-import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks, Calendar, Clapperboard } from 'lucide-react';
-import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader } from '@/components/ui/sidebar';
+import { useEffect, useState } from 'react';
+import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks, Calendar, Clapperboard, Send } from 'lucide-react';
+import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarMenuBadge } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { collection, getCountFromServer, query, where } from 'firebase/firestore';
 
 const ADMIN_EMAILS = ['scalewitholaiya@gmail.com', 'bimex4@gmail.com'];
 
@@ -21,6 +22,32 @@ export default function AdminLayout({
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
   const pathname = usePathname();
+  const [unreadCounts, setUnreadCounts] = useState({ submissions: 0, waitlist: 0 });
+
+  useEffect(() => {
+    if (!loading && user) {
+        const fetchUnreadCounts = async () => {
+            try {
+                const submissionsQuery = query(collection(db, 'contactSubmissions'), where('read', '==', false));
+                const submissionsSnapshot = await getCountFromServer(submissionsQuery);
+                const submissionsCount = submissionsSnapshot.data().count;
+
+                const waitlistQuery = query(collection(db, 'waitlist'), where('read', '==', false));
+                const waitlistSnapshot = await getCountFromServer(waitlistQuery);
+                const waitlistCount = waitlistSnapshot.data().count;
+
+                setUnreadCounts({ submissions: submissionsCount, waitlist: waitlistCount });
+            } catch (error) {
+                console.error("Error fetching unread counts:", error);
+            }
+        };
+
+        fetchUnreadCounts();
+        
+        // Optionally, you can set up a real-time listener here if needed
+        // For now, fetching on layout mount is sufficient
+    }
+  }, [user, loading]);
 
   useEffect(() => {
     if (!loading) {
@@ -106,8 +133,19 @@ export default function AdminLayout({
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/submissions')}>
+                        <div className='flex items-center justify-between w-full'>
+                            <Link href="/admin-olaiya/submissions" className='flex items-center gap-2'><Send />Submissions</Link>
+                            {unreadCounts.submissions > 0 && <SidebarMenuBadge>{unreadCounts.submissions}</SidebarMenuBadge>}
+                        </div>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
                     <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/waitlist')}>
-                      <Link href="/admin-olaiya/waitlist"><ListChecks />Waitlist</Link>
+                        <div className='flex items-center justify-between w-full'>
+                            <Link href="/admin-olaiya/waitlist" className='flex items-center gap-2'><ListChecks />Waitlist</Link>
+                            {unreadCounts.waitlist > 0 && <SidebarMenuBadge>{unreadCounts.waitlist}</SidebarMenuBadge>}
+                        </div>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
               </SidebarMenu>

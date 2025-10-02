@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,9 +16,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Send, Mail, Phone, MapPin, Clock, Briefcase, Award } from "lucide-react";
+import { Send, Mail, Phone, MapPin, Clock, Briefcase, Award, Loader2 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import MotionWrap from "./MotionWrap";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
@@ -36,13 +39,26 @@ export default function Contact() {
     defaultValues: { firstName: "", lastName: "", email: "", phone: "", message: "" },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. Your business developer will get back to you shortly.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      await addDoc(collection(db, "contactSubmissions"), {
+        ...values,
+        createdAt: serverTimestamp(),
+        read: false,
+      });
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. Your business developer will get back to you shortly.",
+      });
+      form.reset();
+    } catch (error) {
+        console.error("Error sending message: ", error);
+        toast({
+            title: "Submission Error",
+            description: "There was a problem sending your message. Please try again.",
+            variant: "destructive"
+        })
+    }
   }
 
   return (
@@ -209,7 +225,8 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full bg-gradient-to-r from-primary to-red-700 dark:to-red-700 light:to-primary/90 text-white py-4 font-semibold text-lg hover:from-primary/90 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                  <Button type="submit" disabled={form.formState.isSubmitting} className="w-full bg-gradient-to-r from-primary to-red-700 dark:to-red-700 light:to-primary/90 text-white py-4 font-semibold text-lg hover:from-primary/90 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                      {form.formState.isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : null}
                       Schedule Discovery Call
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">

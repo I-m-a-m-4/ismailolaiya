@@ -1,9 +1,8 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, BookOpen, Newspaper, Award, Mic, Library, MessageSquare, Image as ImageIcon, Users } from 'lucide-react';
+import { Menu, X, BookOpen, Newspaper, Award, Mic, Library, MessageSquare, Image as ImageIcon, Users, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -20,6 +19,7 @@ import { ThemeToggle } from './ThemeToggle';
 import CartButton from './CartButton';
 import Image from 'next/image';
 import placeholderData from '@/lib/placeholder-images.json';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
 const mainNavLinks = [
   { href: '/about', label: 'About' },
@@ -58,45 +58,62 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
-  const MobileNav = () => (
-    <div className="md:hidden bg-background/95 backdrop-blur-lg">
-      <nav>
-        <ul className="flex flex-col items-start gap-2 px-6 py-4 border-y border-border">
-          {mainNavLinks.map((link) => (
-            <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
-              <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
-          <li className="w-full text-left border-b border-dashed border-border/70 py-2">
-             <Link href="/diary" onClick={() => handleLinkClick("/diary")} className={cn("text-base font-medium transition", pathname === "/diary" ? "text-primary" : "text-muted-foreground hover:text-primary")}>
-                Diary
-              </Link>
-          </li>
-          {diaryLinks.map((link) => (
-             <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
-              <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition pl-4", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
-          {otherLinks.map((link) => (
-            <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
-              <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
-                {link.label}
-              </Link>
-            </li>
-          ))}
-           <li className="w-full pt-4">
-                <Button asChild className="w-full">
-                    <Link href="/#contact" onClick={() => handleLinkClick('/#contact')}>BOOK OLAIYA</Link>
-                </Button>
-            </li>
-        </ul>
-      </nav>
-    </div>
-  )
+  const MobileNav = () => {
+    const [isDiaryMenuOpen, setIsDiaryMenuOpen] = useState(false);
+
+    return (
+      <div className="md:hidden bg-background/95 backdrop-blur-lg">
+        <nav>
+          <ul className="flex flex-col items-start gap-2 px-6 py-4 border-y border-border">
+            {mainNavLinks.map((link) => (
+              <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
+                <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+
+            <Collapsible open={isDiaryMenuOpen} onOpenChange={setIsDiaryMenuOpen} className="w-full border-b border-dashed border-border/70">
+              <li className="w-full text-left py-2">
+                <CollapsibleTrigger className='w-full'>
+                    <div className='flex items-center justify-between'>
+                        <Link href="/diary" onClick={(e) => { e.preventDefault(); setIsDiaryMenuOpen(!isDiaryMenuOpen); }} className={cn("text-base font-medium transition", pathname.startsWith('/diary') ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                          Diary
+                        </Link>
+                        <ChevronDown className={cn("h-5 w-5 text-muted-foreground transition-transform", isDiaryMenuOpen && "rotate-180")} />
+                    </div>
+                </CollapsibleTrigger>
+              </li>
+              <CollapsibleContent>
+                <ul className='pl-4'>
+                    {diaryLinks.map((link) => (
+                       <li key={link.href} className="w-full text-left border-t border-dashed border-border/70 py-2">
+                        <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </CollapsibleContent>
+            </Collapsible>
+
+            {otherLinks.map((link) => (
+              <li key={link.href} className="w-full text-left border-b border-dashed border-border/70 py-2">
+                <Link href={link.href} onClick={() => handleLinkClick(link.href)} className={cn("text-base font-medium transition", pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+             <li className="w-full pt-4">
+                  <Button asChild className="w-full">
+                      <Link href="/#contact" onClick={() => handleLinkClick('/#contact')}>BOOK OLAIYA</Link>
+                  </Button>
+              </li>
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 
   return (
     <>

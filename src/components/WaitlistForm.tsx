@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -50,7 +51,8 @@ export default function WaitlistForm() {
         try {
             await addDoc(collection(db, 'waitlist'), {
                 email: values.email,
-                createdAt: serverTimestamp()
+                createdAt: serverTimestamp(),
+                read: false,
             });
             setSubmitted(true);
             toast({
