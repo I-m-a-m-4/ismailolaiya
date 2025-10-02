@@ -17,7 +17,7 @@ import { ArrowRight } from 'lucide-react';
 const featureSlides = [
     {
         key: 'strategies',
-        bullet: 'Strategies from the Heart of the Companions',
+        bullet: 'Strategies from the Hearts of the Companions',
         accent: 'emerald',
         icon: BookOpen,
         pillText: 'Learn from',
@@ -45,7 +45,7 @@ const featureSlides = [
 ];
 
 const diarySections = [
-  { href: '/diary/strategies-from-the-companions', label: 'Strategies from the Companions', description: 'Timeless principles from the Sahabah.', imageId: 'diary-podcast', icon: BookOpen },
+  { href: '/diary/strategies-from-the-companions', label: 'Strategies from the Hearts of the Companions', description: 'Timeless principles from the Sahabah.', imageId: 'diary-podcast', icon: BookOpen },
   { href: '/diary/becoming-with-olaiya', label: 'Becoming with Olaiya', description: 'In-depth conversations with leaders.', imageId: 'diary-interviews', icon: Users },
   { href: '/diary/ama-sessions', label: 'AMA Sessions', description: 'Live Q&A with Olaiya.', imageId: 'diary-news', icon: MessageSquare },
   { href: '/diary/reviews', label: 'Reviews', description: 'Real stories and results from clients.', imageId: 'diary-reviews', icon: Award },

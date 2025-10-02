@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${URL}/diary/becoming-with-olaiya`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
         { url: `${URL}/diary/resource-library`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
         { url: `${URL}/diary/gallery`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-        { url: `${URL}/press-room`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+        { url: `${URL}/keynote`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     ];
 
     return [

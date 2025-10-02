@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks, Calendar } from 'lucide-react';
+import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks, Calendar, Clapperboard } from 'lucide-react';
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -97,6 +98,11 @@ export default function AdminLayout({
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/events')}>
                       <Link href="/admin-olaiya/events"><Calendar />Events</Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/keynote')}>
+                      <Link href="/admin-olaiya/keynote"><Clapperboard />Keynote Page</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>

@@ -20,6 +20,7 @@ const productSchema = z.object({
   description: z.string().min(1, 'Description is required'),
   price: z.number().min(0, 'Price must be a positive number'),
   imageUrl: z.string().min(1, 'Image is required'),
+  downloadUrl: z.string().url('Must be a valid URL').optional().or(z.literal('')),
   slug: z.string().optional(),
 });
 
@@ -39,11 +40,17 @@ const ProductEditor = ({ product, onSave }: ProductEditorProps) => {
   
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema),
-    defaultValues: product ? { ...product, price: product.price / 100 } : {
+    defaultValues: product ? { 
+      ...product, 
+      price: product.price / 100,
+      downloadUrl: product.downloadUrl || '',
+      slug: product.slug || '',
+    } : {
       name: '',
       description: '',
       price: 0,
       imageUrl: '',
+      downloadUrl: '',
       slug: '',
     },
   });
@@ -150,6 +157,7 @@ const ProductEditor = ({ product, onSave }: ProductEditorProps) => {
             </FormItem>
           )} 
         />
+        <FormField control={form.control} name="downloadUrl" render={({ field }) => (<FormItem><FormLabel>Download URL (for free products)</FormLabel><FormControl><Input {...field} placeholder="https://example.com/download.pdf" /></FormControl><FormMessage /></FormItem>)} />
         
         <div className="space-y-2">
             <FormLabel>Product Image</FormLabel>

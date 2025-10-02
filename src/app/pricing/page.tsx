@@ -344,7 +344,7 @@ const PricingPage = () => {
                     </div>
                 </div>
 
-                <a href="https://share.google/S1mB4Es1FU2j7NDJ4" target="_blank" rel="noopener noreferrer" className="mt-16 max-w-2xl mx-auto block group">
+                <a href="https://share.google/XMj7wBKismLoj3Wzq" target="_blank" rel="noopener noreferrer" className="mt-16 max-w-2xl mx-auto block group">
                     <div className="glass-card p-6 md:p-8 rounded-2xl group-hover:bg-accent/50 transition-colors">
                         <div className="flex items-start gap-4">
                             <Avatar>
@@ -404,3 +404,5 @@ const PricingPage = () => {
 };
 
 export default PricingPage;
+
+    

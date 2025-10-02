@@ -29,7 +29,7 @@ const StrategiesPage = () => {
                     <BookOpen className="w-4 h-4" />
                     <span>First Series</span>
                 </div>
-                <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">Strategies from the Heart of the Companions</h1>
+                <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">Strategies from the Hearts of the Companions</h1>
                 <p className="mt-4 text-lg md:text-xl text-white/90">
                     A deep dive into the strategic brilliance of the Sahabah (companions of Muhammad ﷺ) and how they approached business, trade, and leadership.
                 </p>

@@ -26,7 +26,7 @@ const mainNavLinks = [
 ];
 
 const diaryLinks = [
-  { href: '/diary/strategies-from-the-companions', label: 'Strategies from the Companions', description: 'Timeless principles from the Sahabah.', imageId: 'diary-podcast', icon: BookOpen },
+  { href: '/diary/strategies-from-the-companions', label: 'Strategies from the Hearts of the Companions', description: 'Timeless principles from the Sahabah.', imageId: 'diary-podcast', icon: BookOpen },
   { href: '/diary/becoming-with-olaiya', label: 'Becoming with Olaiya', description: 'In-depth conversations with leaders.', imageId: 'diary-interviews', icon: Users },
   { href: '/diary/ama-sessions', label: 'AMA Sessions', description: 'Live Q&A with Olaiya.', imageId: 'diary-news', icon: MessageSquare },
   { href: '/diary/reviews', label: 'Reviews', description: 'Real stories and results from clients.', imageId: 'diary-reviews', icon: Award },
@@ -37,7 +37,7 @@ const diaryLinks = [
 const otherLinks = [
     { href: '/pricing', label: 'Pricing' },
     { href: '/events', label: 'Events' },
-    { href: '/press-room', label: 'Press Room' },
+    { href: '/keynote', label: 'Keynote' },
     { href: '/shop', label: 'Shop' },
 ]
 

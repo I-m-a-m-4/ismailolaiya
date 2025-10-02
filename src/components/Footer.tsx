@@ -32,7 +32,8 @@ const Footer = () => {
               <nav className="flex flex-col gap-3" aria-label="Company">
                 <Link href="/about" className="footer-link text-red-100/70 hover:text-primary transition">About Me</Link>
                 <Link href="/#process" className="footer-link text-red-100/70 hover:text-primary transition">My Process</Link>
-                <Link href="/press-room" className="footer-link text-red-100/70 hover:text-primary transition">Press Room</Link>
+                                <Link href="/keynote" className="footer-link text-red-100/70 hover:text-primary transition">Keynote</Link>
+
                 <Link href="/#contact" className="footer-link text-red-100/70 hover:text-primary transition">Contact</Link>
               </nav>
             </div>

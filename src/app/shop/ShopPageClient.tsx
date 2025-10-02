@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -57,12 +58,22 @@ export default function ShopPageClient({ products }: { products: Product[] }) {
                                 </h3>
                                 <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{product.description}</p>
                             </div>
-                             <span className="text-lg font-semibold text-primary ml-4">${(product.price/100).toFixed(2)}</span>
+                            {product.price > 0 ? (
+                                <span className="text-lg font-semibold text-primary ml-4">${(product.price/100).toFixed(2)}</span>
+                            ) : (
+                                <span className="text-lg font-semibold text-primary ml-4">Free</span>
+                            )}
                         </header>
                         <div className="mt-6">
-                            <Button className="w-full" onClick={() => handleAddToCart(product)}>
-                                <ShoppingCart className="mr-2" /> Add to cart
-                            </Button>
+                            {product.price > 0 ? (
+                                <Button className="w-full" onClick={() => handleAddToCart(product)}>
+                                    <ShoppingCart className="mr-2" /> Add to cart
+                                </Button>
+                            ) : (
+                                <Button asChild className="w-full">
+                                    <Link href={`/shop/${product.slug}`}>Get Access</Link>
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </article>
@@ -70,3 +81,5 @@ export default function ShopPageClient({ products }: { products: Product[] }) {
         </div>
     );
 }
+
+    

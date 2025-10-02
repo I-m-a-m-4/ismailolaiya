@@ -8,8 +8,8 @@ export type Product = {
     name: string;
     description: string;
     price: number; // in cents
-    imageId: string; // This is now unused.
     imageUrl: string;
+    downloadUrl?: string; // Optional download URL for free products
     createdAt?: string; // Add this to hold the serialized timestamp
 };
 
@@ -62,3 +62,5 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
         return null;
     }
 }
+
+    

@@ -1,7 +1,8 @@
+
 'use client';
 import { Button } from "@/components/ui/button";
 import { type Product } from "@/lib/products";
-import { ShoppingCart, MessageSquare, Send, User } from "lucide-react";
+import { ShoppingCart, MessageSquare, Send, User, Download } from "lucide-react";
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
 import { useToast } from "@/hooks/use-toast";
@@ -73,13 +74,29 @@ export default function ProductDetailsClient({ product, relatedProducts }: { pro
                     </div>
                     <div>
                         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-4">{product.name}</h1>
-                        <p className="text-3xl font-bold tracking-tight text-primary mb-6">${(product.price / 100).toFixed(2)}</p>
+                        
+                        {product.price > 0 ? (
+                            <p className="text-3xl font-bold tracking-tight text-primary mb-6">${(product.price / 100).toFixed(2)}</p>
+                        ) : (
+                             <p className="text-3xl font-bold tracking-tight text-primary mb-6">Free</p>
+                        )}
+                        
                         <p className="text-lg text-muted-foreground leading-relaxed mb-8">{product.description}</p>
+                        
                         <div className="flex items-center gap-4">
-                            <Button size="lg" onClick={handleAddToCart}>
-                                <ShoppingCart className="mr-2" />
-                                Add to Cart
-                            </Button>
+                            {product.price > 0 ? (
+                                <Button size="lg" onClick={handleAddToCart}>
+                                    <ShoppingCart className="mr-2" />
+                                    Add to Cart
+                                </Button>
+                            ) : product.downloadUrl ? (
+                                <Button size="lg" asChild>
+                                    <a href={product.downloadUrl} target="_blank" rel="noopener noreferrer">
+                                        <Download className="mr-2" />
+                                        Download Now
+                                    </a>
+                                </Button>
+                            ) : null}
                         </div>
 
                          <div className="mt-12 p-6 rounded-2xl glass-card bg-secondary/30">
@@ -178,7 +195,11 @@ export default function ProductDetailsClient({ product, relatedProducts }: { pro
                                                 <Link href={`/shop/${relatedProduct.slug}`}>{relatedProduct.name}</Link>
                                             </h3>
                                         </div>
-                                        <span className="text-lg font-semibold text-primary ml-4">${(relatedProduct.price/100).toFixed(2)}</span>
+                                         {relatedProduct.price > 0 ? (
+                                            <span className="text-lg font-semibold text-primary ml-4">${(relatedProduct.price/100).toFixed(2)}</span>
+                                         ) : (
+                                            <span className="text-lg font-semibold text-primary ml-4">Free</span>
+                                         )}
                                     </header>
                                      <div className="mt-4">
                                          <Button variant="secondary" asChild className="w-full">
@@ -195,3 +216,5 @@ export default function ProductDetailsClient({ product, relatedProducts }: { pro
       </>
     );
 }
+
+    
