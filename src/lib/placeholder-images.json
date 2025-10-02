@@ -15,7 +15,7 @@
     {
       "id": "stats-bg",
       "description": "A modern, professional office workspace.",
-      "imageUrl": "https://images.unsplash.com/photo-1556761175-b413da4baf72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2V8ZW58MHx8fHwxNzU5MjU5ODg5fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageUrl": "/stats-bg.jpg",
       "imageHint": "modern office"
     },
     {
@@ -75,19 +75,19 @@
     {
       "id": "process1",
       "description": "Two muslim men in a business meeting.",
-      "imageUrl": "https://images.unsplash.com/photo-1606836591695-4d58a73eba1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMG1lZXRpbmd8ZW58MHx8fHwxNzU5MTI5MzU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/Two-muslim-men-in-a-business-meeting.jpg",
       "imageHint": "business meeting"
     },
     {
       "id": "process2",
       "description": "People collaborating on a design.",
-      "imageUrl": "https://images.unsplash.com/photo-1742440710453-d5db3a357362?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkZXNpZ24lMjBjb2xsYWJvcmF0aW9ufGVufDB8fHx8MTc1OTAzNzI4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/People-collaborating-on-a-design.jpg",
       "imageHint": "design collaboration"
     },
     {
       "id": "process3",
       "description": "A successful project launch.",
-      "imageUrl": "https://images.unsplash.com/photo-1676676701499-eeea46526f2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9qZWN0JTIwbGF1bmNofGVufDB8fHx8MTc1OTA2OTc4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/A-successful-project-launch.jpg",
       "imageHint": "project launch"
     },
     {
@@ -231,13 +231,13 @@
     {
       "id": "about-banner",
       "description": "An abstract, professional background image for a banner.",
-      "imageUrl": "https://images.unsplash.com/photo-1757081595131-214d0d95d1d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMHByb2Zlc3Npb25hbHxlbnwwfHx8fDE3NTkxNTUxMTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/about-hero.jpg",
       "imageHint": "abstract professional"
     },
     {
       "id": "fact-color",
       "description": "An abstract image with white tones.",
-      "imageUrl": "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3aGl0ZSUyMGFic3RyYWN0fGVufDB8fHx8MTc1OTE1NTExNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/An-abstract-image-with-white-tones.jpg",
       "imageHint": "white abstract"
     },
     {

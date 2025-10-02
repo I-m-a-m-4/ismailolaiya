@@ -34,7 +34,7 @@ const AboutPage = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow pt-16">
-        <section className="relative h-64 md:h-80 w-full flex items-center justify-center text-center text-white">
+        <section className="relative h-96 md:h-80 w-full flex items-center justify-center text-center text-white">
             {bannerImage && (
                 <Image
                     src={bannerImage.imageUrl}
