@@ -211,7 +211,7 @@ const PostEditor = ({ post, onSave }: PostEditorProps) => {
               <FormLabel>Content</FormLabel>
               <FormControl>
                  <Editor
-                    apiKey="uvdydl9v5mml0nblkv571vo8cjxdxmmcgvcj06bdt3jwwpn5"
+                    apiKey="no-api-key"
                     value={field.value}
                     onEditorChange={(content) => field.onChange(content)}
                     init={{
