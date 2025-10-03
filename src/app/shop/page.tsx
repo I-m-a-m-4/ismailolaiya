@@ -39,6 +39,8 @@ const ShopPage = async () => {
                 priority
             />
             <div id="heroGradient" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                            <div className="absolute inset-0 bg-[url(/images/grain.jpg)] opacity-[0.025] pointer-events-none"></div>
+
           </div>
           <div className="relative z-10 flex h-full max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center">
             <div className="max-w-xl text-white hero-content">
