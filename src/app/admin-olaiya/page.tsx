@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, getCountFromServer, doc, getDoc } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BookOpen, Mic, ShoppingBag, Star, Loader2, ListChecks, MousePointerClick, Calendar } from 'lucide-react';
+import { BookOpen, Mic, ShoppingBag, Star, Loader2, ListChecks, MousePointerClick, Calendar, Newspaper } from 'lucide-react';
 
 type AnalyticsData = {
     [key: string]: number;
@@ -19,6 +19,7 @@ const AdminDashboard = () => {
     testimonials: 0,
     waitlist: 0,
     events: 0,
+    newsletter: 0,
   });
   const [analytics, setAnalytics] = useState<AnalyticsData>({});
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ const AdminDashboard = () => {
         const testimonialCount = (await getCountFromServer(collection(db, 'testimonials'))).data().count;
         const waitlistCount = (await getCountFromServer(collection(db, 'waitlist'))).data().count;
         const eventCount = (await getCountFromServer(collection(db, 'events'))).data().count;
+        const newsletterCount = (await getCountFromServer(collection(db, 'newsletterSubscriptions'))).data().count;
         
         setStats({
           posts: postCount,
@@ -40,6 +42,7 @@ const AdminDashboard = () => {
           testimonials: testimonialCount,
           waitlist: waitlistCount,
           events: eventCount,
+          newsletter: newsletterCount,
         });
 
         // Fetch analytics data
@@ -65,6 +68,7 @@ const AdminDashboard = () => {
     { title: 'Testimonials', icon: Star, count: stats.testimonials, color: 'text-yellow-500' },
     { title: 'Events', icon: Calendar, count: stats.events, color: 'text-red-500' },
     { title: 'Waitlist', icon: ListChecks, count: stats.waitlist, color: 'text-green-500' },
+    { title: 'Newsletter', icon: Newspaper, count: stats.newsletter, color: 'text-blue-500' },
   ];
   
   const analyticsCards = [
@@ -77,7 +81,7 @@ const AdminDashboard = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-8">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-6 mb-8">
         {statCards.map((card) => (
           <Card key={card.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

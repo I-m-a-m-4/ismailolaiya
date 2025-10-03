@@ -1,11 +1,47 @@
+
 'use client';
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Facebook, Twitter, Instagram, Send, Youtube, Linkedin } from "lucide-react";
+import { Sparkles, Facebook, Twitter, Instagram, Send, Youtube, Linkedin, Loader2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useToast } from "@/hooks/use-toast";
+import { db } from "@/lib/firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+    const { toast } = useToast();
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+        setLoading(true);
+        try {
+            await addDoc(collection(db, "newsletterSubscriptions"), {
+                email: email,
+                createdAt: serverTimestamp(),
+                read: false,
+            });
+            toast({
+                title: "Subscribed!",
+                description: "Thank you for subscribing to the newsletter.",
+            });
+            setEmail('');
+        } catch (error) {
+            console.error("Error subscribing: ", error);
+            toast({
+                title: "Subscription Error",
+                description: "There was a problem. Please try again.",
+                variant: "destructive"
+            });
+        } finally {
+            setLoading(false);
+        }
+    }
+
   return (
     <footer className="relative bg-[#040000] border-border border-t pt-24 pb-12 overflow-hidden">
       <div className="relative container mx-auto px-6 z-10">
@@ -32,8 +68,7 @@ const Footer = () => {
               <nav className="flex flex-col gap-3" aria-label="Company">
                 <Link href="/about" className="footer-link text-red-100/70 hover:text-primary transition">About Me</Link>
                 <Link href="/#process" className="footer-link text-red-100/70 hover:text-primary transition">My Process</Link>
-                                <Link href="/keynote" className="footer-link text-red-100/70 hover:text-primary transition">Keynote</Link>
-
+                <Link href="/keynote" className="footer-link text-red-100/70 hover:text-primary transition">Keynote</Link>
                 <Link href="/#contact" className="footer-link text-red-100/70 hover:text-primary transition">Contact</Link>
               </nav>
             </div>
@@ -59,10 +94,17 @@ const Footer = () => {
             <div className="col-span-2 md:col-span-2">
               <h4 className="font-semibold text-white mb-4">Newsletter</h4>
               <p className="text-red-100/70 mb-4 text-sm">Get insights on growth, strategy, and more. No spam.</p>
-                <form className="flex gap-2">
-                    <input type="email" placeholder="Your email..." className="w-full rounded-md bg-white/5 border-border text-sm px-3 text-white placeholder:text-red-100/50"/>
-                    <Button variant="secondary" size="icon" className="shrink-0 bg-primary/20 hover:bg-primary/30 border-border border">
-                        <Sparkles className="text-primary"/>
+                <form onSubmit={handleSubscribe} className="flex gap-2">
+                    <input 
+                        type="email" 
+                        placeholder="Your email..." 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full rounded-md bg-white/5 border-border text-sm px-3 text-white placeholder:text-red-100/50"
+                        required
+                    />
+                    <Button type="submit" variant="secondary" size="icon" className="shrink-0 bg-primary/20 hover:bg-primary/30 border-border border" disabled={loading}>
+                        {loading ? <Loader2 className="animate-spin text-primary" /> : <Sparkles className="text-primary"/>}
                     </Button>
                 </form>
             </div>

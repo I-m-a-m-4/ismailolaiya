@@ -5,10 +5,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '@/lib/firebase';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks, Calendar, Clapperboard, Send } from 'lucide-react';
+import { LoaderCircle, LayoutDashboard, BookOpen, ShoppingBag, Mic, LogOut, Star, ListChecks, Calendar, Clapperboard, Send, Newspaper } from 'lucide-react';
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarContent, SidebarHeader, SidebarMenuBadge } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { collection, getCountFromServer, query, where } from 'firebase/firestore';
 
@@ -22,7 +21,7 @@ export default function AdminLayout({
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
   const pathname = usePathname();
-  const [unreadCounts, setUnreadCounts] = useState({ submissions: 0, waitlist: 0 });
+  const [unreadCounts, setUnreadCounts] = useState({ submissions: 0, waitlist: 0, newsletter: 0 });
 
   useEffect(() => {
     if (!loading && user) {
@@ -35,8 +34,12 @@ export default function AdminLayout({
                 const waitlistQuery = query(collection(db, 'waitlist'), where('read', '==', false));
                 const waitlistSnapshot = await getCountFromServer(waitlistQuery);
                 const waitlistCount = waitlistSnapshot.data().count;
+                
+                const newsletterQuery = query(collection(db, 'newsletterSubscriptions'), where('read', '==', false));
+                const newsletterSnapshot = await getCountFromServer(newsletterQuery);
+                const newsletterCount = newsletterSnapshot.data().count;
 
-                setUnreadCounts({ submissions: submissionsCount, waitlist: waitlistCount });
+                setUnreadCounts({ submissions: submissionsCount, waitlist: waitlistCount, newsletter: newsletterCount });
             } catch (error) {
                 console.error("Error fetching unread counts:", error);
             }
@@ -145,6 +148,14 @@ export default function AdminLayout({
                         <div className='flex items-center justify-between w-full'>
                             <Link href="/admin-olaiya/waitlist" className='flex items-center gap-2'><ListChecks />Waitlist</Link>
                             {unreadCounts.waitlist > 0 && <SidebarMenuBadge>{unreadCounts.waitlist}</SidebarMenuBadge>}
+                        </div>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                   <SidebarMenuItem>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/newsletter')}>
+                        <div className='flex items-center justify-between w-full'>
+                            <Link href="/admin-olaiya/newsletter" className='flex items-center gap-2'><Newspaper />Newsletter</Link>
+                            {unreadCounts.newsletter > 0 && <SidebarMenuBadge>{unreadCounts.newsletter}</SidebarMenuBadge>}
                         </div>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
