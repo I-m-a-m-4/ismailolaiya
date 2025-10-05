@@ -1,15 +1,13 @@
 
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Image from 'next/image';
-import placeholderData from '@/lib/placeholder-images.json';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, Sparkles } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-
-const bannerImage = placeholderData.placeholderImages.find(p => p.id === 'interviews-banner');
+import { Sparkles, ArrowDown, Mic } from 'lucide-react';
+import AuraBackground from '@/components/AuraBackground';
+import PodcastPlayer from '@/components/PodcastPlayer';
+import MotionWrap from '@/components/MotionWrap';
 
 async function getKeynoteContent() {
     try {
@@ -37,82 +35,67 @@ const KeynotePage = async () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <section id="hero" className="relative sm:py-32 pt-20 pb-20">
-             {bannerImage && (
-                <Image
-                    src={bannerImage.imageUrl}
-                    alt="Keynote Sessions Banner"
-                    fill
-                    className="absolute inset-0 object-cover w-full h-full -z-10"
-                    data-ai-hint={bannerImage.imageHint}
-                />
-            )}
-            <div className="absolute inset-0 bg-black/70 -z-10"></div>
-            <div className="mx-auto max-w-6xl px-6 lg:px-8">
-                <div className="grid grid-cols-1 items-center">
-                <div className="space-y-8 text-center">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm text-gray-300 animate-fade-in-up">
-                        <Sparkles className="h-4 w-4 text-primary" />
-                        Live & Interactive Sessions
-                    </div>
-                    
-                    <div className="space-y-6">
-                        <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white leading-none animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                            {content.title}
-                        </h1>
-                        
-                        <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                            {content.subtitle}
-                        </p>
-                    </div>
-
-                    <div className="animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-                        <Button asChild size="lg">
-                            <a href="#keynote-content">Learn More</a>
-                        </Button>
-                    </div>
+        <section id="hero" className="relative min-h-screen w-full flex items-center justify-center text-center overflow-hidden">
+            <AuraBackground />
+            <div className="relative z-10 p-6 max-w-4xl mx-auto anim d-1">
+                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-4 py-2 text-sm text-gray-300 mb-6 backdrop-blur-sm">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    Live & Interactive Sessions
                 </div>
+                <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-white anim d-2">
+                    {content.title}
+                </h1>
+                <p className="mt-6 text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto anim d-3">
+                    {content.subtitle}
+                </p>
+                <div className="mt-10 anim d-4">
+                    <Button asChild size="lg" variant="secondary" className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm">
+                        <a href="#sessions-content">
+                            <ArrowDown className="mr-2 h-4 w-4" />
+                            Explore Sessions
+                        </a>
+                    </Button>
                 </div>
             </div>
         </section>
 
-        <section id="keynote-content" className="py-20 bg-background/95">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-12">
-                    <div className="md:col-span-2">
-                        <h2 className="text-2xl font-semibold mb-4 animate-fade-in-up" style={{animationDelay: '0.8s'}}>About The Session</h2>
-                        <div className="prose prose-lg dark:prose-invert animate-fade-in-up" style={{animationDelay: '1s'}} dangerouslySetInnerHTML={{ __html: content.description.replace(/\n/g, '<br />') }}>
-                        </div>
-                    </div>
-                    <aside className="md:col-span-1 animate-fade-in-up" style={{animationDelay: '1.2s'}}>
-                        <div className="sticky top-24 glass-card p-6">
-                            <h3 className="text-xl font-semibold mb-4">Session Details</h3>
-                            <ul className="space-y-4 text-muted-foreground">
-                                <li className="flex items-center gap-3">
-                                    <Calendar className="w-5 h-5 text-primary" />
-                                    <div>
-                                        <p className="font-semibold text-foreground">Date</p>
-                                        <p>To be announced</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <Clock className="w-5 h-5 text-primary" />
-                                    <div>
-                                        <p className="font-semibold text-foreground">Pricing</p>
-                                        <p className="text-primary font-bold">{content.priceInfo}</p>
-                                    </div>
-                                </li>
-                            </ul>
-                             <div className="mt-6">
-                                <p className="text-sm text-muted-foreground mb-4">Sessions will become a paid offering starting next year. Take advantage of this free opportunity!</p>
-                                <Button asChild className="w-full">
-                                    <a href="#contact">Book Your Spot</a>
-                                </Button>
+        <section id="sessions-content" className="py-20 bg-background">
+            <MotionWrap>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                        {/* Column 1: About Section */}
+                        <div className="lg:sticky lg:top-24">
+                            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-2 text-sm font-medium mb-6 anim d-1">
+                                <Mic className="w-4 h-4" />
+                                <span>About The Sessions</span>
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-4 anim d-2">
+                                {content.subtitle}
+                            </h2>
+                            <div className="prose prose-lg dark:prose-invert text-muted-foreground anim d-3">
+                               <p>{content.description}</p>
+                            </div>
+                            <div className="mt-8 p-6 rounded-2xl border border-primary/20 bg-primary/5 anim d-4">
+                              <p className="text-lg font-semibold text-primary">{content.priceInfo}</p>
+                              <p className="text-sm text-muted-foreground mt-1">Take advantage of this free opportunity before it becomes a paid offering!</p>
                             </div>
                         </div>
-                    </aside>
+
+                        {/* Column 2: Player Section */}
+                        <div>
+                             <header className="mb-8 anim d-2">
+                                <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                                    Listen to Past Sessions
+                                </h2>
+                                <p className="mt-2 text-muted-foreground">
+                                    Catch up on previous keynotes and gain valuable insights at your own pace.
+                                </p>
+                            </header>
+                            <PodcastPlayer />
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </MotionWrap>
         </section>
       </main>
       <Footer />
@@ -121,4 +104,3 @@ const KeynotePage = async () => {
 };
 
 export default KeynotePage;
-

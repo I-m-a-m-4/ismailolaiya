@@ -21,7 +21,7 @@
     {
       "id": "peritus",
       "description": "The logo for Peritus Engineering.",
-      "imageUrl": "https://images.unsplash.com/photo-1579623828015-bd63cc261a09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxQZXJpdHVzJTIwRW5naW5lZXJpbmclMjBsb2dvfGVufDB8fHx8MTc1OTEzNzE3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/Peritus-Engineering-logo.svg",
       "imageHint": "Peritus Engineering logo"
     },
     {
@@ -141,13 +141,13 @@
     {
       "id": "diary-reviews",
       "description": "A close-up of a person writing a positive review on a laptop.",
-      "imageUrl": "/A-banner-representing-customer-reviews.jpg",
+      "imageUrl": "/happy-clients.jpg",
       "imageHint": "writing review"
     },
     {
       "id": "diary-news",
       "description": "A stack of newspapers with a modern, clean aesthetic.",
-      "imageUrl": "/A-stack-of-newspapers-with-a-modern.jpg",
+      "imageUrl": "/q&a.webp",
       "imageHint": "newspapers stacked"
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "diary-interviews",
       "description": "Two people engaged in a thoughtful conversation in a cafe.",
-      "imageUrl": "/becoming-something-big-muslim-arab.jpg",
+      "imageUrl": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg",
       "imageHint": "people talking"
     },
     {
@@ -231,7 +231,7 @@
     {
       "id": "about-banner",
       "description": "An abstract, professional background image for a banner.",
-      "imageUrl": "/about-hero.jpg",
+      "imageUrl": "/about-heroo.jpg",
       "imageHint": "abstract professional"
     },
     {
@@ -255,7 +255,7 @@
     {
       "id": "fact-brain",
       "description": "An abstract representation of a brain's neural network.",
-      "imageUrl": "/An-abstract-representation-of-a-brain-neural-network.jpg",
+      "imageUrl": "/brain.webp",
       "imageHint": "neural network"
     },
     {
@@ -304,7 +304,7 @@
     {
       "id": "reviews-banner",
       "description": "A banner representing customer reviews, perhaps with star ratings or quote icons.",
-      "imageUrl": "/A-banner-representing-customer-reviews.jpg",
+      "imageUrl": "/happy-clients.jpg",
       "imageHint": "customer reviews"
     }
   ]

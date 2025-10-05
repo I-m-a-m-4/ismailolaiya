@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import placeholderData from '@/lib/placeholder-images.json';
 import { Sparkles } from 'lucide-react';
-import { Dialog, DialogTrigger } from './ui/dialog';
-import BookingForm from './BookingForm';
 import MotionWrap from './MotionWrap';
 import { trackClick } from '@/lib/analytics';
 
@@ -112,15 +110,12 @@ const Hero = () => {
                         </div>
 
                         <div ref={heroButtonRef} className="opacity-0 transform translate-y-24 translate-x-[-50px] blur-md transition-all duration-1400 ease-out" style={{transitionDelay: '1600ms'}}>
-                            <Dialog>
-                                <DialogTrigger asChild>
-                                    <Button onClick={() => trackClick('hero_book_session')}>
-                                        <Sparkles className="w-5 h-5 mr-2"/>
-                                        Book a Session
-                                    </Button>
-                                </DialogTrigger>
-                                <BookingForm />
-                            </Dialog>
+                            <Button asChild onClick={() => trackClick('hero_book_session')}>
+                                <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">
+                                    <Sparkles className="w-5 h-5 mr-2"/>
+                                    Book a Session
+                                </a>
+                            </Button>
                         </div>
                     </div>
                 </div>

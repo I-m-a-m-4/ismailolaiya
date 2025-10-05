@@ -27,10 +27,6 @@ export default function AdminLayout({
     if (!loading && user) {
         const fetchUnreadCounts = async () => {
             try {
-                const submissionsQuery = query(collection(db, 'contactSubmissions'), where('read', '==', false));
-                const submissionsSnapshot = await getCountFromServer(submissionsQuery);
-                const submissionsCount = submissionsSnapshot.data().count;
-
                 const waitlistQuery = query(collection(db, 'waitlist'), where('read', '==', false));
                 const waitlistSnapshot = await getCountFromServer(waitlistQuery);
                 const waitlistCount = waitlistSnapshot.data().count;
@@ -39,7 +35,7 @@ export default function AdminLayout({
                 const newsletterSnapshot = await getCountFromServer(newsletterQuery);
                 const newsletterCount = newsletterSnapshot.data().count;
 
-                setUnreadCounts({ submissions: submissionsCount, waitlist: waitlistCount, newsletter: newsletterCount });
+                setUnreadCounts({ submissions: 0, waitlist: waitlistCount, newsletter: newsletterCount });
             } catch (error) {
                 console.error("Error fetching unread counts:", error);
             }
@@ -92,8 +88,8 @@ export default function AdminLayout({
           <Sidebar>
             <SidebarHeader>
               <Link href="/" className="flex items-center gap-2 font-semibold px-4">
-                  <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground grid place-items-center">
-                    <span className="font-bold text-lg">S</span>
+                  <div className="w-8 h-8 rounded-lg grid place-items-center">
+                    <Image src="https://res.cloudinary.com/dd1czj85j/image/upload/v1759697922/icon_eqqhd2.jpg" alt="Scale with Olaiya Logo" width={32} height={32} className="rounded-lg" />
                   </div>
                   <span className="font-semibold text-lg">Admin Panel</span>
                 </Link>
@@ -117,7 +113,7 @@ export default function AdminLayout({
                   </SidebarMenuItem>
                    <SidebarMenuItem>
                     <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/podcasts')}>
-                      <Link href="/admin-olaiya/podcasts"><Mic />Podcasts</Link>
+                      <Link href="/admin-olaiya/podcasts"><Mic />Keynote Sessions</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                    <SidebarMenuItem>
@@ -131,16 +127,8 @@ export default function AdminLayout({
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/keynote')}>
-                      <Link href="/admin-olaiya/keynote"><Clapperboard />Keynote Page</Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/submissions')}>
-                        <div className='flex items-center justify-between w-full'>
-                            <Link href="/admin-olaiya/submissions" className='flex items-center gap-2'><Send />Submissions</Link>
-                            {unreadCounts.submissions > 0 && <SidebarMenuBadge>{unreadCounts.submissions}</SidebarMenuBadge>}
-                        </div>
+                    <SidebarMenuButton asChild isActive={pathname.startsWith('/admin-olaiya/keynote-settings')}>
+                      <Link href="/admin-olaiya/keynote-settings"><Clapperboard />Keynote Page</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
@@ -172,7 +160,7 @@ export default function AdminLayout({
                 <SidebarTrigger className="md:hidden" />
                 
                 <div className="flex-1">
-                    <h1 className="text-lg font-semibold capitalize">{pathname.split('/').pop()?.replace('-', ' ') || 'Dashboard'}</h1>
+                    <h1 className="text-lg font-semibold capitalize">{pathname.replace('/admin-olaiya/podcasts', '/admin-olaiya/keynote-sessions').split('/').pop()?.replace('-', ' ') || 'Dashboard'}</h1>
                 </div>
 
                 {user.photoURL ? (

@@ -1,3 +1,4 @@
+
 import { User } from 'lucide-react';
 import Image from 'next/image';
 import placeholderData from '@/lib/placeholder-images.json';
@@ -5,6 +6,8 @@ import FunFacts from '@/components/FunFacts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'About Ismail Adekunle-Olaiya | Pro-Islamic Business Strategist',
@@ -34,21 +37,38 @@ const AboutPage = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow pt-16">
-        <section className="relative h-96 md:h-80 w-full flex items-center justify-center text-center text-white">
-            {bannerImage && (
-                <Image
-                    src={bannerImage.imageUrl}
-                    alt="About Us Banner"
-                    fill
-                    className="object-cover"
+        <section className="relative h-[80vh] overflow-hidden bg-neutral-900">
+          {bannerImage && (
+            <div className="fixed top-0 left-0 h-screen w-screen -z-10">
+                <Image 
+                    src={bannerImage.imageUrl} 
+                    alt={bannerImage.description}
+                    className="h-full w-full object-cover object-center" 
+                    fill 
+                    priority
                     data-ai-hint={bannerImage.imageHint}
                 />
-            )}
-            <div className="absolute inset-0 bg-black/50" />
-            <div className="relative z-10 p-4 anim d-1">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">About Me</h1>
-                <p className="mt-2 text-lg md:text-xl text-white/90">Strategist. Mentor. Builder.</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-[url(/images/grain.png)] opacity-[0.05] pointer-events-none"></div>
             </div>
+          )}
+          <div className="relative z-10 flex h-full max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center">
+            <div className="max-w-xl text-white">
+              <p className="text-sm/6 uppercase tracking-widest opacity-80 anim d-1">Strategist. Mentor. Builder.</p>
+              <h1 className="mt-3 text-5xl md:text-6xl tracking-tight font-semibold anim d-2">About Me</h1>
+              <p className="text-base/7 md:text-lg/8 opacity-90 mt-4 anim d-3">
+                Learn about my journey, expertise, and mission to empower the Ummah through strategic, Deen-aligned growth.
+              </p>
+              <div className="mt-8 flex items-center gap-3 anim d-4">
+                  <Button size="lg" asChild>
+                      <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book a Session</a>
+                  </Button>
+                  <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-black">
+                      <Link href="#about-full">Learn More</Link>
+                  </Button>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="about-full" className="relative bg-background/50 border-t border-b border-white/10 pt-24 pb-24">
@@ -113,7 +133,7 @@ const AboutPage = () => {
                         Beyond strategy, he co-founded The Agrivantage Afrika, an initiative reorienting Africans on the power of agriculture in reclaiming economic independence. He also leads an advisory body for Muslim undergraduates, empowering them to monetize their expertise before graduation. This mentorship is a core part of his identity as a business strategist for the next generation.
                     </p>
                     <p>
-                      Grounded in the belief that Muslims were designed to lead—with the right mindset, strategies, and systems modeled from the Prophet ﷺ—Ismail’s vision is clear: to raise Muslims who reshape the world. Ready to grow? <a href="/#contact" className="text-primary hover:underline">Contact your business strategist today</a>.
+                      Grounded in the belief that Muslims were designed to lead—with the right mindset, strategies, and systems modeled from the Prophet ﷺ—Ismail’s vision is clear: to raise Muslims who reshape the world. Ready to grow? <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Contact your business strategist today</a>.
                     </p>
                   </div>
                 </div>

@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -331,9 +333,6 @@ animation: fadeInUp 0.8s ease-out forwards;
     --input: 240 4% 18%;
     --ring: 0 100% 60%;
     --radius: 0.75rem;
-
-    --font-sans: 'Montserrat', sans-serif;
-    --font-grotesk: 'Plus Jakarta Sans', sans-serif;
   }
 
   .light {
@@ -437,4 +436,6 @@ animation: fadeInUp 0.8s ease-out forwards;
     
 
     
+
+
 

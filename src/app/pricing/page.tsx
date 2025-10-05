@@ -14,6 +14,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { GoogleIcon } from '@/components/ui/icons';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const packages = [
     {
@@ -184,9 +185,9 @@ const PricingPage = () => {
         <section id="pricing" className="py-20 bg-secondary/30">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                  <div className="flex justify-center items-center gap-4 mb-12">
-                    <Label htmlFor="pricing-toggle" className={cn("font-medium", !isMonthly ? "text-primary" : "text-muted-foreground")}>One-Time Session</Label>
+                    <Label htmlFor="pricing-toggle" className={cn("font-medium transition-colors", !isMonthly ? "text-primary" : "text-muted-foreground")}>One-Time Session</Label>
                     <Switch id="pricing-toggle" checked={isMonthly} onCheckedChange={setIsMonthly} />
-                    <Label htmlFor="pricing-toggle" className={cn("font-medium", isMonthly ? "text-primary" : "text-muted-foreground")}>Monthly Retainer</Label>
+                    <Label htmlFor="pricing-toggle" className={cn("font-medium transition-colors", isMonthly ? "text-primary" : "text-muted-foreground")}>Monthly Retainer</Label>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-start">
                     {packages.map((pkg, index) => (
@@ -204,21 +205,32 @@ const PricingPage = () => {
                             <div className="flex-grow flex flex-col">
                                 <h3 className="text-xl font-semibold tracking-tight">{pkg.title}</h3>
                                 <p className="text-sm text-muted-foreground mt-2 min-h-[60px] flex-grow">{pkg.bestFor}</p>
-                                <div className="my-6">
-                                    {isMonthly ? (
-                                        <>
-                                            <span className="text-4xl font-bold tracking-tight">${pkg.retainerPrice}</span>
-                                            <span className="text-muted-foreground">/mo</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="text-4xl font-bold tracking-tight">${pkg.price}</span>
-                                            <span className="text-muted-foreground">/one-time</span>
-                                        </>
-                                    )}
+                                <div className="my-6 relative h-10">
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={isMonthly ? 'monthly' : 'onetime'}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="absolute inset-0"
+                                        >
+                                            {isMonthly ? (
+                                                <>
+                                                    <span className="text-4xl font-bold tracking-tight">${pkg.retainerPrice}</span>
+                                                    <span className="text-muted-foreground">/mo</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <span className="text-4xl font-bold tracking-tight">${pkg.price}</span>
+                                                    <span className="text-muted-foreground">/one-time</span>
+                                                </>
+                                            )}
+                                        </motion.div>
+                                    </AnimatePresence>
                                 </div>
-                                <Button asChild className="w-full" variant={pkg.featured ? 'default' : 'secondary'}>
-                                    <Link href="/#contact">Book Session</Link>
+                                <Button asChild className="w-full" variant={pkg.featured ? 'default' : 'outline'}>
+                                    <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a>
                                 </Button>
                                 <ul className="mt-6 space-y-3 text-sm flex-grow">
                                     {pkg.features.map((feature, fIndex) => (
@@ -229,29 +241,40 @@ const PricingPage = () => {
                                     ))}
                                 </ul>
                             </div>
-                             <div className="mt-6 pt-6 border-t border-dashed border-border">
-                                {isMonthly ? (
-                                    <>
-                                        <h4 className="font-semibold text-sm">Special Offer!</h4>
-                                        <div className="mt-2">
-                                            <span className="text-2xl font-bold tracking-tight text-primary">${pkg.specialRetainerPrice}</span>
-                                            <p className="text-xs text-muted-foreground">for your first month after a one-time session.</p>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <>
-                                        <h4 className="font-semibold text-sm">Optional Retainer</h4>
-                                        <p className="text-xs text-muted-foreground">For ongoing support:</p>
-                                        <div className="mt-2">
-                                            <span className="text-2xl font-bold tracking-tight">${pkg.retainerPrice}<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
-                                        </div>
-                                        <div className="mt-1 h-8">
-                                            <p className="text-xs text-primary font-semibold p-1 bg-primary/10 rounded-md">
-                                                First month only ${pkg.specialRetainerPrice}!
-                                            </p>
-                                        </div>
-                                    </>
-                                )}
+                             <div className="mt-6 pt-6 border-t border-dashed border-border h-32 relative">
+                                <AnimatePresence mode="wait">
+                                     <motion.div
+                                        key={isMonthly ? 'monthly-offer' : 'onetime-offer'}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="absolute inset-0"
+                                    >
+                                        {isMonthly ? (
+                                            <>
+                                                <h4 className="font-semibold text-sm">Special Offer!</h4>
+                                                <div className="mt-2">
+                                                    <span className="text-2xl font-bold tracking-tight text-primary">${pkg.specialRetainerPrice}</span>
+                                                    <p className="text-xs text-muted-foreground">for your first month after a one-time session.</p>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <h4 className="font-semibold text-sm">Optional Retainer</h4>
+                                                <p className="text-xs text-muted-foreground">For ongoing support:</p>
+                                                <div className="mt-2">
+                                                    <span className="text-2xl font-bold tracking-tight">${pkg.retainerPrice}<span className="text-sm font-normal text-muted-foreground">/mo</span></span>
+                                                </div>
+                                                <div className="mt-1 h-8">
+                                                    <p className="text-xs text-primary font-semibold p-1 bg-primary/10 rounded-md">
+                                                        First month only ${pkg.specialRetainerPrice}!
+                                                    </p>
+                                                </div>
+                                            </>
+                                        )}
+                                     </motion.div>
+                                </AnimatePresence>
                             </div>
                         </div>
                     ))}
@@ -309,10 +332,10 @@ const PricingPage = () => {
                         <tfoot>
                             <tr className="border-t-2">
                                 <td className="p-4 sticky left-0 bg-background/90 z-10"></td>
-                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
-                                <td className="p-6 text-center bg-primary/5"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
-                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
-                                <td className="p-6 text-center"><Button asChild className="w-full"><Link href="/#contact">Book Session</Link></Button></td>
+                                <td className="p-6 text-center"><Button asChild className="w-full" variant="outline"><a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a></Button></td>
+                                <td className="p-6 text-center bg-primary/5"><Button asChild className="w-full"><a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a></Button></td>
+                                <td className="p-6 text-center"><Button asChild className="w-full" variant="outline"><a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a></Button></td>
+                                <td className="p-6 text-center"><Button asChild className="w-full" variant="outline"><a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a></Button></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -344,7 +367,7 @@ const PricingPage = () => {
                     </div>
                 </div>
 
-                <a href="https://share.google/XMj7wBKismLoj3Wzq" target="_blank" rel="noopener noreferrer" className="mt-16 max-w-2xl mx-auto block group">
+                <a href="https://g.page/r/CfmNlDiguvFYEBM/review" target="_blank" rel="noopener noreferrer" className="mt-16 max-w-2xl mx-auto block group">
                     <div className="glass-card p-6 md:p-8 rounded-2xl group-hover:bg-accent/50 transition-colors">
                         <div className="flex items-start gap-4">
                             <Avatar>

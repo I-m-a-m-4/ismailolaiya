@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -106,7 +107,7 @@ const Header = () => {
             ))}
              <li className="w-full pt-4">
                   <Button asChild className="w-full">
-                      <Link href="/#contact" onClick={() => handleLinkClick('/#contact')}>BOOK OLAIYA</Link>
+                      <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">BOOK OLAIYA</a>
                   </Button>
               </li>
           </ul>
@@ -130,8 +131,8 @@ const Header = () => {
       )}>
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-             <div className="w-9 h-9 bg-foreground text-background grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200 rounded-lg">
-              <span className="text-sm font-bold tracking-tighter">S</span>
+             <div className="w-9 h-9 grid place-items-center shadow-sm group-hover:scale-105 transition-transform duration-200 rounded-lg">
+              <Image src="https://res.cloudinary.com/dd1czj85j/image/upload/v1759697922/icon_eqqhd2.jpg" alt="Scale with Olaiya Logo" width={36} height={36} className="rounded-lg" />
             </div>
             <span className="text-lg font-medium tracking-tight">Scale with Olaiya</span>
           </Link>
@@ -202,7 +203,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <CartButton />
             <Button asChild className="hidden md:inline-flex">
-                <Link href="/#contact">BOOK OLAIYA</Link>
+                <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">BOOK OLAIYA</a>
             </Button>
             <ThemeToggle />
              <button id="menuBtn" className="p-2 rounded-md hover:bg-muted md:hidden transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)}>

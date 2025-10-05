@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   const statCards = [
     { title: 'Blog Posts', icon: BookOpen, count: stats.posts, color: 'text-sky-500' },
     { title: 'Products', icon: ShoppingBag, count: stats.products, color: 'text-orange-500' },
-    { title: 'Podcasts', icon: Mic, count: stats.podcasts, color: 'text-purple-500' },
+    { title: 'Keynote Sessions', icon: Mic, count: stats.podcasts, color: 'text-purple-500' },
     { title: 'Testimonials', icon: Star, count: stats.testimonials, color: 'text-yellow-500' },
     { title: 'Events', icon: Calendar, count: stats.events, color: 'text-red-500' },
     { title: 'Waitlist', icon: ListChecks, count: stats.waitlist, color: 'text-green-500' },

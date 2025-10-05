@@ -48,18 +48,18 @@ const AdminPodcastsPage = () => {
   const handleDelete = async (slug: string) => {
      try {
       await deleteDoc(doc(db, 'podcasts', slug));
-      toast({ title: 'Success', description: 'Podcast deleted successfully.' });
+      toast({ title: 'Success', description: 'Keynote session deleted successfully.' });
       fetchPodcasts();
     } catch (error) {
-      toast({ title: 'Error', description: 'Failed to delete podcast.', variant: 'destructive' });
+      toast({ title: 'Error', description: 'Failed to delete keynote session.', variant: 'destructive' });
     }
   };
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">Manage Podcasts</h1>
-        <Button onClick={handleAddNew}><Plus className="mr-2 h-4 w-4" /> Add New Podcast</Button>
+        <h1 className="text-3xl font-bold">Manage Keynote Sessions</h1>
+        <Button onClick={handleAddNew}><Plus className="mr-2 h-4 w-4" /> Add New Session</Button>
       </div>
 
        {loading ? (
@@ -69,10 +69,10 @@ const AdminPodcastsPage = () => {
       ) : podcasts.length === 0 ? (
         <div className="text-center py-20 bg-muted/50 rounded-lg border-2 border-dashed">
             <Mic className="mx-auto h-16 w-16 text-muted-foreground" />
-            <h2 className="mt-6 text-xl font-semibold">No Podcasts Found</h2>
-            <p className="mt-2 text-muted-foreground">Get started by adding your first podcast episode.</p>
+            <h2 className="mt-6 text-xl font-semibold">No Keynote Sessions Found</h2>
+            <p className="mt-2 text-muted-foreground">Get started by adding your first keynote audio session.</p>
             <Button onClick={handleAddNew} className="mt-6">
-                <Plus className="mr-2 h-4 w-4" /> Add Podcast
+                <Plus className="mr-2 h-4 w-4" /> Add Session
             </Button>
         </div>
       ) : (
@@ -96,7 +96,7 @@ const AdminPodcastsPage = () => {
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                      <AlertDialogDescription>This will permanently delete the podcast.</AlertDialogDescription>
+                      <AlertDialogDescription>This will permanently delete the keynote session.</AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -114,8 +114,8 @@ const AdminPodcastsPage = () => {
       <Dialog open={isEditorOpen} onOpenChange={setIsEditorOpen}>
         <DialogContent className="sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle>{editingPodcast ? 'Edit Podcast' : 'Add New Podcast'}</DialogTitle>
-            <DialogDescription>{editingPodcast ? 'Update podcast details.' : 'Add a new podcast.'}</DialogDescription>
+            <DialogTitle>{editingPodcast ? 'Edit Keynote Session' : 'Add New Keynote Session'}</DialogTitle>
+            <DialogDescription>{editingPodcast ? 'Update keynote session details.' : 'Add a new keynote session.'}</DialogDescription>
           </DialogHeader>
           <PodcastEditor podcast={editingPodcast} onSave={() => { setIsEditorOpen(false); fetchPodcasts(); }} />
         </DialogContent>

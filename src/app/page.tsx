@@ -1,28 +1,19 @@
 
 import React from 'react';
-import dynamic from 'next/dynamic';
-import { LoaderCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
-
-const DynamicLoading = () => (
-  <div className="flex justify-center items-center py-20">
-    <LoaderCircle className="w-8 h-8 animate-spin" />
-  </div>
-);
-
-const Vision = dynamic(() => import('@/components/Vision'), { loading: () => <DynamicLoading /> });
-const About = dynamic(() => import('@/components/About'), { loading: () => <DynamicLoading /> });
-const Stats = dynamic(() => import('@/components/Stats'), { loading: () => <DynamicLoading /> });
-const Process = dynamic(() => import('@/components/Process'), { loading: () => <DynamicLoading /> });
-const Reviews = dynamic(() => import('@/components/Reviews'), { loading: () => <DynamicLoading /> });
-const Mentorship = dynamic(() => import('@/components/Mentorship'), { loading: () => <DynamicLoading /> });
-const Events = dynamic(() => import('@/components/Events'), { loading: () => <DynamicLoading /> });
-const Resources = dynamic(() => import('@/components/Resources'), { loading: () => <DynamicLoading /> });
-const Blog = dynamic(() => import('@/components/Blog'), { loading: () => <DynamicLoading /> });
-const Faq = dynamic(() => import('@/components/Faq'), { loading: () => <DynamicLoading /> });
-const Contact = dynamic(() => import('@/components/Contact'), { loading: () => <DynamicLoading /> });
+import Vision from '@/components/Vision';
+import About from '@/components/About';
+import Stats from '@/components/Stats';
+import Process from '@/components/Process';
+import Reviews from '@/components/Reviews';
+import Mentorship from '@/components/Mentorship';
+import Events from '@/components/Events';
+import Resources from '@/components/Resources';
+import Blog from '@/components/Blog';
+import Faq from '@/components/Faq';
+import Contact from '@/components/Contact';
 
 export default function Home() {
   return (

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -53,7 +54,7 @@ const PodcastEditor = ({ podcast, onSave }: PodcastEditorProps) => {
     defaultValues: podcast || {
       title: '',
       artist: 'Ismail Adekunle-Olaiya',
-      album: 'Scale with Olaiya',
+      album: 'Keynote Sessions',
       year: new Date().getFullYear().toString(),
       duration: '00:00',
       imageUrl: '',
@@ -105,7 +106,6 @@ const PodcastEditor = ({ podcast, onSave }: PodcastEditorProps) => {
       const podcastData = {
           ...data,
           slug,
-          imageId: '', // clear old field
           id: podcast?.id || Date.now(),
           plays: podcast?.plays || "0",
           rating: podcast?.rating || "0.0★",
@@ -119,14 +119,14 @@ const PodcastEditor = ({ podcast, onSave }: PodcastEditorProps) => {
 
       toast({
         title: 'Success',
-        description: `Podcast "${data.title}" has been ${podcast ? 'updated' : 'created'}.`,
+        description: `Keynote session "${data.title}" has been ${podcast ? 'updated' : 'created'}.`,
       });
       onSave();
     } catch (error) {
-      console.error("Failed to save podcast:", error);
+      console.error("Failed to save keynote session:", error);
       toast({
         title: 'Error',
-        description: 'Failed to save podcast.',
+        description: 'Failed to save keynote session.',
         variant: 'destructive',
       });
     }
@@ -135,11 +135,11 @@ const PodcastEditor = ({ podcast, onSave }: PodcastEditorProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-h-[70vh] overflow-y-auto p-1">
-        <FormField control={form.control} name="title" render={({ field }) => (<FormItem><FormLabel>Title</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
+        <FormField control={form.control} name="title" render={({ field }) => (<FormItem><FormLabel>Keynote Title</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
         <FormField control={form.control} name="slug" render={({ field }) => (<FormItem><FormLabel>Slug (optional)</FormLabel><FormControl><Input {...field} placeholder="auto-generated-from-title" /></FormControl><FormMessage /></FormItem>)} />
         <div className="grid grid-cols-2 gap-4">
-            <FormField control={form.control} name="artist" render={({ field }) => (<FormItem><FormLabel>Artist</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
-            <FormField control={form.control} name="album" render={({ field }) => (<FormItem><FormLabel>Album</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
+            <FormField control={form.control} name="artist" render={({ field }) => (<FormItem><FormLabel>Speaker</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
+            <FormField control={form.control} name="album" render={({ field }) => (<FormItem><FormLabel>Album/Series</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
         </div>
         <div className="grid grid-cols-2 gap-4">
             <FormField control={form.control} name="year" render={({ field }) => (<FormItem><FormLabel>Year</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
@@ -147,7 +147,7 @@ const PodcastEditor = ({ podcast, onSave }: PodcastEditorProps) => {
         </div>
         
         <div className="space-y-2">
-            <FormLabel>Podcast Image</FormLabel>
+            <FormLabel>Session Cover Image</FormLabel>
             <div className="aspect-square border-2 border-dashed rounded-lg flex items-center justify-center relative bg-muted/50 w-full">
               {imagePreview ? (
                 <img src={imagePreview} alt="Preview" className="object-contain w-full h-full" />
@@ -170,7 +170,7 @@ const PodcastEditor = ({ podcast, onSave }: PodcastEditorProps) => {
         <FormField control={form.control} name="audioSrc" render={({ field }) => (<FormItem><FormLabel>Audio URL</FormLabel><FormControl><Input {...field} placeholder="https://example.com/audio.mp3" /></FormControl><FormMessage /></FormItem>)} />
         <FormField control={form.control} name="releaseDate" render={({ field }) => (<FormItem><FormLabel>Release Date</FormLabel><FormControl><Input type="date" {...field} /></FormControl><FormMessage /></FormItem>)} />
 
-        <Button type="submit">{podcast ? 'Update' : 'Create'} Podcast</Button>
+        <Button type="submit">{podcast ? 'Update' : 'Create'} Session</Button>
       </form>
     </Form>
   );

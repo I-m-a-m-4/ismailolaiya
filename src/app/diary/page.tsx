@@ -1,7 +1,7 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ import Link from 'next/link';
 import placeholderData from '@/lib/placeholder-images.json';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+
 
 const featureSlides = [
     {
@@ -51,6 +52,7 @@ const diarySections = [
   { href: '/diary/gallery', label: 'Gallery', description: 'A visual journey of our work.', imageId: 'diary-gallery', icon: ImageIcon },
 ];
 
+
 const DiaryPage = () => {
     const [activeSlide, setActiveSlide] = useState(0);
 
@@ -88,23 +90,11 @@ const DiaryPage = () => {
     const currentAccent = accents[currentSlide.accent as keyof typeof accents];
     const heroImage = placeholderData.placeholderImages.find(p => p.id === 'diary-banner');
 
+
   return (
-    <div className="flex flex-col min-h-screen relative antialiased overflow-x-hidden" style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial' }}>
-      {/* Background Layers */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* Subtle Grid */}
-        <div className="absolute inset-0 opacity-10 bg-[size:56px_56px] [background-image:linear-gradient(to_right,rgba(99,102,241,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.15)_1px,transparent_1px)]"></div>
-        {/* Top Gradient */}
-        <div className="absolute -inset-x-16 -top-24 h-[520px] md:h-[640px] bg-[radial-gradient(120%_80%_at_50%_0%,rgba(99,102,241,0.08)_0%,rgba(56,189,248,0.06)_35%,transparent_70%)]"></div>
-      </div>
-
-      {/* Aura Background (Full-Screen Fixed Effect) */}
-      <div className="aura-background-component fixed top-0 w-full h-screen -z-10">
-        <div data-us-project="K7xzrAoejHe2lHXqTJzm" className="absolute top-0 left-0 -z-10 w-full h-full"></div>
-      </div>
-
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow relative z-10">
+      <main className="flex-grow">
         <div className="relative z-10">
           <div className="md:px-8 lg:px-12 md:py-24 mt-16 mb-16 pt-16 pr-6 pb-16 pl-6 items-center justify-center">
             <div className="max-w-7xl mx-auto">
@@ -131,10 +121,10 @@ const DiaryPage = () => {
                         </Link>
                       </Button>
                       <Button asChild variant="outline" size="lg">
-                        <Link href="/#contact">
+                        <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">
                             <MessageSquare className="w-4 h-4 stroke-[1.5] mr-2" />
                             Book a Session
-                        </Link>
+                        </a>
                       </Button>
                     </div>
                      <div className="grid grid-cols-3 gap-8">
@@ -269,18 +259,6 @@ const DiaryPage = () => {
 
       </main>
       <Footer />
-
-      {/* Unicorn Studio Script for Aura Effect */}
-      <Script
-        src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js"
-        strategy="beforeInteractive"
-        onLoad={() => {
-          if (!window.UnicornStudio?.isInitialized) {
-            window.UnicornStudio?.init();
-            window.UnicornStudio.isInitialized = true;
-          }
-        }}
-      />
     </div>
   );
 };

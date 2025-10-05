@@ -14,10 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Send, Mail, Phone, MapPin, Clock, Briefcase, Award, Loader2 } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Send, Mail, Phone, MapPin, Loader2, Newspaper } from "lucide-react";
 import MotionWrap from "./MotionWrap";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -26,9 +24,6 @@ const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
   lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().optional(),
-  projectType: z.string({ required_error: "Please select a project type." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
 export default function Contact() {
@@ -36,25 +31,25 @@ export default function Contact() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { firstName: "", lastName: "", email: "", phone: "", message: "" },
+    defaultValues: { firstName: "", lastName: "", email: "" },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await addDoc(collection(db, "contactSubmissions"), {
+      await addDoc(collection(db, "newsletterSubscriptions"), {
         ...values,
         createdAt: serverTimestamp(),
         read: false,
       });
       toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. Your business developer will get back to you shortly.",
+        title: "Subscription Successful!",
+        description: "Thank you for subscribing. You're now on the list for strategic insights.",
       });
       form.reset();
     } catch (error) {
-        console.error("Error sending message: ", error);
+        console.error("Error subscribing: ", error);
         toast({
-            title: "Submission Error",
+            title: "Subscription Error",
             description: "There was a problem sending your message. Please try again.",
             variant: "destructive"
         })
@@ -74,14 +69,14 @@ export default function Contact() {
             {/* Left Content */}
             <div className="anim d-2">
               <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-2 text-sm font-medium mb-6">
-                <Mail className="w-4 h-4" />
-                <span>Get in Touch</span>
+                <Newspaper className="w-4 h-4" />
+                <span>Join the Newsletter</span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-light tracking-tighter mb-6">
-                Ready to Scale? Contact a Leading <span className="font-semibold text-primary">Business Consultant</span>
+                Get Strategic Insights Directly to Your <span className="font-semibold text-primary">Inbox</span>
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                Let’s simplify your strategy, remove confusion, and position your brand for sustainable growth—all in line with your Deen. Reach out to a premier business consultant for Muslims.
+                Subscribe to receive actionable strategies, reflections, and updates on building a Deen-aligned business. No spam, only value.
               </p>
               
               <div className="space-y-4 mb-8">
@@ -118,27 +113,13 @@ export default function Contact() {
                     </div>
                   </div>
               </div>
-              <div className="grid grid-cols-3 divide-x divide-border mt-12 p-4 rounded-2xl glass-card">
-                  <div className="text-center px-2">
-                    <h5 className="text-2xl font-bold text-primary">24hr</h5>
-                    <p className="text-sm text-muted-foreground">Response</p>
-                  </div>
-                  <div className="text-center px-2">
-                     <h5 className="text-2xl font-bold text-primary">Discovery</h5>
-                    <p className="text-sm text-muted-foreground">Call</p>
-                  </div>
-                  <div className="text-center px-2">
-                     <h5 className="text-2xl font-bold text-primary">5+</h5>
-                    <p className="text-sm text-muted-foreground">Years Exp.</p>
-                  </div>
-              </div>
             </div>
             
             {/* Right Form */}
             <div className="anim d-3 light:bg-white dark:glass-card rounded-3xl p-8 light:shadow-xl light:border light:border-gray-100">
               <div className="mb-8">
-                <h3 className="text-2xl font-semibold mb-2">Start Your Project with a Brand Strategist</h3>
-                <p className="text-muted-foreground">Tell me about your vision, and this business strategist will help bring it to life.</p>
+                <h3 className="text-2xl font-semibold mb-2">Subscribe to the Newsletter</h3>
+                <p className="text-muted-foreground">Join a community of forward-thinking Muslim entrepreneurs.</p>
               </div>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -183,54 +164,12 @@ export default function Contact() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="projectType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Service from a Business Consultant *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="light:bg-white light:border-gray-200 dark:bg-white/5 dark:border-border focus:border-primary focus:ring-4 focus:ring-primary/20">
-                                  <SelectValue placeholder="Select a service" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                                <SelectItem value="one-on-one-in-person">In-Person One-on-One Mentorship</SelectItem>
-                                <SelectItem value="one-on-one-virtual">Virtual One-on-One Mentorship</SelectItem>
-                                <SelectItem value="strategy-session">Business Strategy Session</SelectItem>
-                                <SelectItem value="growth-consulting">Growth Consulting</SelectItem>
-                                <SelectItem value="other">Other</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="message"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Project Details *</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            placeholder="Tell me about your vision, business, timeline, and any specific requirements..."
-                            className="resize-none light:bg-white light:border-gray-200 dark:bg-white/5 dark:border-border focus:border-primary focus:ring-4 focus:ring-primary/20"
-                            rows={4}
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                   <Button type="submit" disabled={form.formState.isSubmitting} className="w-full bg-gradient-to-r from-primary to-red-700 dark:to-red-700 light:to-primary/90 text-white py-4 font-semibold text-lg hover:from-primary/90 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                      {form.formState.isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : null}
-                      Schedule Discovery Call
+                      {form.formState.isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Send className="mr-2 h-4 w-4"/>}
+                      Subscribe
                   </Button>
                   <p className="text-xs text-muted-foreground text-center">
-                    By submitting this form, you agree to our privacy policy. We'll never share your information.
+                    By subscribing, you agree to our privacy policy. We'll never share your information.
                   </p>
                 </form>
               </Form>

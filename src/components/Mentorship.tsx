@@ -3,8 +3,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Check, Users } from "lucide-react";
-import BookingForm from "./BookingForm";
-import { Dialog, DialogTrigger } from "./ui/dialog";
 import Link from "next/link";
 import MotionWrap from "./MotionWrap";
 
@@ -18,69 +16,66 @@ const Mentorship = () => {
                         <p className="mt-2 text-lg text-muted-foreground">Get expert mentorship from a Pro-Islamic Business Strategist and Consultant.</p>
                     </header>
 
-                    <Dialog>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
-                            <article className="md:col-span-1 glass-card p-6 anim d-2 rounded-2xl">
-                                <h3 className="text-xl font-semibold">Why Work With a Business Strategist?</h3>
-                                <ul className="mt-4 space-y-4 text-muted-foreground">
-                                    <li>
-                                        <h4 className="font-semibold text-foreground">World-Class Expertise</h4>
-                                        <p className="text-sm">Learn from a business consultant with proven success across multiple industries.</p>
-                                    </li>
-                                    <li>
-                                        <h4 className="font-semibold text-foreground">Tailored for You</h4>
-                                        <p className="text-sm">Every session is customized to your business challenges by an expert brand strategist.</p>
-                                    </li>
-                                    <li>
-                                        <h4 className="font-semibold text-foreground">Action-Oriented</h4>
-                                        <p className="text-sm">Walk away with practical strategies you can implement immediately.</p>
-                                    </li>
-                                </ul>
-                            </article>
-
-                            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <article className="border-2 border-primary/50 bg-primary/5 glass-card p-6 anim d-3 relative rounded-2xl">
-                                    <div className="absolute -top-3 right-4 bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary ring-1 ring-primary/20">In-Person</div>
-                                    <h3 className="text-lg tracking-tight font-medium">One-on-One In-Person Session</h3>
-                                    <p className="mt-1 text-3xl tracking-tight font-semibold">$349.99</p>
-                                    <p className="text-sm text-muted-foreground mt-1">90-120 minutes</p>
-                                    <p className="text-sm text-foreground/80 mt-4">👉 Best for serious entrepreneurs who want immersive guidance.</p>
-                                    <ul className="mt-4 space-y-2 text-sm">
-                                        <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Immersive Guidance</li>
-                                        <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> 2-week hands-on follow-up</li>
-                                    </ul>
-                                     <DialogTrigger asChild>
-                                        <Button className="mt-5 w-full bg-primary text-primary-foreground hover:bg-primary/90">Book Session</Button>
-                                    </DialogTrigger>
-                                </article>
-                                <article className="glass-card p-6 anim d-4 relative rounded-2xl">
-                                    <div className="absolute -top-3 right-4 bg-sky-400/10 px-2 py-1 text-[10px] font-medium text-sky-300 ring-1 ring-sky-400/20">Virtual</div>
-                                    <h3 className="text-lg tracking-tight font-medium">One-on-One Virtual Session</h3>
-                                    <p className="mt-1 text-3xl tracking-tight font-semibold">$99.99</p>
-                                    <p className="text-sm text-muted-foreground mt-1">60-75 minutes (Zoom/Meet)</p>
-                                     <p className="text-sm text-foreground/80 mt-4">👉 Best for entrepreneurs who want clarity & quick wins.</p>
-                                    <ul className="mt-4 space-y-2 text-sm">
-                                        <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Tailored Strategies</li>
-                                        <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> 2-week hands-on follow-up</li>
-                                    </ul>
-                                    <DialogTrigger asChild>
-                                        <Button variant="secondary" className="mt-5 w-full">Book Session</Button>
-                                    </DialogTrigger>
-                                </article>
-                            </div>
-                        </div>
-
-                        <article className="max-w-6xl mx-auto mt-12 text-center glass-card p-8 anim d-5 rounded-2xl">
-                            <h3 className="text-xl font-semibold">Important Information</h3>
-                            <p className="text-muted-foreground mt-2">All sessions include a 2-week hands-on follow-up. Retainer options are available for continued support.</p>
-                            <div className="mt-6">
-                                <Button asChild>
-                                    <Link href="/pricing">View All Packages & Retainers</Link>
-                                </Button>
-                            </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+                        <article className="md:col-span-1 glass-card p-6 anim d-2 rounded-2xl">
+                            <h3 className="text-xl font-semibold">Why Work With a Business Strategist?</h3>
+                            <ul className="mt-4 space-y-4 text-muted-foreground">
+                                <li>
+                                    <h4 className="font-semibold text-foreground">World-Class Expertise</h4>
+                                    <p className="text-sm">Learn from a business consultant with proven success across multiple industries.</p>
+                                </li>
+                                <li>
+                                    <h4 className="font-semibold text-foreground">Tailored for You</h4>
+                                    <p className="text-sm">Every session is customized to your business challenges by an expert brand strategist.</p>
+                                </li>
+                                <li>
+                                    <h4 className="font-semibold text-foreground">Action-Oriented</h4>
+                                    <p className="text-sm">Walk away with practical strategies you can implement immediately.</p>
+                                </li>
+                            </ul>
                         </article>
-                        <BookingForm />
-                    </Dialog>
+
+                        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <article className="border-2 border-primary/50 bg-primary/5 glass-card p-6 anim d-3 relative rounded-2xl">
+                                <div className="absolute -top-3 right-4 bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary ring-1 ring-primary/20">In-Person</div>
+                                <h3 className="text-lg tracking-tight font-medium">One-on-One In-Person Session</h3>
+                                <p className="mt-1 text-3xl tracking-tight font-semibold">$349.99</p>
+                                <p className="text-sm text-muted-foreground mt-1">90-120 minutes</p>
+                                <p className="text-sm text-foreground/80 mt-4">👉 Best for serious entrepreneurs who want immersive guidance.</p>
+                                <ul className="mt-4 space-y-2 text-sm">
+                                    <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Immersive Guidance</li>
+                                    <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> 2-week hands-on follow-up</li>
+                                </ul>
+                                 <Button asChild className="mt-5 w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                                    <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a>
+                                </Button>
+                            </article>
+                            <article className="glass-card p-6 anim d-4 relative rounded-2xl">
+                                <div className="absolute -top-3 right-4 bg-sky-400/10 px-2 py-1 text-[10px] font-medium text-sky-300 ring-1 ring-sky-400/20">Virtual</div>
+                                <h3 className="text-lg tracking-tight font-medium">One-on-One Virtual Session</h3>
+                                <p className="mt-1 text-3xl tracking-tight font-semibold">$99.99</p>
+                                <p className="text-sm text-muted-foreground mt-1">60-75 minutes (Zoom/Meet)</p>
+                                 <p className="text-sm text-foreground/80 mt-4">👉 Best for entrepreneurs who want clarity & quick wins.</p>
+                                <ul className="mt-4 space-y-2 text-sm">
+                                    <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Tailored Strategies</li>
+                                    <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> 2-week hands-on follow-up</li>
+                                </ul>
+                                <Button asChild variant="secondary" className="mt-5 w-full">
+                                    <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">Book Session</a>
+                                </Button>
+                            </article>
+                        </div>
+                    </div>
+
+                    <article className="max-w-6xl mx-auto mt-12 text-center glass-card p-8 anim d-5 rounded-2xl">
+                        <h3 className="text-xl font-semibold">Important Information</h3>
+                        <p className="text-muted-foreground mt-2">All sessions include a 2-week hands-on follow-up. Retainer options are available for continued support.</p>
+                        <div className="mt-6">
+                            <Button asChild>
+                                <Link href="/pricing">View All Packages & Retainers</Link>
+                            </Button>
+                        </div>
+                    </article>
 
                     <div className="mt-20 border-t border-border pt-20">
                         <header className="text-center mb-12 max-w-3xl mx-auto">
@@ -105,7 +100,7 @@ const Mentorship = () => {
                                         <li className="flex items-center gap-2"><Check className="size-4 text-primary" /> Half-Day & Full-Day Workshops Available</li>
                                     </ul>
                                     <Button size="lg" asChild>
-                                        <Link href="#contact">Enquire About Team Sessions</Link>
+                                        <a href="#contact">Enquire About Team Sessions</a>
                                     </Button>
                                 </div>
                                 <div className="hidden md:block">

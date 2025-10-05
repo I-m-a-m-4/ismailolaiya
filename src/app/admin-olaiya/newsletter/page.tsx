@@ -17,6 +17,8 @@ import { cn } from '@/lib/utils';
 type NewsletterSubscription = {
     id: string;
     email: string;
+    firstName?: string;
+    lastName?: string;
     read: boolean;
     createdAt: {
         seconds: number;
@@ -62,7 +64,7 @@ const AdminNewsletterPage = () => {
 
     useEffect(() => {
         fetchSubscriptions();
-    }, []);
+    }, [toast]);
 
     const handleSelection = (id: string) => {
         setSelected(prev =>
@@ -79,12 +81,13 @@ const AdminNewsletterPage = () => {
     };
     
     const downloadCSV = () => {
-        const headers = ['Email', 'Date Subscribed', 'Read'];
+        const headers = ['First Name', 'Last Name', 'Email', 'Date Subscribed'];
         const rows = (selected.length > 0 ? subscriptions.filter(s => selected.includes(s.id)) : subscriptions)
             .map(entry => [
+            entry.firstName || 'N/A',
+            entry.lastName || 'N/A',
             entry.email,
             entry.createdAt ? format(new Date(entry.createdAt.seconds * 1000), 'PPP p') : 'N/A',
-            entry.read ? 'Yes' : 'No'
         ]);
 
         let csvContent = "data:text/csv;charset=utf-8," 
@@ -175,6 +178,7 @@ const AdminNewsletterPage = () => {
                                             onCheckedChange={handleSelectAll}
                                         />
                                     </TableHead>
+                                    <TableHead>Name</TableHead>
                                     <TableHead>Email</TableHead>
                                     <TableHead className="text-right">Date Joined</TableHead>
                                 </TableRow>
@@ -188,6 +192,7 @@ const AdminNewsletterPage = () => {
                                                 onCheckedChange={() => handleSelection(entry.id)}
                                             />
                                         </TableCell>
+                                        <TableCell>{entry.firstName || ''} {entry.lastName || ''}</TableCell>
                                         <TableCell>{entry.email}</TableCell>
                                         <TableCell className="text-right text-muted-foreground">
                                             {entry.createdAt ? format(new Date(entry.createdAt.seconds * 1000), 'PPP') : 'N/A'}

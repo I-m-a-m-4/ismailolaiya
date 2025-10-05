@@ -18,8 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-montserrat)'],
-        grotesk: ['var(--font-plus-jakarta-sans)'],
+        sans: ['Montserrat', 'sans-serif'],
+        grotesk: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

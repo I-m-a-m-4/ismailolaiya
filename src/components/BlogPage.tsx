@@ -15,8 +15,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Calendar, User, MessageSquare, Send, Sparkles } from "lucide-react";
 import placeholderData from '@/lib/placeholder-images.json';
 import { type BlogPost } from '@/lib/blog-posts';
-import { Dialog, DialogTrigger } from './ui/dialog';
-import BookingForm from './BookingForm';
 import { trackClick } from '@/lib/analytics';
 
 
@@ -85,15 +83,12 @@ const BlogPage = ({ post }: { post: BlogPost }) => {
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                     Transform your vision into a thriving, Deen-aligned enterprise. As a Pro-Islamic business strategist, I can provide the clarity and direction you need.
                 </p>
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <Button size="lg" onClick={() => trackClick('blog_cta_book_session')}>
-                            <Sparkles className="w-5 h-5 mr-2"/>
-                            Book a Strategy Session
-                        </Button>
-                    </DialogTrigger>
-                    <BookingForm />
-                </Dialog>
+                <Button size="lg" asChild onClick={() => trackClick('blog_cta_book_session')}>
+                    <a href="https://calendly.com/scalewitholaiya/20-minute-discovery-call" target="_blank" rel="noopener noreferrer">
+                        <Sparkles className="w-5 h-5 mr-2"/>
+                        Book a Strategy Session
+                    </a>
+                </Button>
             </aside>
 
             {/* Comments Section */}

@@ -18,7 +18,7 @@ const Resources = () => {
             <div className="flex justify-center anim d-2 perspective-container">
               <div className="relative w-96 h-[32rem] book-transform">
                   <Image
-                      src="/images/upright.png"
+                      src="/images/Book_Cover_Mockup.png"
                       alt="How the Best Generation Built Wealth Book Cover"
                       fill
                       data-ai-hint="book cover"

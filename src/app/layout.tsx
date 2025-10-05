@@ -1,27 +1,6 @@
-
 import type { Metadata } from 'next';
-import { Inter, Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/Providers';
-import Script from 'next/script';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-  display: 'swap',
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-plus-jakarta-sans',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Scale with Olaiya | Pro-Islamic Business & Growth Strategist',
@@ -31,7 +10,7 @@ export const metadata: Metadata = {
   creator: 'Ismail Adekunle-Olaiya',
   publisher: 'Ismail Adekunle-Olaiya',
   icons: {
-    icon: 'https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg',
+    icon: '/icon.jpg',
   },
   openGraph: {
       title: 'Scale with Olaiya | Pro-Islamic Business & Growth Strategist',
@@ -80,7 +59,7 @@ export default function RootLayout({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Scale with Olaiya Business & Growth Strategy",
-      "image": "https://res.cloudinary.com/dd1czj85j/image/upload/v1758632419/FB_IMG_1758620993468_zoahas.jpg",
+      "image": "/icon.jpg",
       "url": "https://www.scalewitholaiya.com",
       "telephone": "+2349073999745",
       "email": "info@scalewitholaiya.com",
@@ -119,21 +98,8 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${plusJakartaSans.variable} scroll-smooth`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z96H3F68GP"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-Z96H3F68GP');
-          `}
-        </Script>
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
