@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -105,12 +104,12 @@ const DiaryPage = () => {
                        <div className="flex items-center gap-0.5">
                            {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 stroke-[1.5] text-amber-500 fill-amber-500" />)}
                        </div>
-                       <span className="text-xs font-medium text-slate-400 light:text-slate-500">Trusted by Muslim Entrepreneurs</span>
+                       <span className="text-xs font-medium text-slate-400 light:text-slate-900">Trusted by Muslim Entrepreneurs</span>
                     </div>
                      <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-8 text-slate-100 light:text-slate-900 font-light tracking-tighter">
                         Diary of the Muslim Strategist
                      </h1>
-                    <p className="text-lg leading-relaxed mb-12 text-zinc-400 light:text-zinc-700">
+                    <p className="text-lg leading-relaxed mb-12 text-zinc-400 light:text-slate-900">
                         A curated collection of insights, stories, and resources from my journey as a Pro-Islamic business consultant.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 mb-16">
@@ -192,7 +191,7 @@ const DiaryPage = () => {
                 </div>
                 <div className="relative">
                     <div className="relative rounded-2xl border border-neutral-800/80 bg-neutral-900/50 shadow-[0_10px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-white/5 backdrop-blur-md overflow-hidden light:bg-white light:border-neutral-200 light:shadow-2xl">
-                        <div className="h-12 flex items-center gap-2 px-4 border-b border-neutral-800/70 text-neutral-400 text-sm light:border-neutral-200 light:text-neutral-500">
+                        <div className="h-12 flex items-center gap-2 px-4 border-b border-neutral-800/70 text-neutral-400 text-sm light:border-neutral-200 light:text-neutral-900">
                            <BookOpen className="w-4 h-4" />
                            <span className="truncate">Scale with Olaiya</span>
                            <span className="opacity-50">›</span>
@@ -208,7 +207,7 @@ const DiaryPage = () => {
                                     <span className="font-light tracking-tighter">{currentSlide.tailText}</span>
                                 </h3>
                             </div>
-                            <p className="mt-5 text-neutral-400 leading-relaxed max-w-prose text-[17px] sm:text-lg light:text-neutral-600">{currentSlide.body}</p>
+                            <p className="mt-5 text-neutral-400 leading-relaxed max-w-prose text-[17px] sm:text-lg light:text-neutral-900">{currentSlide.body}</p>
                              <div className="mt-8 space-y-2">
                                <div className="h-3 rounded bg-neutral-800/70 w-2/3 light:bg-neutral-200"></div>
                                <div className="h-3 rounded bg-neutral-800/70 w-5/6 light:bg-neutral-200"></div>

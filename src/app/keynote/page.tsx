@@ -24,7 +24,7 @@ async function getKeynoteContent() {
         title: 'Keynote Sessions with Olaiya',
         subtitle: 'Your Direct Line to Strategic Clarity',
         description: 'This is a unique opportunity to engage directly with me in a group setting. I’ll address your most pressing pain points, answer common questions, and provide live, unscripted strategic advice to help you overcome your business challenges.',
-        priceInfo: 'Free for all of 2024 — an investment in our Ummah.'
+        priceInfo: 'Free for all of 2025 — an investment in our Ummah.'
     };
 }
 
