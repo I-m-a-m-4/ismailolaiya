@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -78,7 +77,14 @@ const Header = () => {
               <li className="w-full text-left py-2">
                 <CollapsibleTrigger className='w-full'>
                     <div className='flex items-center justify-between'>
-                        <Link href="/diary" onClick={(e) => { e.preventDefault(); setIsDiaryMenuOpen(!isDiaryMenuOpen); }} className={cn("text-base font-medium transition", pathname.startsWith('/diary') ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+                        <Link 
+                          href="/diary" 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleLinkClick('/diary');
+                          }} 
+                          className={cn("text-base font-medium transition", pathname.startsWith('/diary') ? "text-primary" : "text-muted-foreground hover:text-primary")}
+                        >
                           Diary
                         </Link>
                         <ChevronDown className={cn("h-5 w-5 text-muted-foreground transition-transform", isDiaryMenuOpen && "rotate-180")} />
